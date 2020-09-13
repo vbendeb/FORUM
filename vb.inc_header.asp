@@ -304,11 +304,11 @@ select case Request.Form("Method_Type")
 				"  </tr>" & vbNewLine & _
 				"</table>" & vbNewLine
 		if strLoginStatus = 0 then
-			Response.Write	"<p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>Вы ввели неправильный логин ник и/или пароль.</font></p>" & vbNewLine & _
-					"<p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>Пожалуйста введите правильную комбинацию или зарегистрируйтесь.</font></p>" & vbNewLine
+			Response.Write	"<p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>Р’С‹ РІРІРµР»Рё РЅРµРїСЂР°РІРёР»СЊРЅС‹Р№ Р»РѕРіРёРЅ РЅРёРє Рё/РёР»Рё РїР°СЂРѕР»СЊ.</font></p>" & vbNewLine & _
+					"<p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>РџРѕР¶Р°Р»СѓР№СЃС‚Р° РІРІРµРґРёС‚Рµ РїСЂР°РІРёР»СЊРЅСѓСЋ РєРѕРјР±РёРЅР°С†РёСЋ РёР»Рё Р·Р°СЂРµРіРёСЃС‚СЂРёСЂСѓР№С‚РµСЃСЊ.</font></p>" & vbNewLine
 		else
-			Response.Write	"<p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>Добро Пожаловать на МОСТ Форум!</font></p>" & vbNewLine & _
-					"<p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>Спасибо за Ваше участие и поддержку.</font></p>" & vbNewLine
+			Response.Write	"<p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>Р”РѕР±СЂРѕ РџРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° РњРћРЎРў Р¤РѕСЂСѓРј!</font></p>" & vbNewLine & _
+					"<p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>РЎРїР°СЃРёР±Рѕ Р·Р° Р’Р°С€Рµ СѓС‡Р°СЃС‚РёРµ Рё РїРѕРґРґРµСЂР¶РєСѓ.</font></p>" & vbNewLine
 		end if
 		Response.Write	"<meta http-equiv=""Refresh"" content=""2; URL=" & Request.ServerVariables("HTTP_REFERER") & """>" & vbNewLine & _
 				"" & strParagraphFormat1 & "<a href=""" & Request.ServerVariables("HTTP_REFERER") & """>" & strBackToForum & "</font></a></p>" & vbNewLine & _
@@ -322,10 +322,10 @@ select case Request.Form("Method_Type")
 				"    </td>" & vbNewLine & _
 				"  </tr>" & vbNewLine & _
 				"</table>" & vbNewLine & _
-				"<p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>Ваша сессия на Форуме успешно закрыта.</font></p>" & vbNewLine & _
-				"<p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>Спасибо за Ваше участие и поддержку.</font></p>" & vbNewLine & _
+				"<p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>Р’Р°С€Р° СЃРµСЃСЃРёСЏ РЅР° Р¤РѕСЂСѓРјРµ СѓСЃРїРµС€РЅРѕ Р·Р°РєСЂС‹С‚Р°.</font></p>" & vbNewLine & _
+				"<p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>РЎРїР°СЃРёР±Рѕ Р·Р° Р’Р°С€Рµ СѓС‡Р°СЃС‚РёРµ Рё РїРѕРґРґРµСЂР¶РєСѓ.</font></p>" & vbNewLine & _
 				"<meta http-equiv=""Refresh"" content=""2; URL=default.asp"">" & vbNewLine & _
-				"" & strParagraphFormat1 & "<a href=""default.asp"">Назад на Форум</font></a></p>" & vbNewLine & _
+				"" & strParagraphFormat1 & "<a href=""default.asp"">РќР°Р·Р°Рґ РЅР° Р¤РѕСЂСѓРј</font></a></p>" & vbNewLine & _
 				"<table align=""center"" border=""0"" cellPadding=""0"" cellSpacing=""0"" width=""95%"">" & vbNewLine & _
 				"  <tr>" & vbNewLine & _
 				"    <td>" & vbNewLine
@@ -348,9 +348,9 @@ if (mlev = 0) then
 				"            <table>" & vbNewLine & _
 				"              <tr>" & vbNewLine
 		if (strAuthType = "db") then
-			Response.Write	"                <td><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """><b>Ваше имя/ник:</b></font><br />" & vbNewLine & _
+			Response.Write	"                <td><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """><b>Р’Р°С€Рµ РёРјСЏ/РЅРёРє:</b></font><br />" & vbNewLine & _
 					"                <input type=""text"" name=""Name"" size=""10"" maxLength=""25"" value=""""></td>" & vbNewLine & _
-					"                <td><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """><b>Пароль:</b></font><br />" & vbNewLine & _
+					"                <td><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """><b>РџР°СЂРѕР»СЊ:</b></font><br />" & vbNewLine & _
 					"                <input type=""password"" name=""Password"" size=""10"" maxLength=""25"" value=""""></td>" & vbNewLine & _
 					"                <td valign=""bottom"">" & vbNewLine
 			if strGfxButtons = "1" then
@@ -362,7 +362,7 @@ if (mlev = 0) then
 					"              </tr>" & vbNewLine & _
 					"              <tr>" & vbNewLine & _
 					"                <td colspan=""3"" align=""left""><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """>" & vbNewLine & _
-					"                <input type=""checkbox"" name=""SavePassWord"" value=""true"" tabindex=""-1"" CHECKED><b> Запомнить пароль</b></font></td>" & vbNewLine
+					"                <input type=""checkbox"" name=""SavePassWord"" value=""true"" tabindex=""-1"" CHECKED><b> Р—Р°РїРѕРјРЅРёС‚СЊ РїР°СЂРѕР»СЊ</b></font></td>" & vbNewLine
 		else
 			if (strAuthType = "nt") then 
 				Response.Write	"                <td><font face=""" & strDefaultFontFace & """ size=""1""  color=""" & strHiLiteFontColor & """>Please <a href=""policy.asp"" tabindex=""-1"">register</a> to post in these Forums</font></td>" & vbNewLine
@@ -377,7 +377,7 @@ if (mlev = 0) then
 			Response.Write	"Password?</a>" & vbNewLine
 			if (lcase(strNoCookies) = "1") then
 				Response.Write	"                |" & vbNewLine & _
-						"                <a href=""admin_home.asp""" & dWStatus("Access the Forum Admin Functions...") & " tabindex=""-1"">Администрация Форума</a>" & vbNewLine
+						"                <a href=""admin_home.asp""" & dWStatus("Access the Forum Admin Functions...") & " tabindex=""-1"">РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ Р¤РѕСЂСѓРјР°</a>" & vbNewLine
 			end if
 			Response.Write	"                <br /><br /></font></td>" & vbNewLine & _
 					"              </tr>" & vbNewLine
@@ -394,7 +394,7 @@ else
 			"          <td align=""center"">" & vbNewLine & _
 			"            <table>" & vbNewLine & _
 			"              <tr>" & vbNewLine & _
-			"                <td align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """>Вы пользуетесь именем<br>"
+			"                <td align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """>Р’С‹ РїРѕР»СЊР·СѓРµС‚РµСЃСЊ РёРјРµРЅРµРј<br>"
 	if strAuthType="nt" then
 		Response.Write	"<b>" & Session(strCookieURL & "username") & "&nbsp;(" & Session(strCookieURL & "userid") & ")</b></font></td>" & vbNewLine & _
 				"                <td>&nbsp;"
@@ -416,7 +416,7 @@ else
 			"        </tr>" & vbNewLine
 	if (mlev = 4) or (lcase(strNoCookies) = "1") then
 		Response.Write	"        <tr>" & vbNewLine & _
-				"          <td align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """><a href=""admin_home.asp""" & dWStatus("Access the Forum Admin Functions...") & " tabindex=""-1"">Администрация Форумов</a>"
+				"          <td align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """><a href=""admin_home.asp""" & dWStatus("Access the Forum Admin Functions...") & " tabindex=""-1"">РђРґРјРёРЅРёСЃС‚СЂР°С†РёСЏ Р¤РѕСЂСѓРјРѕРІ</a>"
 		if mLev = 4 and (strEmailVal = "1" and strRestrictReg = "1" and strEmail = "1" and User_Count > 0) then Response.Write("&nbsp;|&nbsp;<a href=""admin_accounts_pending.asp""" & dWStatus("(" & User_Count & ") Member(s) awaiting approval") & " tabindex=""-1"">(" & User_Count & ") Member(s) awaiting approval</a>")
 		Response.Write	"<br /><br /></font></td>" & vbNewLine & _
 				"        </tr>" & vbNewLine
@@ -483,18 +483,18 @@ sub sForumNavigation()
 	Response.Write	"          <a href=""" & strMoctUrl & """" & dWStatus("Homepage") & " tabindex=""-1""><acronym title=""Homepage"">MOCT.org</acronym></a>" & vbNewline & _
 			"          |" & vbNewline
 	if strUseExtendedProfile then 
-		Response.Write	"          <a href=""pop_profile.asp?mode=Edit""" & dWStatus("Edit your personal profile...") & " tabindex=""-1""><acronym title=""Редактирование персональной информации..."">Профиль</acronym></a>" & vbNewline
+		Response.Write	"          <a href=""pop_profile.asp?mode=Edit""" & dWStatus("Edit your personal profile...") & " tabindex=""-1""><acronym title=""Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РїРµСЂСЃРѕРЅР°Р»СЊРЅРѕР№ РёРЅС„РѕСЂРјР°С†РёРё..."">РџСЂРѕС„РёР»СЊ</acronym></a>" & vbNewline
 	else
 		Response.Write	"          <a href=""javascript:openWindow3('pop_profile.asp?mode=Edit')""" & dWStatus("Edit your personal profile...") & " tabindex=""-1""><acronym title=""Edit your personal profile..."">Profile</acronym></a>" & vbNewline
 	end if 
 	if strAutoLogon <> "1" then
 		if strProhibitNewMembers <> "1" then
 			Response.Write	"          |" & vbNewline & _
-					"          <a href=""policy.asp""" & dWStatus("Register to post to our forum...") & " tabindex=""-1""><acronym title=""Зарегистрируйтесь для участия в нашем Форуме..."">Регистрация</acronym></a>" & vbNewline
+					"          <a href=""policy.asp""" & dWStatus("Register to post to our forum...") & " tabindex=""-1""><acronym title=""Р—Р°СЂРµРіРёСЃС‚СЂРёСЂСѓР№С‚РµСЃСЊ РґР»СЏ СѓС‡Р°СЃС‚РёСЏ РІ РЅР°С€РµРј Р¤РѕСЂСѓРјРµ..."">Р РµРіРёСЃС‚СЂР°С†РёСЏ</acronym></a>" & vbNewline
 		end if
 	end if
 	Response.Write	"          |" & vbNewline & _
-			"          <a href=""active.asp""" & dWStatus("See what topics have been active since your last visit...") & " tabindex=""-1""><acronym title=""Какие темы активны со времени Вашего последнего визита..."">Активные темы</acronym></a>" & vbNewline 
+			"          <a href=""active.asp""" & dWStatus("See what topics have been active since your last visit...") & " tabindex=""-1""><acronym title=""РљР°РєРёРµ С‚РµРјС‹ Р°РєС‚РёРІРЅС‹ СЃРѕ РІСЂРµРјРµРЅРё Р’Р°С€РµРіРѕ РїРѕСЃР»РµРґРЅРµРіРѕ РІРёР·РёС‚Р°..."">РђРєС‚РёРІРЅС‹Рµ С‚РµРјС‹</acronym></a>" & vbNewline 
 	' DEM --> Start of code added to show subscriptions if they exist
 	if (strSubscription > 0) then
 		if mlev = 4 and SubCount > 0 then
@@ -508,13 +508,13 @@ sub sForumNavigation()
 	end if
 	' DEM --> End of Code added to show subscriptions if they exist
 	Response.Write	"          |" & vbNewline & _
-			"          <a href=""members.asp""" & dWStatus("Current members of these forums...") & " tabindex=""-1""><acronym title=""Список участников Форума..."">Участники МОСТа</acronym></a>" & vbNewline & _
+			"          <a href=""members.asp""" & dWStatus("Current members of these forums...") & " tabindex=""-1""><acronym title=""РЎРїРёСЃРѕРє СѓС‡Р°СЃС‚РЅРёРєРѕРІ Р¤РѕСЂСѓРјР°..."">РЈС‡Р°СЃС‚РЅРёРєРё РњРћРЎРўР°</acronym></a>" & vbNewline & _
 			"          |" & vbNewline & _
 			"          <a href=""search.asp"
 	if Request.QueryString("FORUM_ID") <> "" then Response.Write("?FORUM_ID=" & cLng(Request.QueryString("FORUM_ID")))
-	Response.Write	"""" & dWStatus("Perform a search by keyword, date, and/or name...") & " tabindex=""-1""><acronym title=""Perform a search by keyword, date, and/or name..."">Поиск</acronym></a>" & vbNewline & _
+	Response.Write	"""" & dWStatus("Perform a search by keyword, date, and/or name...") & " tabindex=""-1""><acronym title=""Perform a search by keyword, date, and/or name..."">РџРѕРёСЃРє</acronym></a>" & vbNewline & _
 			"          |" & vbNewline & _
-			"          <a href=""faq.asp""" & dWStatus("Answers to Frequently Asked Questions...") & " tabindex=""-1""><acronym title=""Answers to Frequently Asked Questions..."">Помощь-FAQ</acronym></a>"
+			"          <a href=""faq.asp""" & dWStatus("Answers to Frequently Asked Questions...") & " tabindex=""-1""><acronym title=""Answers to Frequently Asked Questions..."">РџРѕРјРѕС‰СЊ-FAQ</acronym></a>"
 end sub
 
 if strGroupCategories = "1" then

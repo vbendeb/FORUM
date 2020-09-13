@@ -1697,7 +1697,7 @@ sub Go_Result(str_err_Msg, boolOk)
 		Response.write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>"
 		select case MethodType
 			case "Edit"
-			        Response.Write("Ваше сообщение отредактировано")
+			        Response.Write("Р’Р°С€Рµ СЃРѕРѕР±С‰РµРЅРёРµ РѕС‚СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРѕ")
 			case "EditCategory"
 			        ' DEM --> Added if statement to handle if subscriptions or moderation is allowed
 			        if strSubscription > 0 or strModeration > 0 then
@@ -1717,7 +1717,7 @@ sub Go_Result(str_err_Msg, boolOk)
 			        if Moderation = "Yes" then
 			                Response.Write("New Reply Posted!  It will appear once approved by a moderator")
 			        else
-			                Response.Write("Ваше сообщение опубликовано")
+			                Response.Write("Р’Р°С€Рµ СЃРѕРѕР±С‰РµРЅРёРµ РѕРїСѓР±Р»РёРєРѕРІР°РЅРѕ")
 			                DoPCount
 					if ForumCountMPosts <> 0 then
 				                DoUCount Request.Form("UserName")
@@ -1729,7 +1729,7 @@ sub Go_Result(str_err_Msg, boolOk)
 			        if Moderation = "Yes" then
 			                Response.Write("New Topic Posted!  It will appear once approved by a moderator")
 			        else
-			                Response.Write("Новый топик опубликован на форуме")
+			                Response.Write("РќРѕРІС‹Р№ С‚РѕРїРёРє РѕРїСѓР±Р»РёРєРѕРІР°РЅ РЅР° С„РѕСЂСѓРјРµ")
 			                DoTCount
 			                DoPCount
 					if ForumCountMPosts <> 0 then
@@ -1758,13 +1758,13 @@ sub Go_Result(str_err_Msg, boolOk)
 			case "Forum"
 				Response.Write("The new forum is ready for users to begin posting!")
 			case "EditForum", "EditCategory"
-				Response.Write("Спасибо за участие в Форуме!")
+				Response.Write("РЎРїР°СЃРёР±Рѕ Р·Р° СѓС‡Р°СЃС‚РёРµ РІ Р¤РѕСЂСѓРјРµ!")
 			case "URL"
 				Response.Write("The new URL is in place!")
 			case "EditURL"
 				Response.Write("Cheers! Have a nice day!")
 			case "Topic", "TopicQuote", "EditTopic", "Reply", "ReplyQuote", "Edit" 
-				Response.Write("Спасибо за участие в Форуме!")
+				Response.Write("РЎРїР°СЃРёР±Рѕ Р·Р° СѓС‡Р°СЃС‚РёРµ РІ Р¤РѕСЂСѓРјРµ!")
 			case else
 				Response.Write("Have a nice day!")
 		end select

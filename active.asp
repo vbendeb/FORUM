@@ -324,28 +324,28 @@ Response.Write	"      <table width=""100%"" border=""0"" cellspacing=""0"" cellp
 		"        <tr>" & vbNewline & _
 		"          <form name=""LastDateFrm"" action=""active.asp"" method=""post""><td>" & vbNewline & _
 		"          <font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & vbNewLine & _
-		"          " & getCurrentIcon(strIconFolderOpen,"","") & "&nbsp;<a href=""default.asp"">Все форумы</a><br />" & vbNewLine & _
+		"          " & getCurrentIcon(strIconFolderOpen,"","") & "&nbsp;<a href=""default.asp"">Р’СЃРµ С„РѕСЂСѓРјС‹</a><br />" & vbNewLine & _
 		"          " & getCurrentIcon(strIconBar,"","") & getCurrentIcon(strIconFolderOpenTopic,"","") & "&nbsp;" & _
-		"Активные темы, начиная с" & vbNewLine
+		"РђРєС‚РёРІРЅС‹Рµ С‚РµРјС‹, РЅР°С‡РёРЅР°СЏ СЃ" & vbNewLine
 Response.Write	"          <select name=""ShowSinceDateTime"" size=""1"" onchange=""SetLastDate();"">" & vbNewline & _
 		"          	<option value=""LastVisit"""
 if ActiveSince = "LastVisit" or ActiveSince = "" then
 	Response.Write " selected"
 end if
-Response.Write	">&nbsp;Последнего посещения " & ChkDate(Session(strCookieURL & "last_here_date"),"",true) & "&nbsp;</option>" & vbNewline & _
-		"          	<option value=""LastFifteen""" & chkSelect(ActiveSince,"LastFifteen") & ">&nbsp;Последних 15 минут</option>" & vbNewline & _
-		"          	<option value=""LastThirty""" & chkSelect(ActiveSince,"LastThirty") & ">&nbsp;Последних 30 минут</option>" & vbNewline & _
-		"          	<option value=""LastFortyFive""" & chkSelect(ActiveSince,"LastFortyFive") & ">&nbsp;Последних 45 минут</option>" & vbNewline & _
-		"          	<option value=""LastHour""" & chkSelect(ActiveSince,"LastHour") & ">&nbsp;Последнего часа</option>" & vbNewline & _
-		"          	<option value=""Last2Hours""" & chkSelect(ActiveSince,"Last2Hours") & ">&nbsp;Последних 2 часов</option>" & vbNewline & _
-		"          	<option value=""Last6Hours""" & chkSelect(ActiveSince,"Last6Hours") & ">&nbsp;Последних 6 часов</option>" & vbNewline & _
-		"          	<option value=""Last12Hours""" & chkSelect(ActiveSince,"Last12Hours") & ">&nbsp;Последних 12 часов</option>" & vbNewline & _
-		"          	<option value=""LastDay""" & chkSelect(ActiveSince,"LastDay") & ">&nbsp;Вчерашнего дня</option>" & vbNewline & _
-		"          	<option value=""Last2Days""" & chkSelect(ActiveSince,"Last2Days") & ">&nbsp;Последних двух дней</option>" & vbNewline & _
-		"          	<option value=""LastWeek""" & chkSelect(ActiveSince,"LastWeek") & ">&nbsp;Последней недели</option>" & vbNewline & _
-		"          	<option value=""Last2Weeks""" & chkSelect(ActiveSince,"Last2Weeks") & ">&nbsp;Двух последних недель</option>" & vbNewline & _
-		"          	<option value=""LastMonth""" & chkSelect(ActiveSince,"LastMonth") & ">&nbsp;Последнего месяца</option>" & vbNewline & _
-		"          	<option value=""Last2Months""" & chkSelect(ActiveSince,"Last2Months") & ">&nbsp;Двух последних месяцев</option>" & vbNewline & _
+Response.Write	">&nbsp;РџРѕСЃР»РµРґРЅРµРіРѕ РїРѕСЃРµС‰РµРЅРёСЏ " & ChkDate(Session(strCookieURL & "last_here_date"),"",true) & "&nbsp;</option>" & vbNewline & _
+		"          	<option value=""LastFifteen""" & chkSelect(ActiveSince,"LastFifteen") & ">&nbsp;РџРѕСЃР»РµРґРЅРёС… 15 РјРёРЅСѓС‚</option>" & vbNewline & _
+		"          	<option value=""LastThirty""" & chkSelect(ActiveSince,"LastThirty") & ">&nbsp;РџРѕСЃР»РµРґРЅРёС… 30 РјРёРЅСѓС‚</option>" & vbNewline & _
+		"          	<option value=""LastFortyFive""" & chkSelect(ActiveSince,"LastFortyFive") & ">&nbsp;РџРѕСЃР»РµРґРЅРёС… 45 РјРёРЅСѓС‚</option>" & vbNewline & _
+		"          	<option value=""LastHour""" & chkSelect(ActiveSince,"LastHour") & ">&nbsp;РџРѕСЃР»РµРґРЅРµРіРѕ С‡Р°СЃР°</option>" & vbNewline & _
+		"          	<option value=""Last2Hours""" & chkSelect(ActiveSince,"Last2Hours") & ">&nbsp;РџРѕСЃР»РµРґРЅРёС… 2 С‡Р°СЃРѕРІ</option>" & vbNewline & _
+		"          	<option value=""Last6Hours""" & chkSelect(ActiveSince,"Last6Hours") & ">&nbsp;РџРѕСЃР»РµРґРЅРёС… 6 С‡Р°СЃРѕРІ</option>" & vbNewline & _
+		"          	<option value=""Last12Hours""" & chkSelect(ActiveSince,"Last12Hours") & ">&nbsp;РџРѕСЃР»РµРґРЅРёС… 12 С‡Р°СЃРѕРІ</option>" & vbNewline & _
+		"          	<option value=""LastDay""" & chkSelect(ActiveSince,"LastDay") & ">&nbsp;Р’С‡РµСЂР°С€РЅРµРіРѕ РґРЅСЏ</option>" & vbNewline & _
+		"          	<option value=""Last2Days""" & chkSelect(ActiveSince,"Last2Days") & ">&nbsp;РџРѕСЃР»РµРґРЅРёС… РґРІСѓС… РґРЅРµР№</option>" & vbNewline & _
+		"          	<option value=""LastWeek""" & chkSelect(ActiveSince,"LastWeek") & ">&nbsp;РџРѕСЃР»РµРґРЅРµР№ РЅРµРґРµР»Рё</option>" & vbNewline & _
+		"          	<option value=""Last2Weeks""" & chkSelect(ActiveSince,"Last2Weeks") & ">&nbsp;Р”РІСѓС… РїРѕСЃР»РµРґРЅРёС… РЅРµРґРµР»СЊ</option>" & vbNewline & _
+		"          	<option value=""LastMonth""" & chkSelect(ActiveSince,"LastMonth") & ">&nbsp;РџРѕСЃР»РµРґРЅРµРіРѕ РјРµСЃСЏС†Р°</option>" & vbNewline & _
+		"          	<option value=""Last2Months""" & chkSelect(ActiveSince,"Last2Months") & ">&nbsp;Р”РІСѓС… РїРѕСЃР»РµРґРЅРёС… РјРµСЃСЏС†РµРІ</option>" & vbNewline & _
 		"          </select>" & vbNewline
 
 Response.Write	"          <input type=""hidden"" name=""Cookie"" value=""2"">" & vbNewLine & _
@@ -358,12 +358,12 @@ Response.Write	"          <input type=""hidden"" name=""Cookie"" value=""2"">" &
 		"	   <font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & _
 		"<br />" & vbNewline & _
 		"	   <select name=""RefreshTime"" size=""1"" onchange=""autoReload();"">" & vbNewline & _
-		"	   	<option value=""0""" & chkSelect(nRefreshTime,0) & ">Не обновлять автоматически</option>" & vbNewline & _
-		"          	<option value=""1""" & chkSelect(nRefreshTime,1) & ">Обновлять каждую минуту</option>" & vbNewline & _
-		"          	<option value=""2""" & chkSelect(nRefreshTime,2) & ">Обновлять каждые 2 минуты</option>" & vbNewline & _
-		"          	<option value=""5""" & chkSelect(nRefreshTime,5) & ">Обновлять каждые 5 минут</option>" & vbNewline & _
-		"          	<option value=""10""" & chkSelect(nRefreshTime,10) & ">Обновлять каждые 10 минут</option>" & vbNewline & _
-		"          	<option value=""15""" & chkSelect(nRefreshTime,15) & ">Обновлять каждые 15 минут</option>" & vbNewline & _
+		"	   	<option value=""0""" & chkSelect(nRefreshTime,0) & ">РќРµ РѕР±РЅРѕРІР»СЏС‚СЊ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё</option>" & vbNewline & _
+		"          	<option value=""1""" & chkSelect(nRefreshTime,1) & ">РћР±РЅРѕРІР»СЏС‚СЊ РєР°Р¶РґСѓСЋ РјРёРЅСѓС‚Сѓ</option>" & vbNewline & _
+		"          	<option value=""2""" & chkSelect(nRefreshTime,2) & ">РћР±РЅРѕРІР»СЏС‚СЊ РєР°Р¶РґС‹Рµ 2 РјРёРЅСѓС‚С‹</option>" & vbNewline & _
+		"          	<option value=""5""" & chkSelect(nRefreshTime,5) & ">РћР±РЅРѕРІР»СЏС‚СЊ РєР°Р¶РґС‹Рµ 5 РјРёРЅСѓС‚</option>" & vbNewline & _
+		"          	<option value=""10""" & chkSelect(nRefreshTime,10) & ">РћР±РЅРѕРІР»СЏС‚СЊ РєР°Р¶РґС‹Рµ 10 РјРёРЅСѓС‚</option>" & vbNewline & _
+		"          	<option value=""15""" & chkSelect(nRefreshTime,15) & ">РћР±РЅРѕРІР»СЏС‚СЊ РєР°Р¶РґС‹Рµ 15 РјРёРЅСѓС‚</option>" & vbNewline & _
 		"          </select>" & vbNewline
 Response.Write	"          <input type=""hidden"" name=""Cookie"" value=""1"">" & vbNewline & _
 		"          </font>" & vbNewline & _
@@ -390,11 +390,11 @@ If recActiveTopicsCount <> "" and (mLev > 0) then
 else 
 	Response.Write	"                &nbsp;</font></td>" & vbNewline
 end if
-Response.Write	"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Тема</font></b></td>" & vbNewline & _
-		"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Автор</font></b></td>" & vbNewline & _
-		"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Ответили</font></b></td>" & vbNewline & _
-		"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Читали</font></b></td>" & vbNewline & _
-		"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Последнее сообщение</font></b></td>" & vbNewline
+Response.Write	"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>РўРµРјР°</font></b></td>" & vbNewline & _
+		"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>РђРІС‚РѕСЂ</font></b></td>" & vbNewline & _
+		"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>РћС‚РІРµС‚РёР»Рё</font></b></td>" & vbNewline & _
+		"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Р§РёС‚Р°Р»Рё</font></b></td>" & vbNewline & _
+		"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>РџРѕСЃР»РµРґРЅРµРµ СЃРѕРѕР±С‰РµРЅРёРµ</font></b></td>" & vbNewline
 if (mlev > 0) or (lcase(strNoCookies) = "1") then
 	Response.Write	"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>"
 	if (mLev = 4 or mLev = 3) or (lcase(strNoCookies) = "1") then
@@ -622,10 +622,10 @@ Response.Write	"      <table width=""100%"" border=""0"" align=""center"">" & vb
 		"              <tr>" & vbNewLine & _
 		"                <td>" & vbNewLine & _
 		"                <p><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """>" & vbNewLine & _
-		"                " & getCurrentIcon(strIconFolderNew,"New Posts","align=""absmiddle""") & " Есть новые сообщения.<br />" & vbNewLine & _
-		"                " & getCurrentIcon(strIconFolder,"Old Posts","align=""absmiddle""") & " Нет новых сообщений."
-if lcase(strHotTopic) = "1" then Response.Write	(" (" & getCurrentIcon(strIconFolderHot,"Hot Topic","align=""absmiddle""") & "&nbsp;" & intHotTopicNum & " сообщений и больше.)<br />" & vbNewLine)
-Response.Write	"                " & getCurrentIcon(strIconFolderLocked,"Locked Topic","align=""absmiddle""") & " Закрытые темы.<br />" & vbNewLine
+		"                " & getCurrentIcon(strIconFolderNew,"New Posts","align=""absmiddle""") & " Р•СЃС‚СЊ РЅРѕРІС‹Рµ СЃРѕРѕР±С‰РµРЅРёСЏ.<br />" & vbNewLine & _
+		"                " & getCurrentIcon(strIconFolder,"Old Posts","align=""absmiddle""") & " РќРµС‚ РЅРѕРІС‹С… СЃРѕРѕР±С‰РµРЅРёР№."
+if lcase(strHotTopic) = "1" then Response.Write	(" (" & getCurrentIcon(strIconFolderHot,"Hot Topic","align=""absmiddle""") & "&nbsp;" & intHotTopicNum & " СЃРѕРѕР±С‰РµРЅРёР№ Рё Р±РѕР»СЊС€Рµ.)<br />" & vbNewLine)
+Response.Write	"                " & getCurrentIcon(strIconFolderLocked,"Locked Topic","align=""absmiddle""") & " Р—Р°РєСЂС‹С‚С‹Рµ С‚РµРјС‹.<br />" & vbNewLine
 ' DEM --> Start of Code added for moderation
 if HeldFound = "Y" then
 	Response.Write "                " & getCurrentIcon(strIconFolderHold,"Held Topic","align=""absmiddle""") & " Held Topic.<br />" & vbNewline

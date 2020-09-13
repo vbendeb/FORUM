@@ -463,14 +463,14 @@ else
 			"              <tr>" & vbNewLine & _
 			"                <td align=""center"" bgcolor=""" & strHeadCellColor & """ width=""" & strTopicWidthLeft & """"
 	if lcase(strTopicNoWrapLeft) = "1" then Response.Write(" nowrap")
-	Response.Write	"><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Автор</font></b></td>" & vbNewLine & _
+	Response.Write	"><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>РђРІС‚РѕСЂ</font></b></td>" & vbNewLine & _
 			"                <td align=""center"" bgcolor=""" & strHeadCellColor & """ width=""" & strTopicWidthRight & """"
 	if lcase(strTopicNoWrapRight) = "1" then Response.Write(" nowrap")
 	Response.Write	"><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>" & vbNewLine
 	if strShowTopicNav = "1" then
 		Call Topic_nav()
 	else
-		Response.Write("Тема")
+		Response.Write("РўРµРјР°")
 	end if
 	Response.Write	"</font></b></td>" & vbNewLine
 	if (AdminAllowed = 1) then
@@ -600,17 +600,17 @@ else
 					"                      <td valign=""top"">" & vbNewLine
 			' DEM --> Start of Code altered for moderation
 			if Reply_Status < 2 then
-				Response.Write  "                      " & getCurrentIcon(strIconPosticon,"","hspace=""3""") & "<font color=""" & strForumFontColor & """ face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize  & """>Написано&nbsp;-&nbsp;" & ChkDate(Reply_Date, "&nbsp;:&nbsp;" ,true) & "</font>" & vbNewline
+				Response.Write  "                      " & getCurrentIcon(strIconPosticon,"","hspace=""3""") & "<font color=""" & strForumFontColor & """ face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize  & """>РќР°РїРёСЃР°РЅРѕ&nbsp;-&nbsp;" & ChkDate(Reply_Date, "&nbsp;:&nbsp;" ,true) & "</font>" & vbNewline
 			elseif Reply_Status = 2 then
 				Response.Write  "                      <font color=""" & strForumFontColor & """ face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize  & """>NOT MODERATED!!!</font>" & vbNewline
 			elseif Reply_Status = 3 then
 				Response.Write  "                      " & getCurrentIcon(strIconPosticonHold,"","hspace=""3""") & "<font color=""" & strForumFontColor & """ face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize  & """>ON HOLD</font>" & vbNewline
 			end if
 			' DEM --> End of Code added for moderation.
-			Response.Write	"                      &nbsp;" & profileLink(getCurrentIcon(strIconProfile,"Посмотреть анкету","align=""absmiddle"" hspace=""6"""),Reply_MemberID) & vbNewLine
+			Response.Write	"                      &nbsp;" & profileLink(getCurrentIcon(strIconProfile,"РџРѕСЃРјРѕС‚СЂРµС‚СЊ Р°РЅРєРµС‚Сѓ","align=""absmiddle"" hspace=""6"""),Reply_MemberID) & vbNewLine
 			if mLev > 2 or Reply_MemberReceiveEmail = "1" then
 				if (mlev <> 0) or (mlev = 0 and  strLogonForMail <> "1") then
-					Response.Write	"                      &nbsp;<a href=""JavaScript:openWindow('pop_mail.asp?id=" & Reply_MemberID & "')"">" & getCurrentIcon(strIconEmail,"Послать письмо автору","align=""absmiddle"" hspace=""6""") & "</a>" & vbNewLine
+					Response.Write	"                      &nbsp;<a href=""JavaScript:openWindow('pop_mail.asp?id=" & Reply_MemberID & "')"">" & getCurrentIcon(strIconEmail,"РџРѕСЃР»Р°С‚СЊ РїРёСЃСЊРјРѕ Р°РІС‚РѕСЂСѓ","align=""absmiddle"" hspace=""6""") & "</a>" & vbNewLine
 				end if
 			end if
 			if strHomepage = "1" then
@@ -620,7 +620,7 @@ else
 			end if
 			if (AdminAllowed = 1 or Reply_MemberID = MemberID) then
 				if (Cat_Status <> 0 and Forum_Status <> 0 and Topic_Status <> 0) or (AdminAllowed = 1) then
-					Response.Write	"                      &nbsp;<a href=""post.asp?" & ArchiveLink & "method=Edit&REPLY_ID=" & Reply_ReplyID & "&TOPIC_ID=" & Topic_ID & "&FORUM_ID=" & Forum_ID & """>" & getCurrentIcon(strIconEditTopic,"Отредактировать ответ","align=""absmiddle"" hspace=""6""") & "</a>" & vbNewLine
+					Response.Write	"                      &nbsp;<a href=""post.asp?" & ArchiveLink & "method=Edit&REPLY_ID=" & Reply_ReplyID & "&TOPIC_ID=" & Topic_ID & "&FORUM_ID=" & Forum_ID & """>" & getCurrentIcon(strIconEditTopic,"РћС‚СЂРµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РѕС‚РІРµС‚","align=""absmiddle"" hspace=""6""") & "</a>" & vbNewLine
 				end if
 			end if
 			if (strAIM = "1") then
@@ -644,7 +644,7 @@ else
 				end if
 			end if
 			if ((Cat_Status <> 0 and Forum_Status <> 0 and Topic_Status = 1) or (AdminAllowed = 1 and Topic_Status <= 1)) and ArchiveView = "" then
-				Response.Write	"                      &nbsp;<a href=""post.asp?" & ArchiveLink & "method=ReplyQuote&REPLY_ID=" & Reply_ReplyID & "&TOPIC_ID=" & Topic_ID & "&FORUM_ID=" & Forum_ID & """>" & getCurrentIcon(strIconReplyTopic,"Ответить с цитатой","align=""absmiddle"" hspace=""6""") & "</a>" & vbNewLine
+				Response.Write	"                      &nbsp;<a href=""post.asp?" & ArchiveLink & "method=ReplyQuote&REPLY_ID=" & Reply_ReplyID & "&TOPIC_ID=" & Topic_ID & "&FORUM_ID=" & Forum_ID & """>" & getCurrentIcon(strIconReplyTopic,"РћС‚РІРµС‚РёС‚СЊ СЃ С†РёС‚Р°С‚РѕР№","align=""absmiddle"" hspace=""6""") & "</a>" & vbNewLine
 			end if
 			if (strIPLogging = "1") then
 				if (AdminAllowed = 1) then
@@ -716,7 +716,7 @@ else
 	if strShowTopicNav = "1" then
 		Call Topic_nav()
 	else
-		Response.Write("Тема")
+		Response.Write("РўРµРјР°")
 	end if
 	Response.Write	"</font></b></td>" & vbNewLine
 	if (AdminAllowed = 1) then
@@ -804,16 +804,16 @@ sub GetFirst()
 			"                    <tr>" & vbNewLine & _
 			"                      <td valign=""top"">" & vbNewLine
 	if Topic_Status < 2 then
-		Response.Write  "                      " & getCurrentIcon(strIconPosticon,"","hspace=""3""") & "<font color=""" & strForumFontColor & """ face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """>Написано&nbsp;-&nbsp;" & ChkDate(Topic_Date, "&nbsp;:&nbsp;" ,true) & "</font>" & vbNewline
+		Response.Write  "                      " & getCurrentIcon(strIconPosticon,"","hspace=""3""") & "<font color=""" & strForumFontColor & """ face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """>РќР°РїРёСЃР°РЅРѕ&nbsp;-&nbsp;" & ChkDate(Topic_Date, "&nbsp;:&nbsp;" ,true) & "</font>" & vbNewline
 	elseif Topic_Status = 2 then
 		Response.Write  "                      <font color=""" & strForumFontColor & """ face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize  & """>NOT MODERATED!!!</font>" & vbNewline
 	elseif Topic_Status = 3 then
 		Response.Write  "                      " & getCurrentIcon(strIconPosticonHold,"","hspace=""3""") & "<font color=""" & strForumFontColor & """ face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """>ON HOLD</font>" & vbNewline
 	end if
-	Response.Write	"                      &nbsp;" & profileLink(getCurrentIcon(strIconProfile,"Посмотреть анкету","align=""absmiddle"" hspace=""6"""),TMember_ID) & vbNewLine
+	Response.Write	"                      &nbsp;" & profileLink(getCurrentIcon(strIconProfile,"РџРѕСЃРјРѕС‚СЂРµС‚СЊ Р°РЅРєРµС‚Сѓ","align=""absmiddle"" hspace=""6"""),TMember_ID) & vbNewLine
 	if mLev > 2 or Member_ReceiveMail = "1" then 
 		if (mlev <> 0) or (mlev = 0 and  strLogonForMail <> "1") then 
-			Response.Write	"                      &nbsp;<a href=""JavaScript:openWindow('pop_mail.asp?id=" & TMember_ID & "')"">" & getCurrentIcon(strIconEmail,"Послать письмо автору","align=""absmiddle"" hspace=""6""") & "</a>" & vbNewLine
+			Response.Write	"                      &nbsp;<a href=""JavaScript:openWindow('pop_mail.asp?id=" & TMember_ID & "')"">" & getCurrentIcon(strIconEmail,"РџРѕСЃР»Р°С‚СЊ РїРёСЃСЊРјРѕ Р°РІС‚РѕСЂСѓ","align=""absmiddle"" hspace=""6""") & "</a>" & vbNewLine
 		end if
 	end if
 	if (strHomepage = "1") then
@@ -823,7 +823,7 @@ sub GetFirst()
 	end if
 	if (AdminAllowed = 1 or TMember_ID = MemberID) then
 		if ((Cat_Status <> 0) and (Forum_Status <> 0) and (Topic_Status <> 0)) or (AdminAllowed = 1) then
-			Response.Write	"                      &nbsp;<a href=""post.asp?" & ArchiveLink & "method=EditTopic&REPLY_ID=" & Topic_ID & "&TOPIC_ID=" & Topic_ID & "&FORUM_ID=" & Forum_ID & """>" & getCurrentIcon(strIconEditTopic,"Отредактировать сообщение","align=""absmiddle"" hspace=""6""") & "</a>" & vbNewLine
+			Response.Write	"                      &nbsp;<a href=""post.asp?" & ArchiveLink & "method=EditTopic&REPLY_ID=" & Topic_ID & "&TOPIC_ID=" & Topic_ID & "&FORUM_ID=" & Forum_ID & """>" & getCurrentIcon(strIconEditTopic,"РћС‚СЂРµРґР°РєС‚РёСЂРѕРІР°С‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ","align=""absmiddle"" hspace=""6""") & "</a>" & vbNewLine
 		end if
 	end if
 	if (strAIM = "1") then
@@ -847,7 +847,7 @@ sub GetFirst()
 		end if
 	end if
 	if ((Cat_Status <> 0 and Forum_Status <> 0 and Topic_Status = 1) or (AdminAllowed = 1 and Topic_Status <= 1) and ArchiveView = "" ) then
-		Response.Write	"                      &nbsp;<a href=""post.asp?" & ArchiveLink & "method=TopicQuote&TOPIC_ID=" & Topic_ID & "&FORUM_ID=" & Forum_ID & """>" & getCurrentIcon(strIconReplyTopic,"Ответить с цитатой","align=""absmiddle"" hspace=""6""") & "</a>" & vbNewLine
+		Response.Write	"                      &nbsp;<a href=""post.asp?" & ArchiveLink & "method=TopicQuote&TOPIC_ID=" & Topic_ID & "&FORUM_ID=" & Forum_ID & """>" & getCurrentIcon(strIconReplyTopic,"РћС‚РІРµС‚РёС‚СЊ СЃ С†РёС‚Р°С‚РѕР№","align=""absmiddle"" hspace=""6""") & "</a>" & vbNewLine
 	end if
 	if (strIPLogging = "1") then
 		if (AdminAllowed = 1) then
@@ -900,16 +900,16 @@ sub PostingOptions()
 	Response.Write	"          <font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & vbNewLine
 	if (mlev = 4 or mlev = 3 or mlev = 2 or mlev = 1) or (lcase(strNoCookies) = "1") or (strDBNTUserName = "") then
 		if ((Cat_Status = 1) and (Forum_Status = 1)) then
-			Response.Write	"          <a href=""post.asp?" & ArchiveLink & "method=Topic&FORUM_ID=" & Forum_ID & """>" & getCurrentIcon(strIconFolderNewTopic,"","align=""absmiddle""") & "</a>&nbsp;<a href=""post.asp?" & ArchiveLink & "method=Topic&FORUM_ID=" & Forum_ID & """>Новая Тема</a>" & vbNewLine
+			Response.Write	"          <a href=""post.asp?" & ArchiveLink & "method=Topic&FORUM_ID=" & Forum_ID & """>" & getCurrentIcon(strIconFolderNewTopic,"","align=""absmiddle""") & "</a>&nbsp;<a href=""post.asp?" & ArchiveLink & "method=Topic&FORUM_ID=" & Forum_ID & """>РќРѕРІР°СЏ РўРµРјР°</a>" & vbNewLine
 		else
 			if (AdminAllowed = 1) then
-				Response.Write	"          <a href=""post.asp?" & ArchiveLink & "method=Topic&FORUM_ID=" & Forum_ID & """>" & getCurrentIcon(strIconFolderLocked,"","align=""absmiddle""") & "</a>&nbsp;<a href=""post.asp?" & ArchiveLink & "method=Topic&FORUM_ID=" & Forum_ID & """>Новая Тема</a>" & vbNewLine
+				Response.Write	"          <a href=""post.asp?" & ArchiveLink & "method=Topic&FORUM_ID=" & Forum_ID & """>" & getCurrentIcon(strIconFolderLocked,"","align=""absmiddle""") & "</a>&nbsp;<a href=""post.asp?" & ArchiveLink & "method=Topic&FORUM_ID=" & Forum_ID & """>РќРѕРІР°СЏ РўРµРјР°</a>" & vbNewLine
 			else
 				Response.Write	"          " & getCurrentIcon(strIconFolderLocked,"","align=""absmiddle""") & "&nbsp;Forum Locked" & vbNewLine
 			end if 
 		end if 
 		if ((Cat_Status = 1) and (Forum_Status = 1) and (Topic_Status = 1)) and ArchiveView = "" then
-			Response.Write	"          <a href=""post.asp?" & ArchiveLink & "method=Reply&TOPIC_ID=" & Topic_ID & "&FORUM_ID=" & Forum_ID & """>" & getCurrentIcon(strIconReplyTopic,"","align=""absmiddle""") & "</a>&nbsp;<a href=""post.asp?" & ArchiveLink & "method=Reply&TOPIC_ID=" & Topic_ID & "&FORUM_ID=" & Forum_ID & """>Послать ответ</a>" & vbNewLine
+			Response.Write	"          <a href=""post.asp?" & ArchiveLink & "method=Reply&TOPIC_ID=" & Topic_ID & "&FORUM_ID=" & Forum_ID & """>" & getCurrentIcon(strIconReplyTopic,"","align=""absmiddle""") & "</a>&nbsp;<a href=""post.asp?" & ArchiveLink & "method=Reply&TOPIC_ID=" & Topic_ID & "&FORUM_ID=" & Forum_ID & """>РџРѕСЃР»Р°С‚СЊ РѕС‚РІРµС‚</a>" & vbNewLine
 		else 
 			if ((AdminAllowed = 1 and Topic_Status <= 1) and ArchiveView = "")  then
 				Response.Write	"          <a href=""post.asp?" & ArchiveLink & "method=Reply&TOPIC_ID=" & Topic_ID & "&FORUM_ID=" & Forum_ID & """>"
@@ -919,7 +919,7 @@ sub PostingOptions()
 				else
 					Response.Write	getCurrentIcon(strIconClosedTopic,"","align=""absmiddle""") & "</a>&nbsp;"
 				end if 
-				Response.Write	"<a href=""post.asp?" & ArchiveLink & "method=Reply&TOPIC_ID=" & Topic_ID & "&FORUM_ID=" & Forum_ID & """>Послать ответ</a>" & vbNewLine
+				Response.Write	"<a href=""post.asp?" & ArchiveLink & "method=Reply&TOPIC_ID=" & Topic_ID & "&FORUM_ID=" & Forum_ID & """>РџРѕСЃР»Р°С‚СЊ РѕС‚РІРµС‚</a>" & vbNewLine
 			else 
 				if Topic_Status = 0 then
 					Response.Write	getCurrentIcon(strIconClosedTopic,"","align=""absmiddle""") & "&nbsp;Topic Locked" & vbNewline
@@ -941,7 +941,7 @@ sub PostingOptions()
 			end if 
 		end if 
 		if lcase(strShowPrinterFriendly) = "1" and Topic_Status < 2 then
-			Response.Write	"          <br /><a href=""JavaScript:openWindow5('pop_printer_friendly.asp?" & ArchiveLink & "TOPIC_ID=" & Topic_ID & "')"">" & getCurrentIcon(strIconPrint,"","align=""absmiddle""") & "</a>&nbsp;<a href=""JavaScript:openWindow5('pop_printer_friendly.asp?" & ArchiveLink & "TOPIC_ID=" & Topic_ID & "')"">Текстовая версия (для принтера)</a>" & vbNewLine
+			Response.Write	"          <br /><a href=""JavaScript:openWindow5('pop_printer_friendly.asp?" & ArchiveLink & "TOPIC_ID=" & Topic_ID & "')"">" & getCurrentIcon(strIconPrint,"","align=""absmiddle""") & "</a>&nbsp;<a href=""JavaScript:openWindow5('pop_printer_friendly.asp?" & ArchiveLink & "TOPIC_ID=" & Topic_ID & "')"">РўРµРєСЃС‚РѕРІР°СЏ РІРµСЂСЃРёСЏ (РґР»СЏ РїСЂРёРЅС‚РµСЂР°)</a>" & vbNewLine
 		end if
 	end if 
 	Response.Write	"          </font>"
@@ -968,7 +968,7 @@ sub AdminOptions()
 			end if
 		end if
 		if ((Cat_Status <> 0) and (Forum_Status <> 0) and (Topic_Status <> 0)) or (AdminAllowed = 1) then
-			Response.Write	"                <a href=""post.asp?" & ArchiveLink & "method=EditTopic&REPLY_ID=" & Topic_ID & "&TOPIC_ID=" & Topic_ID & "&FORUM_ID=" & Forum_ID & """>" & getCurrentIcon(strIconFolderPencil,"Отредактировать сообщение","hspace=""0""") & "</a>" & vbNewLine
+			Response.Write	"                <a href=""post.asp?" & ArchiveLink & "method=EditTopic&REPLY_ID=" & Topic_ID & "&TOPIC_ID=" & Topic_ID & "&FORUM_ID=" & Forum_ID & """>" & getCurrentIcon(strIconFolderPencil,"РћС‚СЂРµРґР°РєС‚РёСЂРѕРІР°С‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ","hspace=""0""") & "</a>" & vbNewLine
 		end if
 		Response.Write	"                <a href=""JavaScript:openWindow('pop_delete.asp?" & ArchiveLink & "mode=Topic&TOPIC_ID=" & Topic_ID & "&FORUM_ID=" & Forum_ID & "&CAT_ID=" & Cat_ID & "')"">" & getCurrentIcon(strIconFolderDelete,"Delete Topic","") & "</a>" & vbNewLine & _
 				"                <a href=""post.asp?" & ArchiveLink & "method=Topic&FORUM_ID=" & Forum_ID & """>" & getCurrentIcon(strIconFolderNewTopic,"New Topic","") & "</a>" & vbNewLine
@@ -1154,8 +1154,8 @@ Sub QuickReply()
 end sub
 
 
-'Получить URL фото, обрамленный тэгами IMG 
-'Обрабатываем как url (http://www...), так и PhotoID(obsolete, храним URL)
+'РџРѕР»СѓС‡РёС‚СЊ URL С„РѕС‚Рѕ, РѕР±СЂР°РјР»РµРЅРЅС‹Р№ С‚СЌРіР°РјРё IMG 
+'РћР±СЂР°Р±Р°С‚С‹РІР°РµРј РєР°Рє url (http://www...), С‚Р°Рє Рё PhotoID(obsolete, С…СЂР°РЅРёРј URL)
 function GetPhotoLinkStr(AuthorID)
 	str = ""
 	set rs = Server.CreateObject("ADODB.Recordset")
@@ -1169,13 +1169,13 @@ function GetPhotoLinkStr(AuthorID)
 			str = "<IMG src=""" & GetPhotoUrlByID(rs("M_PHOTO_URL")) & """height=""100""> </IMG>" 
 		end if	
 	end if	
-	'Если задана большая фотография - убрать суффикс '-big'  и получить превью версию фото
+	'Р•СЃР»Рё Р·Р°РґР°РЅР° Р±РѕР»СЊС€Р°СЏ С„РѕС‚РѕРіСЂР°С„РёСЏ - СѓР±СЂР°С‚СЊ СЃСѓС„С„РёРєСЃ '-big'  Рё РїРѕР»СѓС‡РёС‚СЊ РїСЂРµРІСЊСЋ РІРµСЂСЃРёСЋ С„РѕС‚Рѕ
 	GetPhotoLinkStr = Replace(str,"-big","")
 end function
 
-'Получить  URL фото по номеру 
-'Функция не должна вызываться здесь, так как в БД хранится URL
-'функция оставлена для совместимости в 'переходный период'
+'РџРѕР»СѓС‡РёС‚СЊ  URL С„РѕС‚Рѕ РїРѕ РЅРѕРјРµСЂСѓ 
+'Р¤СѓРЅРєС†РёСЏ РЅРµ РґРѕР»Р¶РЅР° РІС‹Р·С‹РІР°С‚СЊСЃСЏ Р·РґРµСЃСЊ, С‚Р°Рє РєР°Рє РІ Р‘Р” С…СЂР°РЅРёС‚СЃСЏ URL
+'С„СѓРЅРєС†РёСЏ РѕСЃС‚Р°РІР»РµРЅР° РґР»СЏ СЃРѕРІРјРµСЃС‚РёРјРѕСЃС‚Рё РІ 'РїРµСЂРµС…РѕРґРЅС‹Р№ РїРµСЂРёРѕРґ'
 function GetPhotoUrlByID(PhotoID)
 	str = PhotoID
 	if IsNumeric (PhotoID) then

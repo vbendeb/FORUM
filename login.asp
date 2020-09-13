@@ -67,7 +67,7 @@ if RequestMethod = "POST" Then
 	end select
 
 	if strLoginStatus = 1 then
-		Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>Добро Пожаловать!</font></p>" & vbNewLine
+		Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>Р”РѕР±СЂРѕ РџРѕР¶Р°Р»РѕРІР°С‚СЊ!</font></p>" & vbNewLine
 		Response.Write	"      " & strParagraphFormat1 & "<a href="""
 		if Request("target") = "" then
 			Response.Write	"default.asp"
@@ -106,12 +106,12 @@ Response.Write	"      <table width=""100%"" border=""0"" cellspacing=""0"" cellp
 		"                  <table border=""0"" cellpadding=""6"" cellspacing=""0"" width=""90%"" align=""center"">" & vbNewLine & _
 		"                    <tr valign=""top"">" & vbNewLine & _
 		"                      <td width=""49%""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strForumFontColor & """>" & vbNewLine
-if RequestMethod = "POST" and strLoginStatus = 0 then Response.Write("                      <font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHiLiteFontColor & """>Такой записи нет. Повторите ввод</font><br />" & vbNewLine) else Response.Write("<br />" & vbNewLine)
-Response.Write	"                      <b>Логин / Пароль:</b></font>" & vbNewLine & _
+if RequestMethod = "POST" and strLoginStatus = 0 then Response.Write("                      <font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHiLiteFontColor & """>РўР°РєРѕР№ Р·Р°РїРёСЃРё РЅРµС‚. РџРѕРІС‚РѕСЂРёС‚Рµ РІРІРѕРґ</font><br />" & vbNewLine) else Response.Write("<br />" & vbNewLine)
+Response.Write	"                      <b>Р›РѕРіРёРЅ / РџР°СЂРѕР»СЊ:</b></font>" & vbNewLine & _
 		"                        <table border=""0"" cellpadding=""2"" cellspacing=""0"">" & vbNewLine & _
 		"                          <tr>" & vbNewLine & _
 		"                            <td><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strForumFontColor & """>" & vbNewLine & _
-		"                            Логин (имя/ник:)<br />" & vbNewLine & _
+		"                            Р›РѕРіРёРЅ (РёРјСЏ/РЅРёРє:)<br />" & vbNewLine & _
 		"                            <input type=""text"" name=""Name"" size=""20"" maxLength=""25"" tabindex=""1"" value="""" style=""width:150px;""></td>" & vbNewLine & _
 		"                            <td rowspan=""2"" valign=""bottom""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strForumFontColor & """>" & vbNewLine
 if strGfxButtons = "1" then
@@ -122,26 +122,26 @@ end if
 Response.Write	"                          </tr>" & vbNewLine & _
 		"                          <tr>" & vbNewLine & _
 		"                            <td><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strForumFontColor & """>" & vbNewLine & _
-		"                            Пароль:<br />" & vbNewLine & _
+		"                            РџР°СЂРѕР»СЊ:<br />" & vbNewLine & _
 		"                            <input type=""password"" name=""Password"" size=""20"" tabindex=""2"" maxLength=""25"" value="""" style=""width:150px;""></td>" & vbNewLine & _
 		"                          </tr>" & vbNewLine & _
 		"                          <tr>" & vbNewLine & _
 		"                            <td><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strForumFontColor & """>" & vbNewLine & _
-		"                            <input type=""checkbox"" name=""SavePassWord"" tabindex=""4"" value=""true"" checked> Запомнить пароль</font></td>" & vbNewLine & _
+		"                            <input type=""checkbox"" name=""SavePassWord"" tabindex=""4"" value=""true"" checked> Р—Р°РїРѕРјРЅРёС‚СЊ РїР°СЂРѕР»СЊ</font></td>" & vbNewLine & _
 		"                          </tr>" & vbNewLine & _
 		"                        </table>" & vbNewLine & _
 		"                      </td>" & vbNewLine & _
 		"                      <script language=""JavaScript"" type=""text/javascript"">document.Form1.Name.focus();</script>" & vbNewLine & _
 		"                      <td width=""2%""nowrap></td>" & vbNewLine & _
-		"                      <td width=""49%""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strForumFontColor & """><br /><b>Вопросы:</b><br />" & vbNewLine & _
+		"                      <td width=""49%""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strForumFontColor & """><br /><b>Р’РѕРїСЂРѕСЃС‹:</b><br />" & vbNewLine & _
 		"                      <span style=""font-size: 6px;""><br /></span>" & vbNewLine & _
-		"                      <acronym title=""Зачем нужна регистрация?""><span class=""spnMessageText""><a href=""faq.asp#register""" & dWStatus("Зачем нужна регистрация?") & ">Зачем нужна регистрация?</a></span></acronym><br />" & vbNewLine
-if strEmail = "1" then Response.Write("                      <acronym title=""Choose a new password if you have forgotten your current one.""><span class=""spnMessageText""><a href=""password.asp""" & dWStatus("Choose a new password if you have forgotten your current one.") & ">Забыли Ваш пароль?</a></span></acronym><br /><br />" & vbNewLine) else Response.Write("                      <br />" & vbNewLine)
-Response.Write	"                      Я здесь впервые - как зарегистрироваться?<br />"
+		"                      <acronym title=""Р—Р°С‡РµРј РЅСѓР¶РЅР° СЂРµРіРёСЃС‚СЂР°С†РёСЏ?""><span class=""spnMessageText""><a href=""faq.asp#register""" & dWStatus("Р—Р°С‡РµРј РЅСѓР¶РЅР° СЂРµРіРёСЃС‚СЂР°С†РёСЏ?") & ">Р—Р°С‡РµРј РЅСѓР¶РЅР° СЂРµРіРёСЃС‚СЂР°С†РёСЏ?</a></span></acronym><br />" & vbNewLine
+if strEmail = "1" then Response.Write("                      <acronym title=""Choose a new password if you have forgotten your current one.""><span class=""spnMessageText""><a href=""password.asp""" & dWStatus("Choose a new password if you have forgotten your current one.") & ">Р—Р°Р±С‹Р»Рё Р’Р°С€ РїР°СЂРѕР»СЊ?</a></span></acronym><br /><br />" & vbNewLine) else Response.Write("                      <br />" & vbNewLine)
+Response.Write	"                      РЇ Р·РґРµСЃСЊ РІРїРµСЂРІС‹Рµ - РєР°Рє Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊСЃСЏ?<br />"
 if strProhibitNewMembers = "1" then
 	Response.Write	"<font size=""" & strFooterFontSize & """ color=""" & strHiLiteFontColor & """>The Administrator has turned off Registration for this forum.<br />Only registered members are able to log in</font></font></td>" & vbNewLine
 else
-	Response.Write	"<acronym title=""Регистрация""><span class=""spnMessageText""><a href=""policy.asp""" & dWStatus("Регистрация") & ">Регистрация нового пользователя</a></span></acronymn></font></td>" & vbNewLine
+	Response.Write	"<acronym title=""Р РµРіРёСЃС‚СЂР°С†РёСЏ""><span class=""spnMessageText""><a href=""policy.asp""" & dWStatus("Р РµРіРёСЃС‚СЂР°С†РёСЏ") & ">Р РµРіРёСЃС‚СЂР°С†РёСЏ РЅРѕРІРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ</a></span></acronymn></font></td>" & vbNewLine
 end if
 Response.Write	"                    </tr>" & vbNewLine & _
 		"                  </table>" & vbNewLine & _

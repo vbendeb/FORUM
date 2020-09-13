@@ -403,11 +403,11 @@ if Request.QueryString("mode") = "DoIt" then
 				"        <tr>" & vbNewline & _
 				"          <td width=""33%"" align=""left"" nowrap><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & vbNewLine & _
 				"          " & getCurrentIcon(strIconFolderOpen,"","align=""absmiddle""") & "&nbsp;<a href=""default.asp"">All Forums</a><br />" & vbNewline
-		Response.Write	"          " & getCurrentIcon(strIconBar,"","align=""absmiddle""") & getCurrentIcon(strIconFolderOpen,"","align=""absmiddle""") & "&nbsp;<a href=""search.asp"">Поисковая Форма</a><br />" & vbNewLine
+		Response.Write	"          " & getCurrentIcon(strIconBar,"","align=""absmiddle""") & getCurrentIcon(strIconFolderOpen,"","align=""absmiddle""") & "&nbsp;<a href=""search.asp"">РџРѕРёСЃРєРѕРІР°СЏ Р¤РѕСЂРјР°</a><br />" & vbNewLine
 		if Request.Form("Search") <> "" then
-			Response.Write	"          " & getCurrentIcon(strIconBlank,"","align=""absmiddle""") & getCurrentIcon(strIconBar,"","align=""absmiddle""") & getCurrentIcon(strIconFolderOpenTopic,"","align=""absmiddle""") & "&nbsp;Результаты Поиска: " & chkString(Request.Form("Search"),"display")
+			Response.Write	"          " & getCurrentIcon(strIconBlank,"","align=""absmiddle""") & getCurrentIcon(strIconBar,"","align=""absmiddle""") & getCurrentIcon(strIconFolderOpenTopic,"","align=""absmiddle""") & "&nbsp;Р РµР·СѓР»СЊС‚Р°С‚С‹ РџРѕРёСЃРєР°: " & chkString(Request.Form("Search"),"display")
 		elseif Request.QueryString("MEMBER_ID") <> "" then
-			Response.Write	"          " & getCurrentIcon(strIconBlank,"","align=""absmiddle""") & getCurrentIcon(strIconBar,"","align=""absmiddle""") & getCurrentIcon(strIconFolderOpenTopic,"","align=""absmiddle""") & "&nbsp;Результаты Поиска: всех Тем содержащих сообщения от " & getMemberName(cLng(Request.QueryString("MEMBER_ID")))
+			Response.Write	"          " & getCurrentIcon(strIconBlank,"","align=""absmiddle""") & getCurrentIcon(strIconBar,"","align=""absmiddle""") & getCurrentIcon(strIconFolderOpenTopic,"","align=""absmiddle""") & "&nbsp;Р РµР·СѓР»СЊС‚Р°С‚С‹ РџРѕРёСЃРєР°: РІСЃРµС… РўРµРј СЃРѕРґРµСЂР¶Р°С‰РёС… СЃРѕРѕР±С‰РµРЅРёСЏ РѕС‚ " & getMemberName(cLng(Request.QueryString("MEMBER_ID")))
 		end if
 		Response.Write	"</font></td>" & vbNewline & _
 				"        </tr>" & vbNewline
@@ -424,15 +424,15 @@ if Request.QueryString("mode") = "DoIt" then
 				"            <table border=""0"" width=""100%"" cellspacing=""1"" cellpadding=""4"">" & vbNewLine & _
 				"              <tr>" & vbNewLine & _
 				"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>&nbsp;</font></b></td>" & vbNewLine & _
-				"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Тема</font></b></td>" & vbNewLine & _
-				"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Автор</font></b></td>" & vbNewLine & _
-				"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Ответили</font></b></td>" & vbNewLine & _
-				"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Читали</font></b></td>" & vbNewLine & _
-				"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Посл.Сообщение</font></b></td>" & vbNewLine & _
+				"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>РўРµРјР°</font></b></td>" & vbNewLine & _
+				"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>РђРІС‚РѕСЂ</font></b></td>" & vbNewLine & _
+				"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>РћС‚РІРµС‚РёР»Рё</font></b></td>" & vbNewLine & _
+				"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Р§РёС‚Р°Р»Рё</font></b></td>" & vbNewLine & _
+				"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>РџРѕСЃР».РЎРѕРѕР±С‰РµРЅРёРµ</font></b></td>" & vbNewLine & _
 				"              </tr>" & vbNewLine
 		if iTopicCount = "" then '## No Search Results
 			Response.Write	"              <tr>" & vbNewLine & _
-					"                <td bgcolor=""" & strForumCellColor & """ colspan=""6""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><b>Совпадений не найдено</b></font></td>" & vbNewLine
+					"                <td bgcolor=""" & strForumCellColor & """ colspan=""6""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><b>РЎРѕРІРїР°РґРµРЅРёР№ РЅРµ РЅР°Р№РґРµРЅРѕ</b></font></td>" & vbNewLine
 			if (mlev > 0) or (lcase(strNoCookies) = "1") then
 				Response.Write	"                <td align=""center"" bgcolor=""" & strForumCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>&nbsp;</font></b></td>" & vbNewLine
 			end if
@@ -629,8 +629,8 @@ else
 	Response.Write	"      <table border=""0"" width=""100%"" align=""center"">" & vbNewline & _
 			"        <tr>" & vbNewline & _
 			"          <td width=""33%"" align=""left"" nowrap><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & vbNewLine & _
-			"          " & getCurrentIcon(strIconFolderOpen,"","align=""absmiddle""") & "&nbsp;<a href=""default.asp"">Вернуться на Форумы</a><br />" & vbNewline & _
-			"          " & getCurrentIcon(strIconBar,"","align=""absmiddle""") & getCurrentIcon(strIconFolderOpen,"","align=""absmiddle""") & "&nbsp;Поиск</font></td>" & vbNewline & _
+			"          " & getCurrentIcon(strIconFolderOpen,"","align=""absmiddle""") & "&nbsp;<a href=""default.asp"">Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР° Р¤РѕСЂСѓРјС‹</a><br />" & vbNewline & _
+			"          " & getCurrentIcon(strIconBar,"","align=""absmiddle""") & getCurrentIcon(strIconFolderOpen,"","align=""absmiddle""") & "&nbsp;РџРѕРёСЃРє</font></td>" & vbNewline & _
 			"        </tr>" & vbNewline & _
 			"      </table><br />" & vbNewLine
 
@@ -640,17 +640,17 @@ else
 			"          <td bgcolor=""" & strPopUpBorderColor & """>" & vbNewLine & _
 			"            <table border=""0"" cellspacing=""1"" cellpadding=""1"">" & vbNewLine & _
 			"              <tr>" & vbNewLine & _
-			"                <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""top""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>Термин(ы) Поиска:</font></b></td>" & vbNewLine & _
+			"                <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""top""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>РўРµСЂРјРёРЅ(С‹) РџРѕРёСЃРєР°:</font></b></td>" & vbNewLine & _
 			"                <td bgColor=""" & strPopUpTableColor & """ align=""left"" valign=""middle""><input type=""text"" name=""Search"" size=""40"" value=""" & Request.QueryString("Search") & """><br />" & vbNewLine & _
 			"                <font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & vbNewLine
 	'################# New Search Code #################################################
-	Response.Write	"                <input type=""radio"" class=""radio"" name=""andor"" value=""3"">Искать точную фразу<br />" & vbNewLine
+	Response.Write	"                <input type=""radio"" class=""radio"" name=""andor"" value=""3"">РСЃРєР°С‚СЊ С‚РѕС‡РЅСѓСЋ С„СЂР°Р·Сѓ<br />" & vbNewLine
 	'################# New Search Code #################################################
-	Response.Write	"                <input type=""radio"" class=""radio"" name=""andor"" value=""1"" checked>Искать фразы вкл. все эти слова<br />" & vbNewLine & _
-			"                <input type=""radio"" class=""radio"" name=""andor"" value=""2"">Искать фразы вкл. любое из этих слов</font></td>" & vbNewLine & _
+	Response.Write	"                <input type=""radio"" class=""radio"" name=""andor"" value=""1"" checked>РСЃРєР°С‚СЊ С„СЂР°Р·С‹ РІРєР». РІСЃРµ СЌС‚Рё СЃР»РѕРІР°<br />" & vbNewLine & _
+			"                <input type=""radio"" class=""radio"" name=""andor"" value=""2"">РСЃРєР°С‚СЊ С„СЂР°Р·С‹ РІРєР». Р»СЋР±РѕРµ РёР· СЌС‚РёС… СЃР»РѕРІ</font></td>" & vbNewLine & _
 			"              </tr>" & vbNewLine & _
 			"              <tr>" & vbNewLine & _
-			"                <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>Искать в Форуме:</font></b></td>" & vbNewLine & _
+			"                <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>РСЃРєР°С‚СЊ РІ Р¤РѕСЂСѓРјРµ:</font></b></td>" & vbNewLine & _
 			"                <td bgColor=""" & strPopUpTableColor & """ align=""left"" valign=""middle"">" & vbNewLine & _
 			"                <select name=""Forum"" size=""1"">" & vbNewLine & _
 			"                	<option value=""0"">All Forums</option>" & vbNewLine
@@ -692,35 +692,35 @@ else
 			"              </tr>" & vbNewLine
 	'################# New Search Code #################################################
 	Response.Write	"              <tr>" & vbNewLine & _
-			"                <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>Поиск :</font></b></td>" & vbNewLine & _
+			"                <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>РџРѕРёСЃРє :</font></b></td>" & vbNewLine & _
 			"                <td bgColor=""" & strPopUpTableColor & """ align=""left"" valign=""middle"">" & vbNewLine & _
 			"                <select name=""SearchMessage"">" & vbNewLine & _
 			"                	<option value=""0"">Entire Message</option>" & vbNewLine & _
 			"                	<option value=""1"">Subject Only</option>" & vbNewLine & _
 			"                </select>" & vbNewLine
-	if strArchiveState = "1" then Response.Write("                &nbsp;&nbsp;<input type=""checkbox"" name=""ARCHIVE"" value=""true""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>Вкл. Архив Сообщений</font>" & vbNewLine)
+	if strArchiveState = "1" then Response.Write("                &nbsp;&nbsp;<input type=""checkbox"" name=""ARCHIVE"" value=""true""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>Р’РєР». РђСЂС…РёРІ РЎРѕРѕР±С‰РµРЅРёР№</font>" & vbNewLine)
 	Response.Write	"                </td>" & vbNewLine & _
 			"              </tr>" & vbNewLine
 	'################# New Search Code #################################################
 	Response.Write	"              <tr>" & vbNewLine & _
-			"                <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>Поиск по Дате:</font></b></td>" & vbNewLine & _
+			"                <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>РџРѕРёСЃРє РїРѕ Р”Р°С‚Рµ:</font></b></td>" & vbNewLine & _
 			"                <td bgColor=""" & strPopUpTableColor & """ align=""left"" valign=""middle"">" & vbNewLine & _
 			"                <select name=""SearchDate"">" & vbNewLine & _
-			"                	<option value=""0"">любая дата</option>" & vbNewLine & _
-			"                	<option value=""1"">со вчерашнего дня</option>" & vbNewLine & _
-			"                	<option value=""2"">до 2-х дней назад</option>" & vbNewLine & _
-			"                	<option value=""5"">до 5-ти дней назад</option>" & vbNewLine & _
-			"                	<option value=""7"">до 7-ми дней назад</option>" & vbNewLine & _
-			"                	<option value=""14"">до 2-х недель назад</option>" & vbNewLine & _
-			"                	<option value=""30"">до 1-го месяца назад</option>" & vbNewLine & _
-			"                	<option value=""60"">до 2-х месяцев назад</option>" & vbNewLine & _
-			"                	<option value=""120"">до 4-х месяцев назад</option>" & vbNewLine & _
-			"                	<option value=""365"">до года назад</option>" & vbNewLine & _
+			"                	<option value=""0"">Р»СЋР±Р°СЏ РґР°С‚Р°</option>" & vbNewLine & _
+			"                	<option value=""1"">СЃРѕ РІС‡РµСЂР°С€РЅРµРіРѕ РґРЅСЏ</option>" & vbNewLine & _
+			"                	<option value=""2"">РґРѕ 2-С… РґРЅРµР№ РЅР°Р·Р°Рґ</option>" & vbNewLine & _
+			"                	<option value=""5"">РґРѕ 5-С‚Рё РґРЅРµР№ РЅР°Р·Р°Рґ</option>" & vbNewLine & _
+			"                	<option value=""7"">РґРѕ 7-РјРё РґРЅРµР№ РЅР°Р·Р°Рґ</option>" & vbNewLine & _
+			"                	<option value=""14"">РґРѕ 2-С… РЅРµРґРµР»СЊ РЅР°Р·Р°Рґ</option>" & vbNewLine & _
+			"                	<option value=""30"">РґРѕ 1-РіРѕ РјРµСЃСЏС†Р° РЅР°Р·Р°Рґ</option>" & vbNewLine & _
+			"                	<option value=""60"">РґРѕ 2-С… РјРµСЃСЏС†РµРІ РЅР°Р·Р°Рґ</option>" & vbNewLine & _
+			"                	<option value=""120"">РґРѕ 4-С… РјРµСЃСЏС†РµРІ РЅР°Р·Р°Рґ</option>" & vbNewLine & _
+			"                	<option value=""365"">РґРѕ РіРѕРґР° РЅР°Р·Р°Рґ</option>" & vbNewLine & _
 			"                </select>" & vbNewLine & _
 			"                </td>" & vbNewLine & _
 			"              </tr>" & vbNewLine & _
 			"              <tr>" & vbNewLine & _
-			"                <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>Поиск по Имени/Нику:</font></b></td>" & vbNewLine
+			"                <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>РџРѕРёСЃРє РїРѕ РРјРµРЅРё/РќРёРєСѓ:</font></b></td>" & vbNewLine
 	if strUseMemberDropDownBox = 0 then
 		Response.Write	"                <td bgColor=""" & strPopUpTableColor & """ align=""left"" valign=""middle""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><input name=""SearchMember"" value="""" size=""25""></font></td>" & vbNewLine
 	else
@@ -760,7 +760,7 @@ else
 	end if
 	Response.Write	"              </tr>" & vbNewLine & _
 			"              <tr>" & vbNewLine & _
-			"                <td bgColor=""" & strPopUpTableColor & """ align=""center"" valign=""middle"" colspan=""2""><input type=""submit"" value=""Начать Поиск""></td>" & vbNewLine & _
+			"                <td bgColor=""" & strPopUpTableColor & """ align=""center"" valign=""middle"" colspan=""2""><input type=""submit"" value=""РќР°С‡Р°С‚СЊ РџРѕРёСЃРє""></td>" & vbNewLine & _
 			"              </tr>" & vbNewLine & _
 			"            </table>" & vbNewLine & _
 			"          </td>" & vbNewLine & _

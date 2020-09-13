@@ -41,9 +41,9 @@
 '#################################################################################
 Response.Write 	"          <!-- START JUMP TO -->" & vbNewline
 Response.Write	"          <form name=""Stuff"">" & vbNewLine
-Response.Write	"          <font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><b>Перейти сразу на:</b></font>" & vbNewline
+Response.Write	"          <font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><b>РџРµСЂРµР№С‚Рё СЃСЂР°Р·Сѓ РЅР°:</b></font>" & vbNewline
 Response.Write	"          <select name=""SelectMenu"" size=""1"" onchange=""if(this.options[this.selectedIndex].value != '' ){ jumpTo(this) }"">" & vbNewline & _
-		"          	<option value="""">Выбор Форума</option>" & vbNewline
+		"          	<option value="""">Р’С‹Р±РѕСЂ Р¤РѕСЂСѓРјР°</option>" & vbNewline
 '## Get all Forum Categories From DB
 if IsEmpty(Application(strCookieURL & "JumpBoxChanged")) then
 	strJumpBoxChanged = Session(strCookieURL & "JumpBoxDate")
@@ -169,10 +169,10 @@ Response.Write Session(strCookieURL & "JumpBox")
 scriptname = split(request.servervariables("SCRIPT_NAME"),"/")
 Response.Write	"          	<option value="""">&nbsp;--------------------</option>" & vbNewline & _
 		"		<option value=""" & strHomeURL & """>Home</option>" & vbNewline & _
-		"		<option value=""active.asp"">Активные темы</option>" & vbNewline & _
-		"		<option value=""faq.asp"">Часто задавемые вопросы</option>" & vbNewline & _
-		"		<option value=""members.asp"">Информация об участниках форума</option>" & vbNewline & _
-		"		<option value=""search.asp"">Поиск</option>" & vbNewline & _
+		"		<option value=""active.asp"">РђРєС‚РёРІРЅС‹Рµ С‚РµРјС‹</option>" & vbNewline & _
+		"		<option value=""faq.asp"">Р§Р°СЃС‚Рѕ Р·Р°РґР°РІРµРјС‹Рµ РІРѕРїСЂРѕСЃС‹</option>" & vbNewline & _
+		"		<option value=""members.asp"">РРЅС„РѕСЂРјР°С†РёСЏ РѕР± СѓС‡Р°СЃС‚РЅРёРєР°С… С„РѕСЂСѓРјР°</option>" & vbNewline & _
+		"		<option value=""search.asp"">РџРѕРёСЃРє</option>" & vbNewline & _
 		"          </select>" & vbNewline & _
 		"          </form>" & vbNewline & _
 		"          <!-- END JUMP TO -->" & vbNewline

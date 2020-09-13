@@ -101,7 +101,7 @@ if Request.QueryString("verkey") <> "" then
 		'Error message to user
 		Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """><b>There is a Problem!</b></font></p>" & vbNewLine & _
 				"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHiLiteFontColor & """>Your verification key did not match the one that we have in our database.<br />Please try changing your e-mail address again by clicking the Profile link at the top right hand corner.<br />If this problem persists, please contact the <a href=""mailto:" & strSender & """>Administrator</a> of this forum.</font></p>" & vbNewLine & _
-				"      " & strParagraphFormat1 & "<a href=""default.asp"">Вернуться на Форум</a></font></p>" & vbNewLine
+				"      " & strParagraphFormat1 & "<a href=""default.asp"">Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР° Р¤РѕСЂСѓРј</a></font></p>" & vbNewLine
 		rsKey.close
 		set rsKey = nothing
 		WriteFooter
@@ -110,7 +110,7 @@ if Request.QueryString("verkey") <> "" then
 		'Error message to user
 		Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """><b>There is a Problem!</b></font></p>" & vbNewLine & _
 				"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHiLiteFontColor & """>Your verification key did not match the one that we have in our database.<br />Please try changing your e-mail address again by clicking the Profile link at the top right hand corner.<br />If this problem persists, please contact the <a href=""mailto:" & strSender & """>Administrator</a> of this forum.</font></p>" & vbNewLine & _
-				"      " & strParagraphFormat1 & "<a href=""default.asp"">Вернуться на Форум</a></font></p>" & vbNewLine
+				"      " & strParagraphFormat1 & "<a href=""default.asp"">Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР° Р¤РѕСЂСѓРј</a></font></p>" & vbNewLine
 		rsKey.close
 		set rsKey = nothing
 		WriteFooter
@@ -118,7 +118,7 @@ if Request.QueryString("verkey") <> "" then
 	elseif rsKey("M_EMAIL") = rsKey("M_NEWEMAIL") then
 		Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """><b>E-mail Already Verified!</b></font></p>" & vbNewLine & _
 				"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHiLiteFontColor & """>Your e-mail address has already been updated in our database.<br />If this problem persists, please contact the <a href=""mailto:" & strSender & """>Administrator</a> of this forum.</font></p>" & vbNewLine & _
-				"      " & strParagraphFormat1 & "<a href=""default.asp"">Вернуться на Форум</a></font></p>" & vbNewLine
+				"      " & strParagraphFormat1 & "<a href=""default.asp"">Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР° Р¤РѕСЂСѓРј</a></font></p>" & vbNewLine
 		rsKey.close
 		set rsKey = nothing
 		WriteFooter
@@ -135,7 +135,7 @@ if Request.QueryString("verkey") <> "" then
 		my_Conn.Execute (strSql),,adCmdText + adExecuteNoRecords
 		Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """><b>Your E-mail Address Has Been Updated!</b></font></p>" & vbNewLine & _
 				"      " & strParagraphFormat1 & "Your new e-mail address has been successfully updated in our database.</font></p>" & vbNewLine & _
-				"      " & strParagraphFormat1 & "<a href=""default.asp"">Вернуться на Форум</a></font></p>" & vbNewLine
+				"      " & strParagraphFormat1 & "<a href=""default.asp"">Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР° Р¤РѕСЂСѓРј</a></font></p>" & vbNewLine
 		rsKey.close
 		set rsKey = nothing
 		WriteFooter
@@ -309,15 +309,15 @@ select case Request.QueryString("mode")
 							"                    </tr>" & vbNewLine
 				end if ' strPicture
 				Response.Write	"                    <tr>" & vbNewLine & _
-						"                      <td align=""center"" bgcolor=""" & strCategoryCellColor & """ colspan=""2""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strCategoryFontColor & """>&nbsp;Контактная информация&nbsp;</font></b></td>" & vbNewLine & _
+						"                      <td align=""center"" bgcolor=""" & strCategoryCellColor & """ colspan=""2""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strCategoryFontColor & """>&nbsp;РљРѕРЅС‚Р°РєС‚РЅР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ&nbsp;</font></b></td>" & vbNewLine & _
 						"                    </tr>" & vbNewLine
 				strContacts = 0
 				if mLev > 2 or rs("M_RECEIVE_EMAIL") = "1" then
 					strContacts = strContacts + 1
 					Response.Write	"                    <tr>" & vbNewLine & _
-							"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" width=""10%"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>Пошлите мне письмо:&nbsp;</font></b></td>" & vbNewLine
+							"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" width=""10%"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>РџРѕС€Р»РёС‚Рµ РјРЅРµ РїРёСЃСЊРјРѕ:&nbsp;</font></b></td>" & vbNewLine
 					if Trim(rs("M_EMAIL")) <> "" then
-						Response.Write	"                      <td bgColor=""" & strPopUpTableColor & """ nowrap><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><a href=""JavaScript:openWindow('pop_mail.asp?id=" & rs("MEMBER_ID") & "')"">Послать E-Mail</a>&nbsp;</font></td>" & vbNewLine
+						Response.Write	"                      <td bgColor=""" & strPopUpTableColor & """ nowrap><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><a href=""JavaScript:openWindow('pop_mail.asp?id=" & rs("MEMBER_ID") & "')"">РџРѕСЃР»Р°С‚СЊ E-Mail</a>&nbsp;</font></td>" & vbNewLine
 					else
 						Response.Write	"                      <td bgColor=""" & strPopUpTableColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>No address specified...</font></td>" & vbNewLine
 					end if
@@ -462,7 +462,7 @@ select case Request.QueryString("mode")
 							"                      <b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strCategoryFontColor & """>Links&nbsp;</font></b></td>" & vbNewLine
 					if strHomepage = "1" then
 						Response.Write	"                    <tr>" & vbNewLine & _
-								"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" nowrap width=""10%""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>Моя web-страница:&nbsp;</font></b></td>" & vbNewLine
+								"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" nowrap width=""10%""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>РњРѕСЏ web-СЃС‚СЂР°РЅРёС†Р°:&nbsp;</font></b></td>" & vbNewLine
 						if Trim(rs("M_HOMEPAGE")) <> "" and lcase(trim(rs("M_HOMEPAGE"))) <> "http://" and Trim(lcase(rs("M_HOMEPAGE"))) <> "https://" then
 							Response.Write	"                      <td bgColor=""" & strPopUpTableColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><a href=""" & rs("M_HOMEPAGE") & """ target=""_blank"">" & rs("M_HOMEPAGE") & "</a>&nbsp;</font></td>" & vbNewLine
 						else
@@ -494,10 +494,10 @@ select case Request.QueryString("mode")
 			Response.Write	"                <td bgColor=""" & strPageBGColor & """ valign=""top"">" & vbNewLine & _
 					"                  <table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""3"" valign=""top"">" & vbNewLine & _
 					"                    <tr>" & vbNewLine & _
-					"                      <td valign=""top"" align=""center"" colspan=""2"" bgcolor=""" & strCategoryCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strCategoryFontColor & """>Персональная информация</font></b></td>" & vbNewLine & _
+					"                      <td valign=""top"" align=""center"" colspan=""2"" bgcolor=""" & strCategoryCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strCategoryFontColor & """>РџРµСЂСЃРѕРЅР°Р»СЊРЅР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ</font></b></td>" & vbNewLine & _
 					"                    </tr>" & vbNewLine & _
 					"                    <tr>" & vbNewLine & _
-					"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" nowrap width=""10%"" valign=""top""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>Логин/Ник:&nbsp;</font></b></td>" & vbNewLine & _
+					"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" nowrap width=""10%"" valign=""top""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>Р›РѕРіРёРЅ/РќРёРє:&nbsp;</font></b></td>" & vbNewLine & _
 					"                      <td bgColor=""" & strPopUpTableColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & ChkString(rs("M_NAME"),"display") & "&nbsp;</font></td>" & vbNewLine & _
 					"                    </tr>" & vbNewLine
 			if strAuthType = "nt" then
@@ -508,13 +508,13 @@ select case Request.QueryString("mode")
 			end if
 			if strFullName = "1" and (Trim(rs("M_FIRSTNAME")) <> "" or Trim(rs("M_LASTNAME")) <> "" ) then
 				Response.Write	"                    <tr>" & vbNewLine & _
-						"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" nowrap valign=""top""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>Настоящее Имя:&nbsp;</font></b></td>" & vbNewLine & _
+						"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" nowrap valign=""top""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>РќР°СЃС‚РѕСЏС‰РµРµ РРјСЏ:&nbsp;</font></b></td>" & vbNewLine & _
 						"                      <td bgColor=""" & strPopUpTableColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & ChkString(rs("M_FIRSTNAME"), "display") & "&nbsp;" & ChkString(rs("M_LASTNAME"), "display") & "</font></td>" & vbNewLine & _
 						"                    </tr>" & vbNewLine
 			end if
 			if (strCity = "1" and Trim(rs("M_CITY")) <> "") or (strCountry = "1" and Trim(rs("M_COUNTRY")) <> "") or (strState = "1" and Trim(rs("M_STATE")) <> "") then
 				Response.Write	"                    <tr>" & vbNewLine & _
-						"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" nowrap valign=""top""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>Город, выпуск:&nbsp;</font></b></td>" & vbNewLine & _
+						"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" nowrap valign=""top""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>Р“РѕСЂРѕРґ, РІС‹РїСѓСЃРє:&nbsp;</font></b></td>" & vbNewLine & _
 						"                      <td bgColor=""" & strPopUpTableColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>"
 				myCity = ChkString(rs("M_CITY"),"display")
 				myState = ChkString(rs("M_STATE"),"display")
@@ -582,8 +582,8 @@ select case Request.QueryString("mode")
 			end if
 			if intTotalMemberPosts > 0 then
 				Response.Write	"                    <tr>" & vbNewLine & _
-						"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" nowrap valign=""top""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>Сообщений:&nbsp;</font></b></td>" & vbNewLine & _
-						"                      <td bgColor=""" & strPopUpTableColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & ChkString(intTotalMemberPosts, "display") & "<br /><font size=""" & strFooterFontSize & """>[" & strMemberPostsperDay & strPosts & " - среднее число сообщений в день]<br /><a href=""search.asp?mode=DoIt&MEMBER_ID=" & rs("MEMBER_ID") & """>найти все внеархивные сообщения от " & chkString(rs("M_NAME"),"display") & "</a></font></font></td>" & vbNewLine & _
+						"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" nowrap valign=""top""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>РЎРѕРѕР±С‰РµРЅРёР№:&nbsp;</font></b></td>" & vbNewLine & _
+						"                      <td bgColor=""" & strPopUpTableColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & ChkString(intTotalMemberPosts, "display") & "<br /><font size=""" & strFooterFontSize & """>[" & strMemberPostsperDay & strPosts & " - СЃСЂРµРґРЅРµРµ С‡РёСЃР»Рѕ СЃРѕРѕР±С‰РµРЅРёР№ РІ РґРµРЅСЊ]<br /><a href=""search.asp?mode=DoIt&MEMBER_ID=" & rs("MEMBER_ID") & """>РЅР°Р№С‚Рё РІСЃРµ РІРЅРµР°СЂС…РёРІРЅС‹Рµ СЃРѕРѕР±С‰РµРЅРёСЏ РѕС‚ " & chkString(rs("M_NAME"),"display") & "</a></font></font></td>" & vbNewLine & _
 						"                    </tr>" & vbNewLine
 			end if
 			if not(strUseExtendedProfile) then
@@ -642,11 +642,11 @@ select case Request.QueryString("mode")
 			if IsNull(strMyQuote) or trim(strMyQuote) = "" then strQuote = 0
 			if (strBio + strHobbies + strLNews + strQuote) > 0 then
 				Response.Write	"                    <tr>" & vbNewLine & _
-						"                      <td align=""center"" bgcolor=""" & strCategoryCellColor & """ colspan=""2""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strCategoryFontColor & """>Персональные данные</font></b></td>" & vbNewLine & _
+						"                      <td align=""center"" bgcolor=""" & strCategoryCellColor & """ colspan=""2""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strCategoryFontColor & """>РџРµСЂСЃРѕРЅР°Р»СЊРЅС‹Рµ РґР°РЅРЅС‹Рµ</font></b></td>" & vbNewLine & _
 						"                    </tr>" & vbNewLine
 				if strBio = "1" then
 					Response.Write	"                    <tr>" & vbNewLine & _
-							"                      <td bgColor=""" & strPopUpTableColor & """ valign=""top"" align=""right"" nowrap width=""10%""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>О себе:&nbsp;</font></b></td>" & vbNewLine & _
+							"                      <td bgColor=""" & strPopUpTableColor & """ valign=""top"" align=""right"" nowrap width=""10%""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>Рћ СЃРµР±Рµ:&nbsp;</font></b></td>" & vbNewLine & _
 							"                      <td bgColor=""" & strPopUpTableColor & """ valign=""top""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>"
 					if IsNull(strMyBio) or trim(strMyBio) = "" then Response.Write("-") else Response.Write(formatStr(strMyBio))
 					Response.Write	"</font></td>" & vbNewLine & _
@@ -998,7 +998,7 @@ select case Request.QueryString("mode")
 					Response.Write	"      <table width=""100%"" border=""0"">" & vbNewLine & _
 							"        <tr>" & vbNewLine & _
 							"          <td><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & vbNewLine & _
-							"          " & getCurrentIcon(strIconFolderOpen,"","") & "&nbsp;<a href=""default.asp"">Вернуться на Форум</a><br />" & vbNewLine & _
+							"          " & getCurrentIcon(strIconFolderOpen,"","") & "&nbsp;<a href=""default.asp"">Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР° Р¤РѕСЂСѓРј</a><br />" & vbNewLine & _
 							"          " & getCurrentIcon(strIconBar,"","") & getCurrentIcon(strIconFolderOpenTopic,"","") & "&nbsp;Modify " & chkString(rs("M_NAME"),"display") & "'s Profile</font></td>" & vbNewLine & _
 							"        </tr>" & vbNewLine & _
 							"      </table>" & vbNewLine
@@ -1017,14 +1017,14 @@ select case Request.QueryString("mode")
 				Response.Write	"    <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """><b>No Permissions to Modify a Member</b></font><br />" & vbNewLine & _
 						"    <br /><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><a href=""JavaScript:onClick=history.go(-1)"">Go Back to Re-Authenticate</a></font></p>" & vbNewLine
 				if strUseExtendedProfile then
-					Response.Write	"    " & strParagraphFormat1 & "<a href=""" & strRefer & """>Вернуться на Форум</a></font></p>" & vbNewLine
+					Response.Write	"    " & strParagraphFormat1 & "<a href=""" & strRefer & """>Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР° Р¤РѕСЂСѓРј</a></font></p>" & vbNewLine
 				end if 
 			end if 
 		else 
 			Response.Write	"    <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """><b>No Permissions to Modify a Member</b></font><br />" & vbNewLine & _
 					"    <br /><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><a href=""JavaScript:onClick=history.go(-1)"">Go Back to Re-Authenticate</a></font></p>" & vbNewLine
 			if strUseExtendedProfile then
-				Response.Write	"    " & strParagraphFormat1 & "<a href=""" & strRefer & """>Вернуться на Форум</a></font></p>" & vbNewLine
+				Response.Write	"    " & strParagraphFormat1 & "<a href=""" & strRefer & """>Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР° Р¤РѕСЂСѓРј</a></font></p>" & vbNewLine
 			end if 
 		end if 
 	case "EditIt"
@@ -1274,7 +1274,7 @@ select case Request.QueryString("mode")
 			else
 				if (strUseExtendedProfile) then
 					Response.Write	"    <meta http-equiv=""Refresh"" content=""2; URL=" & strRefer & """>" & vbNewLine & _
-							"    " & strParagraphFormat1 & "<a href=""" & strRefer & """>Вернуться на Форум</a></font></p>" & vbNewLine
+							"    " & strParagraphFormat1 & "<a href=""" & strRefer & """>Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР° Р¤РѕСЂСѓРј</a></font></p>" & vbNewLine
 				end if
 			end if
 		else
@@ -1286,7 +1286,7 @@ select case Request.QueryString("mode")
 					"      </table>" & vbNewLine & _
 					"    " & strParagraphFormat1 & "<a href=""JavaScript:onClick=history.go(-1)"">Go Back To Enter Data</a></font></p>" & vbNewLine
 			if strUseExtendedProfile then
-				Response.Write	"    " & strParagraphFormat1 & "<a href=""" & strRefer & """>Вернуться на Форум</a></font></p>" & vbNewLine
+				Response.Write	"    " & strParagraphFormat1 & "<a href=""" & strRefer & """>Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР° Р¤РѕСЂСѓРј</a></font></p>" & vbNewLine
 			end if 
 		end if
 	case "ModifyIt"
@@ -1295,7 +1295,7 @@ select case Request.QueryString("mode")
 					"        <tr>" & vbNewLine & _
 					"          <td><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & vbNewLine & _
 					"          " & getCurrentIcon(strIconFolderOpen,"","") & "&nbsp;<a href=""default.asp"">All Forums</a><br />" & vbNewLine & _
-					"          " & getCurrentIcon(strIconBar,"","") & getCurrentIcon(strIconFolderOpenTopic,"","") & "&nbsp;Изменить данные/профиль пользователя</font></td>" & vbNewLine & _
+					"          " & getCurrentIcon(strIconBar,"","") & getCurrentIcon(strIconFolderOpenTopic,"","") & "&nbsp;РР·РјРµРЅРёС‚СЊ РґР°РЅРЅС‹Рµ/РїСЂРѕС„РёР»СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ</font></td>" & vbNewLine & _
 					"        </tr>" & vbNewLine & _
 					"      </table>" & vbNewLine
 		end if
@@ -1557,17 +1557,17 @@ select case Request.QueryString("mode")
 					Response.Write	"    <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>Profile Updated.</font></p>" & vbNewLine
 					if lcase(Request.Form("Email")) <> lcase(Request.Form("Email2")) and lcase(strEmail) = "1" and strEmailVal = "1" then
 						if (strUseExtendedProfile) then
-							Response.Write	"      " & strParagraphFormat1 & "Ваш e-mail адрес изменен. Подтверждение будет послано на новый e-mail адрес.</font></p>" & vbNewLine & _
+							Response.Write	"      " & strParagraphFormat1 & "Р’Р°С€ e-mail Р°РґСЂРµСЃ РёР·РјРµРЅРµРЅ. РџРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ Р±СѓРґРµС‚ РїРѕСЃР»Р°РЅРѕ РЅР° РЅРѕРІС‹Р№ e-mail Р°РґСЂРµСЃ.</font></p>" & vbNewLine & _
 									"      " & strParagraphFormat1 & "<a href="""
 							if InStr(1,Request.Form("refer"),"register.asp",1) > 0 then Response.Write("default.asp") else Response.Write(Request.Form("refer"))
 							Response.Write	""">" & strBackToForum & "</a>" & vbNewLine
 						else
-							Response.Write	"      " & strParagraphFormat1 & "Ваш e-mail адрес изменен. Подтверждение будет послано на новый e-mail адрес.<br /><br /></font></p>" & vbNewLine
+							Response.Write	"      " & strParagraphFormat1 & "Р’Р°С€ e-mail Р°РґСЂРµСЃ РёР·РјРµРЅРµРЅ. РџРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ Р±СѓРґРµС‚ РїРѕСЃР»Р°РЅРѕ РЅР° РЅРѕРІС‹Р№ e-mail Р°РґСЂРµСЃ.<br /><br /></font></p>" & vbNewLine
 						end if
 					else
 						if (strUseExtendedProfile) then
 							Response.Write	"    <meta http-equiv=""Refresh"" content=""2; URL=" & strRefer & """>" & vbNewLine & _
-									"    " & strParagraphFormat1 & "<a href=""" & strRefer & """>Вернуться на Форум</a></font></p>" & vbNewLine
+									"    " & strParagraphFormat1 & "<a href=""" & strRefer & """>Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР° Р¤РѕСЂСѓРј</a></font></p>" & vbNewLine
 						end if
 					end if
 				else
@@ -1579,21 +1579,21 @@ select case Request.QueryString("mode")
 							"      </table>" & vbNewLine & _
 							"    <p align=""center""><font size=""" & strDefaultFontSize & """><a href=""JavaScript:onClick=history.go(-1)"">Go Back To Enter Data</a></font></p>" & vbNewLine
 					if strUseExtendedProfile then
-						Response.Write	"    " & strParagraphFormat1 & "<a href=""" & strRefer & """>Вернуться на Форум</a></font></p>" & vbNewLine
+						Response.Write	"    " & strParagraphFormat1 & "<a href=""" & strRefer & """>Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР° Р¤РѕСЂСѓРј</a></font></p>" & vbNewLine
 					end if 
 				end if
 			else 'Member but no Admin
-				Response.Write	"    <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """><b>Вам не разрешено изменять данные в профиле пользователя</b></font><br />" & vbNewLine & _
+				Response.Write	"    <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """><b>Р’Р°Рј РЅРµ СЂР°Р·СЂРµС€РµРЅРѕ РёР·РјРµРЅСЏС‚СЊ РґР°РЅРЅС‹Рµ РІ РїСЂРѕС„РёР»Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ</b></font><br />" & vbNewLine & _
 						"    <br /><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><a href=""JavaScript:onClick=history.go(-1)"">Go Back to Re-Authenticate</a></font></p>" & vbNewLine
 				if strUseExtendedProfile then
-					Response.Write	"" & strParagraphFormat1 & "<a href=""" & strRefer & """>Вернуться на Форум</a></font></p>" & vbNewLine
+					Response.Write	"" & strParagraphFormat1 & "<a href=""" & strRefer & """>Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР° Р¤РѕСЂСѓРј</a></font></p>" & vbNewLine
 				end if 
 			end if
 		else  'Not logged on or no member
-			Response.Write	"    <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """><b>Вам не разрешено изменять данные в профиле пользователя</b></font><br />" & vbNewLine & _
+			Response.Write	"    <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """><b>Р’Р°Рј РЅРµ СЂР°Р·СЂРµС€РµРЅРѕ РёР·РјРµРЅСЏС‚СЊ РґР°РЅРЅС‹Рµ РІ РїСЂРѕС„РёР»Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ</b></font><br />" & vbNewLine & _
 					"    <br /><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><a href=""JavaScript:onClick=history.go(-1)"">Go Back to Re-Authenticate</a></font></p>" & vbNewLine
 			if strUseExtendedProfile then
-				Response.Write	"    " & strParagraphFormat1 & "<a href=""" & strRefer & """>Вернуться на Форум</a></font></p>" & vbNewLine
+				Response.Write	"    " & strParagraphFormat1 & "<a href=""" & strRefer & """>Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР° Р¤РѕСЂСѓРј</a></font></p>" & vbNewLine
 			end if 
 		end if 
 	case else	

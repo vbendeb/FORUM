@@ -48,8 +48,8 @@
 <%
 Response.Write	"      <table width=""100%"" border=""0"">" & vbNewLine & _
 		"        <tr>" & vbNewLine & _
-		"          <td><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & getCurrentIcon(strIconFolderOpen,"","") & "&nbsp;<a href=""default.asp"">МОСТ Форум</a><br />" & vbNewLine & _
-		"          " & getCurrentIcon(strIconBar,"","") & getCurrentIcon(strIconFolderOpenTopic,"","") & "&nbsp;Забыли Ваш пароль?<br />" & vbNewLine & _
+		"          <td><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & getCurrentIcon(strIconFolderOpen,"","") & "&nbsp;<a href=""default.asp"">РњРћРЎРў Р¤РѕСЂСѓРј</a><br />" & vbNewLine & _
+		"          " & getCurrentIcon(strIconBar,"","") & getCurrentIcon(strIconFolderOpenTopic,"","") & "&nbsp;Р—Р°Р±С‹Р»Рё Р’Р°С€ РїР°СЂРѕР»СЊ?<br />" & vbNewLine & _
 		"        </tr>" & vbNewLine & _
 		"      </table>" & vbNewLine
 
@@ -71,14 +71,14 @@ elseif Request.QueryString("pwkey") <> "" and Request.Form("mode") <> "UpdateID"
 
 	if rsKey.EOF or rsKey.BOF then
 		'Error message to user
-		Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """><b>Несовпадение пароля!</b></font></p>" & vbNewLine & _
-				"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHiLiteFontColor & """>Пароль, который Вы ввели отличается от тог, что хранится в нашей базе данных.<br />Попробуйте ввести ваше имя пользователя и электронный адрес ещё раз, после нажатия на ссылку ""Забыл ПарольP?"" на главной странице форума.<br />Если проблема не решится - свяжитесь с <a href=""mailto:" & strSender & """>Администратором</a> форума.</font></p>" & vbNewLine & _
-				"      " & strParagraphFormat1 & "<a href=""default.asp"">Назад на форум</font></a></p>" & vbNewLine
+		Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """><b>РќРµСЃРѕРІРїР°РґРµРЅРёРµ РїР°СЂРѕР»СЏ!</b></font></p>" & vbNewLine & _
+				"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHiLiteFontColor & """>РџР°СЂРѕР»СЊ, РєРѕС‚РѕСЂС‹Р№ Р’С‹ РІРІРµР»Рё РѕС‚Р»РёС‡Р°РµС‚СЃСЏ РѕС‚ С‚РѕРі, С‡С‚Рѕ С…СЂР°РЅРёС‚СЃСЏ РІ РЅР°С€РµР№ Р±Р°Р·Рµ РґР°РЅРЅС‹С….<br />РџРѕРїСЂРѕР±СѓР№С‚Рµ РІРІРµСЃС‚Рё РІР°С€Рµ РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ Рё СЌР»РµРєС‚СЂРѕРЅРЅС‹Р№ Р°РґСЂРµСЃ РµС‰С‘ СЂР°Р·, РїРѕСЃР»Рµ РЅР°Р¶Р°С‚РёСЏ РЅР° СЃСЃС‹Р»РєСѓ ""Р—Р°Р±С‹Р» РџР°СЂРѕР»СЊP?"" РЅР° РіР»Р°РІРЅРѕР№ СЃС‚СЂР°РЅРёС†Рµ С„РѕСЂСѓРјР°.<br />Р•СЃР»Рё РїСЂРѕР±Р»РµРјР° РЅРµ СЂРµС€РёС‚СЃСЏ - СЃРІСЏР¶РёС‚РµСЃСЊ СЃ <a href=""mailto:" & strSender & """>РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂРѕРј</a> С„РѕСЂСѓРјР°.</font></p>" & vbNewLine & _
+				"      " & strParagraphFormat1 & "<a href=""default.asp"">РќР°Р·Р°Рґ РЅР° С„РѕСЂСѓРј</font></a></p>" & vbNewLine
 	elseif strComp(key,rsKey("M_PWKEY")) <> 0 then
 		'Error message to user
-		Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """><b>Несовпадение пароля!</b></font></p>" & vbNewLine & _
-				"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHiLiteFontColor & """>Пароль, который Вы ввели отличается от тог, что хранится в нашей базе данных.<br />Попробуйте ввести ваше имя пользователя и электронный адрес ещё раз, после нажатия на ссылку ""Забыл ПарольP?"" на главной странице форума.<br />Если проблема не решится - свяжитесь с <a href=""mailto:" & strSender & """>Администратором</a>  форума.</font></p>" & vbNewLine & _
-				"      " & strParagraphFormat1 & "<a href=""default.asp"">Назад на форум</font></a></p>" & vbNewLine
+		Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """><b>РќРµСЃРѕРІРїР°РґРµРЅРёРµ РїР°СЂРѕР»СЏ!</b></font></p>" & vbNewLine & _
+				"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHiLiteFontColor & """>РџР°СЂРѕР»СЊ, РєРѕС‚РѕСЂС‹Р№ Р’С‹ РІРІРµР»Рё РѕС‚Р»РёС‡Р°РµС‚СЃСЏ РѕС‚ С‚РѕРі, С‡С‚Рѕ С…СЂР°РЅРёС‚СЃСЏ РІ РЅР°С€РµР№ Р±Р°Р·Рµ РґР°РЅРЅС‹С….<br />РџРѕРїСЂРѕР±СѓР№С‚Рµ РІРІРµСЃС‚Рё РІР°С€Рµ РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ Рё СЌР»РµРєС‚СЂРѕРЅРЅС‹Р№ Р°РґСЂРµСЃ РµС‰С‘ СЂР°Р·, РїРѕСЃР»Рµ РЅР°Р¶Р°С‚РёСЏ РЅР° СЃСЃС‹Р»РєСѓ ""Р—Р°Р±С‹Р» РџР°СЂРѕР»СЊP?"" РЅР° РіР»Р°РІРЅРѕР№ СЃС‚СЂР°РЅРёС†Рµ С„РѕСЂСѓРјР°.<br />Р•СЃР»Рё РїСЂРѕР±Р»РµРјР° РЅРµ СЂРµС€РёС‚СЃСЏ - СЃРІСЏР¶РёС‚РµСЃСЊ СЃ <a href=""mailto:" & strSender & """>РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂРѕРј</a>  С„РѕСЂСѓРјР°.</font></p>" & vbNewLine & _
+				"      " & strParagraphFormat1 & "<a href=""default.asp"">РќР°Р·Р°Рґ РЅР° С„РѕСЂСѓРј</font></a></p>" & vbNewLine
 	else
 		PWMember_ID = rsKey("MEMBER_ID")
 		call showForm2
@@ -98,23 +98,23 @@ elseif Request.Form("pwkey") <> "" and Request.Form("mode") = "UpdateIt" then
 
 	if rsKey.EOF or rsKey.BOF then
 		'Error message to user
-		Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """><b>Несовпадение пароля!</b></font></p>" & vbNewLine & _
-				"      " & strParagraphFormat1 & "Пароль, который Вы ввели отличается от тог, что хранится в нашей базе данных..<br />Попробуйте ввести ваше имя пользователя и электронный адрес ещё раз, после нажатия на ссылку ""Забыл ПарольP?"" на главной странице форума.<br />Если проблема не решится - свяжитесь с <a href=""mailto:" & strSender & """>Администратором</a> форума.</font></p>" & vbNewLine & _
+		Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """><b>РќРµСЃРѕРІРїР°РґРµРЅРёРµ РїР°СЂРѕР»СЏ!</b></font></p>" & vbNewLine & _
+				"      " & strParagraphFormat1 & "РџР°СЂРѕР»СЊ, РєРѕС‚РѕСЂС‹Р№ Р’С‹ РІРІРµР»Рё РѕС‚Р»РёС‡Р°РµС‚СЃСЏ РѕС‚ С‚РѕРі, С‡С‚Рѕ С…СЂР°РЅРёС‚СЃСЏ РІ РЅР°С€РµР№ Р±Р°Р·Рµ РґР°РЅРЅС‹С…..<br />РџРѕРїСЂРѕР±СѓР№С‚Рµ РІРІРµСЃС‚Рё РІР°С€Рµ РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ Рё СЌР»РµРєС‚СЂРѕРЅРЅС‹Р№ Р°РґСЂРµСЃ РµС‰С‘ СЂР°Р·, РїРѕСЃР»Рµ РЅР°Р¶Р°С‚РёСЏ РЅР° СЃСЃС‹Р»РєСѓ ""Р—Р°Р±С‹Р» РџР°СЂРѕР»СЊP?"" РЅР° РіР»Р°РІРЅРѕР№ СЃС‚СЂР°РЅРёС†Рµ С„РѕСЂСѓРјР°.<br />Р•СЃР»Рё РїСЂРѕР±Р»РµРјР° РЅРµ СЂРµС€РёС‚СЃСЏ - СЃРІСЏР¶РёС‚РµСЃСЊ СЃ <a href=""mailto:" & strSender & """>РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂРѕРј</a> С„РѕСЂСѓРјР°.</font></p>" & vbNewLine & _
 				"      " & strParagraphFormat1 & "<a href=""default.asp"">" & strBackToForum & "</font></a></p>" & vbNewLine
 	elseif strComp(key,rsKey("M_PWKEY")) <> 0 then
 		'Error message to user
 		Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """><b>Your password key did not match!</b></font></p>" & vbNewLine & _
-				"      " & strParagraphFormat1 & "Пароль, который Вы ввели отличается от тог, что хранится в нашей базе данных.<br />Попробуйте ввести ваше имя пользователя и электронный адрес ещё раз, после нажатия на ссылку ""Забыл ПарольP?"" на главной странице форума.<br />Если проблема не решится - свяжитесь с <a href=""mailto:" & strSender & """>Администратором</a> форума.</font></p>" & vbNewLine & _
+				"      " & strParagraphFormat1 & "РџР°СЂРѕР»СЊ, РєРѕС‚РѕСЂС‹Р№ Р’С‹ РІРІРµР»Рё РѕС‚Р»РёС‡Р°РµС‚СЃСЏ РѕС‚ С‚РѕРі, С‡С‚Рѕ С…СЂР°РЅРёС‚СЃСЏ РІ РЅР°С€РµР№ Р±Р°Р·Рµ РґР°РЅРЅС‹С….<br />РџРѕРїСЂРѕР±СѓР№С‚Рµ РІРІРµСЃС‚Рё РІР°С€Рµ РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ Рё СЌР»РµРєС‚СЂРѕРЅРЅС‹Р№ Р°РґСЂРµСЃ РµС‰С‘ СЂР°Р·, РїРѕСЃР»Рµ РЅР°Р¶Р°С‚РёСЏ РЅР° СЃСЃС‹Р»РєСѓ ""Р—Р°Р±С‹Р» РџР°СЂРѕР»СЊP?"" РЅР° РіР»Р°РІРЅРѕР№ СЃС‚СЂР°РЅРёС†Рµ С„РѕСЂСѓРјР°.<br />Р•СЃР»Рё РїСЂРѕР±Р»РµРјР° РЅРµ СЂРµС€РёС‚СЃСЏ - СЃРІСЏР¶РёС‚РµСЃСЊ СЃ <a href=""mailto:" & strSender & """>РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂРѕРј</a> С„РѕСЂСѓРјР°.</font></p>" & vbNewLine & _
 				"      " & strParagraphFormat1 & "<a href=""default.asp"">" & strBackToForum & "</font></a></p>" & vbNewLine
         else
 		if trim(Request.Form("Password")) = "" then
-			Err_Msg = Err_Msg & "<li>Вы обязаны пользоваться паролем</li>"
+			Err_Msg = Err_Msg & "<li>Р’С‹ РѕР±СЏР·Р°РЅС‹ РїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ РїР°СЂРѕР»РµРј</li>"
 		end if
 		if Len(Request.Form("Password")) > 25 then
-			Err_Msg = Err_Msg & "<li>Длина пароля не может превышать 25 символов</li>"
+			Err_Msg = Err_Msg & "<li>Р”Р»РёРЅР° РїР°СЂРѕР»СЏ РЅРµ РјРѕР¶РµС‚ РїСЂРµРІС‹С€Р°С‚СЊ 25 СЃРёРјРІРѕР»РѕРІ</li>"
 		end if
 		if Request.Form("Password") <> Request.Form("Password2") then
-			Err_Msg = Err_Msg & "<li>Ваши пароли неодинаковые.</li>"
+			Err_Msg = Err_Msg & "<li>Р’Р°С€Рё РїР°СЂРѕР»Рё РЅРµРѕРґРёРЅР°РєРѕРІС‹Рµ.</li>"
 		end if
 
 		if Err_Msg = "" then
@@ -130,22 +130,22 @@ elseif Request.Form("pwkey") <> "" and Request.Form("mode") = "UpdateIt" then
 			my_Conn.Execute (strSql),,adCmdText + adExecuteNoRecords
 		else
 			if Err_Msg <> "" then 
-				Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """>Проблема с Вашими данными</font></p>" & vbNewLine & _
+				Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """>РџСЂРѕР±Р»РµРјР° СЃ Р’Р°С€РёРјРё РґР°РЅРЅС‹РјРё</font></p>" & vbNewLine & _
 						"      <table align=""center"" border=""0"">" & vbNewLine & _
 						"        <tr>" & vbNewLine & _
 						"          <td><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHiLiteFontColor & """><ul>" & Err_Msg & "</ul></font></td>" & vbNewLine & _
 						"        </tr>" & vbNewLine & _
 						"      </table>" & vbNewLine & _
-						"      " & strParagraphFormat1 & "<a href=""JavaScript:history.go(-1)"">Нажмите здесь чтобы попробовать ещё раз</a></font></p>" & vbNewLine
+						"      " & strParagraphFormat1 & "<a href=""JavaScript:history.go(-1)"">РќР°Р¶РјРёС‚Рµ Р·РґРµСЃСЊ С‡С‚РѕР±С‹ РїРѕРїСЂРѕР±РѕРІР°С‚СЊ РµС‰С‘ СЂР°Р·</a></font></p>" & vbNewLine
 				rsKey.close
 				set rsKey = nothing
 				WriteFooter
 				Response.End 
 			end if
 		end if
-		Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>Ваш новый пароль запомнен!</font></p>" & vbNewLine & _
-				"      " & strParagraphFormat1 & "Вы теперь можете войти на форум"
-		if strAuthType = "db" then Response.Write(" введя Ваше имя пользователя и новый пароль<br> (автоматический переход на страницу входа на форум через 5 секунд...)")
+		Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>Р’Р°С€ РЅРѕРІС‹Р№ РїР°СЂРѕР»СЊ Р·Р°РїРѕРјРЅРµРЅ!</font></p>" & vbNewLine & _
+				"      " & strParagraphFormat1 & "Р’С‹ С‚РµРїРµСЂСЊ РјРѕР¶РµС‚Рµ РІРѕР№С‚Рё РЅР° С„РѕСЂСѓРј"
+		if strAuthType = "db" then Response.Write(" РІРІРµРґСЏ Р’Р°С€Рµ РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ Рё РЅРѕРІС‹Р№ РїР°СЂРѕР»СЊ<br> (Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРёР№ РїРµСЂРµС…РѕРґ РЅР° СЃС‚СЂР°РЅРёС†Сѓ РІС…РѕРґР° РЅР° С„РѕСЂСѓРј С‡РµСЂРµР· 5 СЃРµРєСѓРЅРґ...)")
 		Response.Write	".</font></p>" & vbNewLine
 		Response.Write	"      <meta http-equiv=""Refresh"" content=""5; URL=default.asp"">" & vbNewLine
 		Response.Write	"      " & strParagraphFormat1 & "<a href=""default.asp"">" & strBackToForum & "</font></a></p>" & vbNewLine
@@ -157,11 +157,11 @@ else
 	Err_Msg = ""
 
 	if trim(Request.Form("Name")) = "" then
-		Err_Msg = Err_Msg & "<li>Имя пользователя обязательно</li>"
+		Err_Msg = Err_Msg & "<li>РРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РѕР±СЏР·Р°С‚РµР»СЊРЅРѕ</li>"
 	end if
 
 	if trim(Request.Form("Email")) = "" then
-		Err_Msg = Err_Msg & "<li>Адрес электронной почты обязателен</li>"
+		Err_Msg = Err_Msg & "<li>РђРґСЂРµСЃ СЌР»РµРєС‚СЂРѕРЅРЅРѕР№ РїРѕС‡С‚С‹ РѕР±СЏР·Р°С‚РµР»РµРЅ</li>"
 	end if
 
 	'## Forum_SQL
@@ -172,7 +172,7 @@ else
 	set rs = my_Conn.Execute (strSql)
 
 	if rs.BOF and rs.EOF then
-		Err_Msg = Err_Msg & "<li>Либо имя пользователя, либо электронный адрес отсутствуют в нашей базе данных.</li>"
+		Err_Msg = Err_Msg & "<li>Р›РёР±Рѕ РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ, Р»РёР±Рѕ СЌР»РµРєС‚СЂРѕРЅРЅС‹Р№ Р°РґСЂРµСЃ РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‚ РІ РЅР°С€РµР№ Р±Р°Р·Рµ РґР°РЅРЅС‹С….</li>"
 	else
 		PWMember_ID = rs("MEMBER_ID")
 		PWMember_Name = rs("M_NAME")
@@ -198,33 +198,33 @@ else
 			strRecipients = PWMember_Email
 			strFrom = strSender
 			strFromName = strForumTitle
-			strsubject = strForumTitle & " - Забыли пароль?? "
+			strsubject = strForumTitle & " - Р—Р°Р±С‹Р»Рё РїР°СЂРѕР»СЊ?? "
 			strMessage = "Hello " & PWMember_Name & vbNewline & vbNewline
-			strMessage = strMessage & "Это сообщение послано вам от " & strForumTitle & " потому что вы заполнили первую часть страницы ""Забыли пароль?""." & vbNewline & vbNewline
-			strMessage = strMessage & "Пожалуйста нажмите на ссылку внизу, чтобы завершить процесс." & vbNewline & vbNewLine
+			strMessage = strMessage & "Р­С‚Рѕ СЃРѕРѕР±С‰РµРЅРёРµ РїРѕСЃР»Р°РЅРѕ РІР°Рј РѕС‚ " & strForumTitle & " РїРѕС‚РѕРјСѓ С‡С‚Рѕ РІС‹ Р·Р°РїРѕР»РЅРёР»Рё РїРµСЂРІСѓСЋ С‡Р°СЃС‚СЊ СЃС‚СЂР°РЅРёС†С‹ ""Р—Р°Р±С‹Р»Рё РїР°СЂРѕР»СЊ?""." & vbNewline & vbNewline
+			strMessage = strMessage & "РџРѕР¶Р°Р»СѓР№СЃС‚Р° РЅР°Р¶РјРёС‚Рµ РЅР° СЃСЃС‹Р»РєСѓ РІРЅРёР·Сѓ, С‡С‚РѕР±С‹ Р·Р°РІРµСЂС€РёС‚СЊ РїСЂРѕС†РµСЃСЃ." & vbNewline & vbNewLine
 			strMessage = strMessage & strForumURL & "password.asp?pwkey=" & pwkey & vbNewline & vbNewline
-			strMessage = strMessage & vbNewLine & "Если Вы не забыли свой пароль и получили это сообщение по ошибке - никаких дополнительных действий с Вашей стороны не требуется." & vbNewLine & vbNewLine
+			strMessage = strMessage & vbNewLine & "Р•СЃР»Рё Р’С‹ РЅРµ Р·Р°Р±С‹Р»Рё СЃРІРѕР№ РїР°СЂРѕР»СЊ Рё РїРѕР»СѓС‡РёР»Рё СЌС‚Рѕ СЃРѕРѕР±С‰РµРЅРёРµ РїРѕ РѕС€РёР±РєРµ - РЅРёРєР°РєРёС… РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹С… РґРµР№СЃС‚РІРёР№ СЃ Р’Р°С€РµР№ СЃС‚РѕСЂРѕРЅС‹ РЅРµ С‚СЂРµР±СѓРµС‚СЃСЏ." & vbNewLine & vbNewLine
 %>
 			<!--#INCLUDE FILE="inc_mail.asp" -->
 <%
 		end if
 	else
 		if Err_Msg <> "" then 
-			Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """>Проблема с Вашей информацией</font></p>" & vbNewLine & _
+			Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """>РџСЂРѕР±Р»РµРјР° СЃ Р’Р°С€РµР№ РёРЅС„РѕСЂРјР°С†РёРµР№</font></p>" & vbNewLine & _
 					"      <table align=""center"" border=""0"">" & vbNewLine & _
 					"        <tr>" & vbNewLine & _
 					"          <td><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHiLiteFontColor & """><ul>" & Err_Msg & "</ul></font></td>" & vbNewLine & _
 					"        </tr>" & vbNewLine & _
 					"      </table>" & vbNewLine & _
-					"      " & strParagraphFormat1 & "<a href=""JavaScript:history.go(-1)"">Вернитесь к вводу данных</a></font></p>" & vbNewLine
+					"      " & strParagraphFormat1 & "<a href=""JavaScript:history.go(-1)"">Р’РµСЂРЅРёС‚РµСЃСЊ Рє РІРІРѕРґСѓ РґР°РЅРЅС‹С…</a></font></p>" & vbNewLine
 			WriteFooter
 			Response.End 
 		end if
 	end if
-	Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>Первая часть окончена!</font></p>" & vbNewLine & _
-			"      " & strParagraphFormat1 & "Пожалуйста выполние действия перечисленные в сообщении высланном по адресу <b>" & ChkString(PWMember_Email,"") & "</b> чтобы завершить этот процесс.</font></p>" & vbNewLine
+	Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>РџРµСЂРІР°СЏ С‡Р°СЃС‚СЊ РѕРєРѕРЅС‡РµРЅР°!</font></p>" & vbNewLine & _
+			"      " & strParagraphFormat1 & "РџРѕР¶Р°Р»СѓР№СЃС‚Р° РІС‹РїРѕР»РЅРёРµ РґРµР№СЃС‚РІРёСЏ РїРµСЂРµС‡РёСЃР»РµРЅРЅС‹Рµ РІ СЃРѕРѕР±С‰РµРЅРёРё РІС‹СЃР»Р°РЅРЅРѕРј РїРѕ Р°РґСЂРµСЃСѓ <b>" & ChkString(PWMember_Email,"") & "</b> С‡С‚РѕР±С‹ Р·Р°РІРµСЂС€РёС‚СЊ СЌС‚РѕС‚ РїСЂРѕС†РµСЃСЃ.</font></p>" & vbNewLine
 '	Response.Write	"      <meta http-equiv=""Refresh"" content=""5; URL=default.asp"">" & vbNewLine
-	Response.Write	"      " & strParagraphFormat1 & "<a href=""default.asp"">Назад на Форум</font></a></p>" & vbNewLine
+	Response.Write	"      " & strParagraphFormat1 & "<a href=""default.asp"">РќР°Р·Р°Рґ РЅР° Р¤РѕСЂСѓРј</font></a></p>" & vbNewLine
 end if 
 WriteFooter
 Response.End
@@ -237,26 +237,26 @@ sub ShowForm()
 			"          <td bgcolor=""" & strTableBorderColor & """>" & vbNewline & _
 			"            <table border=""0"" width=""100%"" cellspacing=""1"" cellpadding=""4"">" & vbNewline & _
 			"              <tr>" & vbNewline & _
-			"                <td colspan=""2"" align=""center"" bgcolor=""" & strHeadCellColor & """ valign=""top""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Забыли пароль?</font></b></td>" & vbNewline & _
+			"                <td colspan=""2"" align=""center"" bgcolor=""" & strHeadCellColor & """ valign=""top""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Р—Р°Р±С‹Р»Рё РїР°СЂРѕР»СЊ?</font></b></td>" & vbNewline & _
 			"              </tr>" & vbNewLine & _
 			"              <tr>" & vbNewline & _
-			"                <td colspan=""2"" align=""left"" bgcolor=""" & strForumCellColor & """ valign=""top""><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """ color=""" & strForumFontColor & """>Этот процесс включает в себя 3 шага:<br>" & vbNewLine & _
+			"                <td colspan=""2"" align=""left"" bgcolor=""" & strForumCellColor & """ valign=""top""><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """ color=""" & strForumFontColor & """>Р­С‚РѕС‚ РїСЂРѕС†РµСЃСЃ РІРєР»СЋС‡Р°РµС‚ РІ СЃРµР±СЏ 3 С€Р°РіР°:<br>" & vbNewLine & _
 			"                <ul>" & vbNewLine & _
-			"                 <font color=""" & strHiLiteFontColor & """><li><b>Первый шаг:</b><br />Введите в форму внизу Ваше имя пользователя (ник) и e-mail использованный при регистрации и нажмите кнопку ""Отправить"". В результате вам будет послано e-mail сообщение с информацией о дальнейших действиях.</li></font>" & vbNewLine & _
-			"                <li><b>Второй шаг:</b><br />Проверьте Вашу e-mail почту и нажмите на линк в сообщении для возврата на эту страницу.</li>" & vbNewLine & _
-			"                <li><b>Третий шаг:</b><br />Введите новый пароль.</li>" & vbNewLine & _
+			"                 <font color=""" & strHiLiteFontColor & """><li><b>РџРµСЂРІС‹Р№ С€Р°Рі:</b><br />Р’РІРµРґРёС‚Рµ РІ С„РѕСЂРјСѓ РІРЅРёР·Сѓ Р’Р°С€Рµ РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ (РЅРёРє) Рё e-mail РёСЃРїРѕР»СЊР·РѕРІР°РЅРЅС‹Р№ РїСЂРё СЂРµРіРёСЃС‚СЂР°С†РёРё Рё РЅР°Р¶РјРёС‚Рµ РєРЅРѕРїРєСѓ ""РћС‚РїСЂР°РІРёС‚СЊ"". Р’ СЂРµР·СѓР»СЊС‚Р°С‚Рµ РІР°Рј Р±СѓРґРµС‚ РїРѕСЃР»Р°РЅРѕ e-mail СЃРѕРѕР±С‰РµРЅРёРµ СЃ РёРЅС„РѕСЂРјР°С†РёРµР№ Рѕ РґР°Р»СЊРЅРµР№С€РёС… РґРµР№СЃС‚РІРёСЏС….</li></font>" & vbNewLine & _
+			"                <li><b>Р’С‚РѕСЂРѕР№ С€Р°Рі:</b><br />РџСЂРѕРІРµСЂСЊС‚Рµ Р’Р°С€Сѓ e-mail РїРѕС‡С‚Сѓ Рё РЅР°Р¶РјРёС‚Рµ РЅР° Р»РёРЅРє РІ СЃРѕРѕР±С‰РµРЅРёРё РґР»СЏ РІРѕР·РІСЂР°С‚Р° РЅР° СЌС‚Сѓ СЃС‚СЂР°РЅРёС†Сѓ.</li>" & vbNewLine & _
+			"                <li><b>РўСЂРµС‚РёР№ С€Р°Рі:</b><br />Р’РІРµРґРёС‚Рµ РЅРѕРІС‹Р№ РїР°СЂРѕР»СЊ.</li>" & vbNewLine & _
 			"                </ul></font></td>" & vbNewline & _
 			"              </tr>" & vbNewLine & _
 			"              <tr>" & vbNewLine & _
-			"                <td width=""50%"" align=""right"" bgcolor=""" & strForumCellColor & """ nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>&nbsp;Имя пользователя (Ник):&nbsp;</font></b></td>" & vbNewLine & _
+			"                <td width=""50%"" align=""right"" bgcolor=""" & strForumCellColor & """ nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>&nbsp;РРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ (РќРёРє):&nbsp;</font></b></td>" & vbNewLine & _
 			"                <td width=""50%"" bgcolor=""" & strForumCellColor & """><input type=""text"" name=""Name"" size=""25"" maxLength=""25""></td>" & vbNewLine & _
 			"              </tr>" & vbNewLine & _
 			"              <tr>" & vbNewLine & _
-			"                <td width=""50%"" align=""right"" bgcolor=""" & strForumCellColor & """ nowrap><b><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>Адрес email (электронной почты):&nbsp;</font></b></td>" & vbNewLine & _
+			"                <td width=""50%"" align=""right"" bgcolor=""" & strForumCellColor & """ nowrap><b><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>РђРґСЂРµСЃ email (СЌР»РµРєС‚СЂРѕРЅРЅРѕР№ РїРѕС‡С‚С‹):&nbsp;</font></b></td>" & vbNewLine & _
 			"                <td width=""50%"" bgcolor=""" & strForumCellColor & """><input type=""text"" name=""Email"" size=""25"" maxLength=""50""></td>" & vbNewLine & _
 			"              </tr>" & vbNewLine & _
 			"              <tr>" & vbNewLine & _
-			"                <td colspan=""2"" bgcolor=""" & strForumCellColor & """ align=""center""><input type=""submit"" value=""Отправить"" id=""Submit1"" name=""Submit1"">&nbsp;&nbsp;&nbsp;<input type=""reset"" value=""Сброс"" id=""Submit1"" name=""Submit1""></td>" & vbNewLine & _
+			"                <td colspan=""2"" bgcolor=""" & strForumCellColor & """ align=""center""><input type=""submit"" value=""РћС‚РїСЂР°РІРёС‚СЊ"" id=""Submit1"" name=""Submit1"">&nbsp;&nbsp;&nbsp;<input type=""reset"" value=""РЎР±СЂРѕСЃ"" id=""Submit1"" name=""Submit1""></td>" & vbNewLine & _
 			"              </tr>" & vbNewLine & _
 			"            </table>" & vbNewLine & _
 			"          </td>" & vbNewLine & _
@@ -275,22 +275,22 @@ sub ShowForm2()
 			"          <td bgcolor=""" & strTableBorderColor & """>" & vbNewline & _
 			"            <table border=""0"" width=""100%"" cellspacing=""1"" cellpadding=""4"">" & vbNewline & _
 			"              <tr>" & vbNewline & _
-			"                <td colspan=""2"" align=""center"" bgcolor=""" & strHeadCellColor & """ valign=""top""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Выбор нового пароля</font></b></td>" & vbNewline & _
+			"                <td colspan=""2"" align=""center"" bgcolor=""" & strHeadCellColor & """ valign=""top""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Р’С‹Р±РѕСЂ РЅРѕРІРѕРіРѕ РїР°СЂРѕР»СЏ</font></b></td>" & vbNewline & _
 			"              <tr>" & vbNewline & _
 			"                <td colspan=""2"" align=""left"" bgcolor=""" & strForumCellColor & """ valign=""top""><font face=""" & strDefaultFontFace & """ color=""" & strForumFontColor & """>" & vbNewLine  & _
-			"                <font color=""" & strHiLiteFontColor & """><b><li>Введите новый пароль дважды и нажмите кнопку ""Отправить"":</li></b></font>" & vbNewLine & _
+			"                <font color=""" & strHiLiteFontColor & """><b><li>Р’РІРµРґРёС‚Рµ РЅРѕРІС‹Р№ РїР°СЂРѕР»СЊ РґРІР°Р¶РґС‹ Рё РЅР°Р¶РјРёС‚Рµ РєРЅРѕРїРєСѓ ""РћС‚РїСЂР°РІРёС‚СЊ"":</li></b></font>" & vbNewLine & _
 			"                </ul></font></td>" & vbNewline & _
 			"              </tr>" & vbNewLine & _
        			"              <tr>" & vbNewLine & _
-			"                <td width=""50%"" bgColor=""" & strForumCellColor & """ align=""right"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>Новый пароль:&nbsp;</font></b></td>" & vbNewLine & _
+			"                <td width=""50%"" bgColor=""" & strForumCellColor & """ align=""right"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>РќРѕРІС‹Р№ РїР°СЂРѕР»СЊ:&nbsp;</font></b></td>" & vbNewLine & _
 			"                <td width=""50%"" bgColor=""" & strForumCellColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><input name=""Password"" type=""Password"" size=""25"" maxLength=""25"" value=""""></font></td>" & vbNewLine & _
 			"              </tr>" & vbNewLine & _
        			"              <tr>" & vbNewLine & _
-			"                <td width=""50%"" bgColor=""" & strForumCellColor & """ align=""right"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>Новый пароль ещё раз:&nbsp;</font></b></td>" & vbNewLine & _
+			"                <td width=""50%"" bgColor=""" & strForumCellColor & """ align=""right"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>РќРѕРІС‹Р№ РїР°СЂРѕР»СЊ РµС‰С‘ СЂР°Р·:&nbsp;</font></b></td>" & vbNewLine & _
 			"                <td width=""50%"" bgColor=""" & strForumCellColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><input name=""Password2"" type=""Password"" maxLength=""25"" size=""25"" value=""""></font></td>" & vbNewLine & _
 			"              </tr>" & vbNewLine & _
 			"              <tr>" & vbNewLine & _
-			"                <td colspan=""2"" bgcolor=""" & strForumCellColor & """ align=""center""><input type=""submit"" value=""Отправить"" id=""Submit1"" name=""Submit1"">&nbsp;&nbsp;&nbsp;<input type=""reset"" value=""Сбросить"" id=""Submit1"" name=""Submit1""></td>" & vbNewLine & _
+			"                <td colspan=""2"" bgcolor=""" & strForumCellColor & """ align=""center""><input type=""submit"" value=""РћС‚РїСЂР°РІРёС‚СЊ"" id=""Submit1"" name=""Submit1"">&nbsp;&nbsp;&nbsp;<input type=""reset"" value=""РЎР±СЂРѕСЃРёС‚СЊ"" id=""Submit1"" name=""Submit1""></td>" & vbNewLine & _
 			"              </tr>" & vbNewLine & _
 			"            </table>" & vbNewLine & _
 			"          </td>" & vbNewLine & _

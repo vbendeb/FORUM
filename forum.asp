@@ -382,17 +382,17 @@ Response.Write	"          </font></td>" & vbNewLine & _
 		"          <form action=""" & Request.ServerVariables("SCRIPT_NAME") & "?" & Request.Querystring & """ method=""post"" name=""DaysFilter"">" & vbNewLine & _
 		"          <td align=""right"" valign=""bottom"" width=""33%"">" & vbNewLine & _
 		"          <select name=""Days"" onchange=""javascript:setDays();"">" & vbNewLine & _
-		"          	<option value=""0""" & CheckSelected(ndays,0) & ">Показать все темы</option>" & vbNewLine & _
-		"          	<option value=""-1""" & CheckSelected(ndays,-1) & ">Показать все открытые темы</option>" & vbNewLine & _
-		"          	<option value=""1""" & CheckSelected(ndays,1) & ">Показать темы за последние 24 часа</option>" & vbNewLine & _
-		"          	<option value=""2""" & CheckSelected(ndays,2) & ">Показать темы за последние 2 дня</option>" & vbNewLine & _
-		"          	<option value=""5""" & CheckSelected(ndays,5) & ">Показать темы за последние 5 дней</option>" & vbNewLine & _
-		"          	<option value=""7""" & CheckSelected(ndays,7) & ">Показать темы за последние 7 дней</option>" & vbNewLine & _
-		"          	<option value=""14""" & CheckSelected(ndays,14) & ">Показать темы за последние 2 недели</option>" & vbNewLine & _
-		"          	<option value=""30""" & CheckSelected(ndays,30) & ">Показать темы за последний месяц</option>" & vbNewLine & _
-		"          	<option value=""60""" & CheckSelected(ndays,60) & ">Показать темы за последние 2 месяца</option>" & vbNewLine & _
-		"          	<option value=""120""" & CheckSelected(ndays,120) & ">Показать темы за последние 4 месяца</option>" & vbNewLine & _
-		"          	<option value=""365""" & CheckSelected(ndays,365) & ">Показать темы за последний год</option>" & vbNewLine & _
+		"          	<option value=""0""" & CheckSelected(ndays,0) & ">РџРѕРєР°Р·Р°С‚СЊ РІСЃРµ С‚РµРјС‹</option>" & vbNewLine & _
+		"          	<option value=""-1""" & CheckSelected(ndays,-1) & ">РџРѕРєР°Р·Р°С‚СЊ РІСЃРµ РѕС‚РєСЂС‹С‚С‹Рµ С‚РµРјС‹</option>" & vbNewLine & _
+		"          	<option value=""1""" & CheckSelected(ndays,1) & ">РџРѕРєР°Р·Р°С‚СЊ С‚РµРјС‹ Р·Р° РїРѕСЃР»РµРґРЅРёРµ 24 С‡Р°СЃР°</option>" & vbNewLine & _
+		"          	<option value=""2""" & CheckSelected(ndays,2) & ">РџРѕРєР°Р·Р°С‚СЊ С‚РµРјС‹ Р·Р° РїРѕСЃР»РµРґРЅРёРµ 2 РґРЅСЏ</option>" & vbNewLine & _
+		"          	<option value=""5""" & CheckSelected(ndays,5) & ">РџРѕРєР°Р·Р°С‚СЊ С‚РµРјС‹ Р·Р° РїРѕСЃР»РµРґРЅРёРµ 5 РґРЅРµР№</option>" & vbNewLine & _
+		"          	<option value=""7""" & CheckSelected(ndays,7) & ">РџРѕРєР°Р·Р°С‚СЊ С‚РµРјС‹ Р·Р° РїРѕСЃР»РµРґРЅРёРµ 7 РґРЅРµР№</option>" & vbNewLine & _
+		"          	<option value=""14""" & CheckSelected(ndays,14) & ">РџРѕРєР°Р·Р°С‚СЊ С‚РµРјС‹ Р·Р° РїРѕСЃР»РµРґРЅРёРµ 2 РЅРµРґРµР»Рё</option>" & vbNewLine & _
+		"          	<option value=""30""" & CheckSelected(ndays,30) & ">РџРѕРєР°Р·Р°С‚СЊ С‚РµРјС‹ Р·Р° РїРѕСЃР»РµРґРЅРёР№ РјРµСЃСЏС†</option>" & vbNewLine & _
+		"          	<option value=""60""" & CheckSelected(ndays,60) & ">РџРѕРєР°Р·Р°С‚СЊ С‚РµРјС‹ Р·Р° РїРѕСЃР»РµРґРЅРёРµ 2 РјРµСЃСЏС†Р°</option>" & vbNewLine & _
+		"          	<option value=""120""" & CheckSelected(ndays,120) & ">РџРѕРєР°Р·Р°С‚СЊ С‚РµРјС‹ Р·Р° РїРѕСЃР»РµРґРЅРёРµ 4 РјРµСЃСЏС†Р°</option>" & vbNewLine & _
+		"          	<option value=""365""" & CheckSelected(ndays,365) & ">РџРѕРєР°Р·Р°С‚СЊ С‚РµРјС‹ Р·Р° РїРѕСЃР»РµРґРЅРёР№ РіРѕРґ</option>" & vbNewLine & _
 		"          </select>" & vbNewLine & _
 		"          <input type=""hidden"" name=""Cookie"" value=""1"">" & vbNewLine & _
 		"          </td></form>" & vbNewLine & _
@@ -419,11 +419,11 @@ Response.Write	"      </table>" & vbNewLine & _
 		"            <table border=""0"" width=""100%"" cellspacing=""1"" cellpadding=""4"">" & vbNewLine & _
 		"              <tr>" & vbNewLine & _
 		"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>&nbsp;</font></b></td>" & vbNewLine & _
-		"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Тема / Дискуссия</font></b></td>" & vbNewLine & _
-		"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Автор</font></b></td>" & vbNewLine & _
-		"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Ответили</font></b></td>" & vbNewLine & _
-		"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Читали</font></b></td>" & vbNewLine & _
-		"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Посл.сообщение</font></b></td>" & vbNewLine
+		"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>РўРµРјР° / Р”РёСЃРєСѓСЃСЃРёСЏ</font></b></td>" & vbNewLine & _
+		"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>РђРІС‚РѕСЂ</font></b></td>" & vbNewLine & _
+		"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>РћС‚РІРµС‚РёР»Рё</font></b></td>" & vbNewLine & _
+		"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Р§РёС‚Р°Р»Рё</font></b></td>" & vbNewLine & _
+		"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>РџРѕСЃР».СЃРѕРѕР±С‰РµРЅРёРµ</font></b></td>" & vbNewLine
 if mlev > 0 or (lcase(strNoCookies) = "1") then 
 	Response.Write  "                <td align=""center"" bgcolor=""" & strHeadCellColor & """ nowrap><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & vbNewLine
 	if (AdminAllowed = 1) then 
@@ -591,30 +591,30 @@ if inttotaltopics = 0 then
 elseif topicreclow = topicrechigh then
 	Response.Write("Showing topic " & topicreclow & " of " & inttotaltopics)
 else
-	Response.Write("Показаны темы " & topicreclow & " - " & topicrechigh & " of " & inttotaltopics)
+	Response.Write("РџРѕРєР°Р·Р°РЅС‹ С‚РµРјС‹ " & topicreclow & " - " & topicrechigh & " of " & inttotaltopics)
 end if
-Response.Write	", сортировка по</font></b>&nbsp;<select name=""sortfield"" style=""font-size:10px;"">" & vbNewLine & _
-		"                      <option value=""topic""" & CheckSelected(strtopicsortfld,"topic") & ">назв.темы</option>" & vbNewLine & _
-		"                      <option value=""author""" & CheckSelected(strtopicsortfld,"author") & ">автор темы</option>" & vbNewLine & _
-		"                      <option value=""replies""" & CheckSelected(strtopicsortfld,"replies") & ">кол-во ответов</option>" & vbNewLine & _
-		"                      <option value=""views""" & CheckSelected(strtopicsortfld,"views") & ">число прочтений</option>" & vbNewLine & _
-		"                      <option value=""lastpost""" & CheckSelected(strtopicsortfld,"lastpost") & ">время посл.сообщения</option>" & vbNewLine & _
-		"                      </select>&nbsp;<b><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """ color=""" & strHeadFontColor & """>в</font></b>&nbsp;<select name=""sortorder"" style=""font-size:10px;"">" & vbNewLine & _
-		"                      <option value=""desc""" & CheckSelected(strtopicsortord,"desc") & ">нисходящем</option>" & vbNewLine & _
-		"                      <option value=""asc""" & CheckSelected(strtopicsortord,"asc") & ">восходящем</option>" & vbNewLine & _
-		"                      </select>&nbsp;<b><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """ color=""" & strHeadFontcolor & """>порядке, за</font></b><nobr>&nbsp;<select name=""Days"" style=""font-size:10px;"">" & vbNewLine & _
-		"                      <option value=""0""" & CheckSelected(ndays,0) & ">все темы</option>" & vbNewLine & _
-		"                      <option value=""-1""" & CheckSelected(ndays,-1) & ">все открытые темы</option>" & vbNewLine & _
-		"                      <option value=""1""" & CheckSelected(ndays,1) & ">последние 24 часа</option>" & vbNewLine & _
-		"                      <option value=""2""" & CheckSelected(ndays,2) & ">последние 2 дня</option>" & vbNewLine & _
-		"                      <option value=""5""" & CheckSelected(ndays,5) & ">последние 5 дней</option>" & vbNewLine & _
-		"                      <option value=""7""" & CheckSelected(ndays,7) & ">последние 7 дней</option>" & vbNewLine & _
-		"                      <option value=""14""" & CheckSelected(ndays,14) & ">последние 2 недели</option>" & vbNewLine & _
-		"                      <option value=""30""" & CheckSelected(ndays,30) & ">последний месяц</option>" & vbNewLine & _
-		"                      <option value=""60""" & CheckSelected(ndays,60) & ">последние 2 месяца</option>" & vbNewLine & _
-		"                      <option value=""90""" & CheckSelected(ndays,90) & ">последние 3 месяца</option>" & vbNewLine & _
-		"                      <option value=""120""" & CheckSelected(ndays,120) & ">последние 4 месяца</option>" & vbNewLine & _
-		"                      <option value=""365""" & CheckSelected(ndays,365) & ">последний год</option>" & vbNewLine & _
+Response.Write	", СЃРѕСЂС‚РёСЂРѕРІРєР° РїРѕ</font></b>&nbsp;<select name=""sortfield"" style=""font-size:10px;"">" & vbNewLine & _
+		"                      <option value=""topic""" & CheckSelected(strtopicsortfld,"topic") & ">РЅР°Р·РІ.С‚РµРјС‹</option>" & vbNewLine & _
+		"                      <option value=""author""" & CheckSelected(strtopicsortfld,"author") & ">Р°РІС‚РѕСЂ С‚РµРјС‹</option>" & vbNewLine & _
+		"                      <option value=""replies""" & CheckSelected(strtopicsortfld,"replies") & ">РєРѕР»-РІРѕ РѕС‚РІРµС‚РѕРІ</option>" & vbNewLine & _
+		"                      <option value=""views""" & CheckSelected(strtopicsortfld,"views") & ">С‡РёСЃР»Рѕ РїСЂРѕС‡С‚РµРЅРёР№</option>" & vbNewLine & _
+		"                      <option value=""lastpost""" & CheckSelected(strtopicsortfld,"lastpost") & ">РІСЂРµРјСЏ РїРѕСЃР».СЃРѕРѕР±С‰РµРЅРёСЏ</option>" & vbNewLine & _
+		"                      </select>&nbsp;<b><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """ color=""" & strHeadFontColor & """>РІ</font></b>&nbsp;<select name=""sortorder"" style=""font-size:10px;"">" & vbNewLine & _
+		"                      <option value=""desc""" & CheckSelected(strtopicsortord,"desc") & ">РЅРёСЃС…РѕРґСЏС‰РµРј</option>" & vbNewLine & _
+		"                      <option value=""asc""" & CheckSelected(strtopicsortord,"asc") & ">РІРѕСЃС…РѕРґСЏС‰РµРј</option>" & vbNewLine & _
+		"                      </select>&nbsp;<b><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """ color=""" & strHeadFontcolor & """>РїРѕСЂСЏРґРєРµ, Р·Р°</font></b><nobr>&nbsp;<select name=""Days"" style=""font-size:10px;"">" & vbNewLine & _
+		"                      <option value=""0""" & CheckSelected(ndays,0) & ">РІСЃРµ С‚РµРјС‹</option>" & vbNewLine & _
+		"                      <option value=""-1""" & CheckSelected(ndays,-1) & ">РІСЃРµ РѕС‚РєСЂС‹С‚С‹Рµ С‚РµРјС‹</option>" & vbNewLine & _
+		"                      <option value=""1""" & CheckSelected(ndays,1) & ">РїРѕСЃР»РµРґРЅРёРµ 24 С‡Р°СЃР°</option>" & vbNewLine & _
+		"                      <option value=""2""" & CheckSelected(ndays,2) & ">РїРѕСЃР»РµРґРЅРёРµ 2 РґРЅСЏ</option>" & vbNewLine & _
+		"                      <option value=""5""" & CheckSelected(ndays,5) & ">РїРѕСЃР»РµРґРЅРёРµ 5 РґРЅРµР№</option>" & vbNewLine & _
+		"                      <option value=""7""" & CheckSelected(ndays,7) & ">РїРѕСЃР»РµРґРЅРёРµ 7 РґРЅРµР№</option>" & vbNewLine & _
+		"                      <option value=""14""" & CheckSelected(ndays,14) & ">РїРѕСЃР»РµРґРЅРёРµ 2 РЅРµРґРµР»Рё</option>" & vbNewLine & _
+		"                      <option value=""30""" & CheckSelected(ndays,30) & ">РїРѕСЃР»РµРґРЅРёР№ РјРµСЃСЏС†</option>" & vbNewLine & _
+		"                      <option value=""60""" & CheckSelected(ndays,60) & ">РїРѕСЃР»РµРґРЅРёРµ 2 РјРµСЃСЏС†Р°</option>" & vbNewLine & _
+		"                      <option value=""90""" & CheckSelected(ndays,90) & ">РїРѕСЃР»РµРґРЅРёРµ 3 РјРµСЃСЏС†Р°</option>" & vbNewLine & _
+		"                      <option value=""120""" & CheckSelected(ndays,120) & ">РїРѕСЃР»РµРґРЅРёРµ 4 РјРµСЃСЏС†Р°</option>" & vbNewLine & _
+		"                      <option value=""365""" & CheckSelected(ndays,365) & ">РїРѕСЃР»РµРґРЅРёР№ РіРѕРґ</option>" & vbNewLine & _
 		"                      </select>" & vbNewLine & _
 		"                      <input type=""hidden"" name=""Cookie"" value=""1""><input style=""font-size:10px;"" type=""submit"" name=""Go"" value=""Go""></nobr></td>" & vbNewLine & _
 		"                    </tr>" & vbNewLine & _
@@ -659,10 +659,10 @@ Response.Write	"      </table>" & vbNewLine & _
 		"              <tr valign=""top"">" & vbNewLine & _
 		"                <td valign=""top"" nowrap>" & vbNewLine & _
 		"                <p><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """>" & vbNewLine & _
-		"                " & getCurrentIcon(strIconFolderNew,"New Posts","align=""absmiddle""") & " Новости со времени Вашего последнего логина.<br />" & vbNewLine & _
-		"                " & getCurrentIcon(strIconFolder,"Old Posts","align=""absmiddle""") & " Старые сообщения."
-if lcase(strHotTopic) = "1" then Response.Write	(" (" & getCurrentIcon(strIconFolderHot,"Hot Topic","align=""absmiddle""") & "&nbsp;" & intHotTopicNum & " откликов и более.)<br />" & vbNewLine)
-Response.Write	"                " & getCurrentIcon(strIconFolderLocked,"Locked Topic","align=""absmiddle""") & " Закрытая тема.<br />" & vbNewLine
+		"                " & getCurrentIcon(strIconFolderNew,"New Posts","align=""absmiddle""") & " РќРѕРІРѕСЃС‚Рё СЃРѕ РІСЂРµРјРµРЅРё Р’Р°С€РµРіРѕ РїРѕСЃР»РµРґРЅРµРіРѕ Р»РѕРіРёРЅР°.<br />" & vbNewLine & _
+		"                " & getCurrentIcon(strIconFolder,"Old Posts","align=""absmiddle""") & " РЎС‚Р°СЂС‹Рµ СЃРѕРѕР±С‰РµРЅРёСЏ."
+if lcase(strHotTopic) = "1" then Response.Write	(" (" & getCurrentIcon(strIconFolderHot,"Hot Topic","align=""absmiddle""") & "&nbsp;" & intHotTopicNum & " РѕС‚РєР»РёРєРѕРІ Рё Р±РѕР»РµРµ.)<br />" & vbNewLine)
+Response.Write	"                " & getCurrentIcon(strIconFolderLocked,"Locked Topic","align=""absmiddle""") & " Р—Р°РєСЂС‹С‚Р°СЏ С‚РµРјР°.<br />" & vbNewLine
 ' DEM --> Start of Code added for moderation
 if HeldFound = "Y" then
 	Response.Write "                " & getCurrentIcon(strIconFolderHold,"Held Topic","align=""absmiddle""") & " Held Topic.<br />" & vbNewline
@@ -691,13 +691,13 @@ Response.End
 sub PostNewTopic() 
 	if Cat_Status = 0 or Forum_Status = 0 then 
 		if (AdminAllowed = 1) then
-			Response.Write	"          <a href=""post.asp?method=Topic&FORUM_ID=" & Forum_ID & """>" & getCurrentIcon(strIconFolderLocked,"Category Locked","align=""absmiddle""") & "</a>&nbsp;<a href=""post.asp?method=Topic&FORUM_ID=" & Forum_ID & """>Новая Тема</a><br />" & vbNewLine
+			Response.Write	"          <a href=""post.asp?method=Topic&FORUM_ID=" & Forum_ID & """>" & getCurrentIcon(strIconFolderLocked,"Category Locked","align=""absmiddle""") & "</a>&nbsp;<a href=""post.asp?method=Topic&FORUM_ID=" & Forum_ID & """>РќРѕРІР°СЏ РўРµРјР°</a><br />" & vbNewLine
 		else
 			Response.Write	"          " & getCurrentIcon(strIconFolderLocked,"Category Locked","align=""absmiddle""") & "&nbsp;Category Locked<br />" & vbNewLine
 		end if
 	else 
 		if Forum_Status <> 0 then
-			Response.Write	"          <a href=""post.asp?method=Topic&FORUM_ID=" & Forum_ID & """>" & getCurrentIcon(strIconFolderNewTopic,"New Topic","align=""absmiddle""") & "</a>&nbsp;<a href=""post.asp?method=Topic&FORUM_ID=" & Forum_ID& """>Новая Тема</a><br />" & vbNewLine
+			Response.Write	"          <a href=""post.asp?method=Topic&FORUM_ID=" & Forum_ID & """>" & getCurrentIcon(strIconFolderNewTopic,"New Topic","align=""absmiddle""") & "</a>&nbsp;<a href=""post.asp?method=Topic&FORUM_ID=" & Forum_ID& """>РќРѕРІР°СЏ РўРµРјР°</a><br />" & vbNewLine
 		else
 		    	Response.Write	"          " & getCurrentIcon(strIconFolderLocked,"Forum Locked","align=""absmiddle""") & "&nbsp;Forum Locked<br />" & vbNewLine
 		end if 

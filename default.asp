@@ -313,13 +313,13 @@ else
 end if
 Response.Write	"</font></b></td>" & vbNewline & _
 		"                <td align=""center"" bgcolor=""" & strHeadCellColor & """ nowrap valign=""top""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>"
-if strGroupCategories = "1" then Response.Write(GROUPNAME) else Response.Write("Форумы")
+if strGroupCategories = "1" then Response.Write(GROUPNAME) else Response.Write("Р¤РѕСЂСѓРјС‹")
 Response.Write	"</font></b></td>" & vbNewline & _
-		"                <td align=""center"" bgcolor=""" & strHeadCellColor & """ nowrap valign=""top""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Темы / Дискуссии</font></b></td>" & vbNewline & _
-		"                <td align=""center"" bgcolor=""" & strHeadCellColor & """ nowrap valign=""top""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Сообщения</font></b></td>" & vbNewline & _
-		"                <td align=""center"" bgcolor=""" & strHeadCellColor & """ nowrap valign=""top""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Посл.сообщение</font></b></td>" & vbNewline
+		"                <td align=""center"" bgcolor=""" & strHeadCellColor & """ nowrap valign=""top""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>РўРµРјС‹ / Р”РёСЃРєСѓСЃСЃРёРё</font></b></td>" & vbNewline & _
+		"                <td align=""center"" bgcolor=""" & strHeadCellColor & """ nowrap valign=""top""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>РЎРѕРѕР±С‰РµРЅРёСЏ</font></b></td>" & vbNewline & _
+		"                <td align=""center"" bgcolor=""" & strHeadCellColor & """ nowrap valign=""top""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>РџРѕСЃР».СЃРѕРѕР±С‰РµРЅРёРµ</font></b></td>" & vbNewline
 if (strShowModerators = "1") or (mlev = 4 or mlev = 3) then
-	Response.Write	"                <td align=""center"" bgcolor=""" & strHeadCellColor & """ nowrap valign=""top""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Модератор</font></b></td>" & vbNewline
+	Response.Write	"                <td align=""center"" bgcolor=""" & strHeadCellColor & """ nowrap valign=""top""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>РњРѕРґРµСЂР°С‚РѕСЂ</font></b></td>" & vbNewline
 end if 
 	Response.Write	"                <td align=""center"" bgcolor=""" & strHeadCellColor & """>"
 if (mlev = 4 or mlev = 3) or (lcase(strNoCookies) = "1") then 
@@ -578,8 +578,8 @@ Response.Write	"            </table>" & vbNewline & _
 		"            <table width=""100%"">" & vbNewline & _
 		"              <tr>" & vbNewline & _
 		"                <td><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """>" & vbNewline & _
-		"                " & getCurrentIcon(strIconFolderNew,"New Posts","align=""absmiddle""") & " Есть новые сообщения со времени Вашего последнего визита.<br />" & vbNewline & _
-		"                " & getCurrentIcon(strIconFolder,"Old Posts","align=""absmiddle""") & " Нет ничего нового со времени Вашего последнего визита.<br /></font></td>" & vbNewline & _
+		"                " & getCurrentIcon(strIconFolderNew,"New Posts","align=""absmiddle""") & " Р•СЃС‚СЊ РЅРѕРІС‹Рµ СЃРѕРѕР±С‰РµРЅРёСЏ СЃРѕ РІСЂРµРјРµРЅРё Р’Р°С€РµРіРѕ РїРѕСЃР»РµРґРЅРµРіРѕ РІРёР·РёС‚Р°.<br />" & vbNewline & _
+		"                " & getCurrentIcon(strIconFolder,"Old Posts","align=""absmiddle""") & " РќРµС‚ РЅРёС‡РµРіРѕ РЅРѕРІРѕРіРѕ СЃРѕ РІСЂРµРјРµРЅРё Р’Р°С€РµРіРѕ РїРѕСЃР»РµРґРЅРµРіРѕ РІРёР·РёС‚Р°.<br /></font></td>" & vbNewline & _
 		"              </tr>" & vbNewline & _
 		"            </table>" & vbNewline & _
 		"          </td>" & vbNewline & _
@@ -854,7 +854,7 @@ sub WriteStatistics()
 
 		LastPostDate = ChkDate(strLastPostDate,"",true)
 		LastPostLink = DoLastPostLink(false)
-		LastPostAuthorLink = " ник: <span class=""spnMessageText"">" & profileLink(chkString(strLastPostMember_Name,"display"),intLastPostMember_ID) & "</span>"
+		LastPostAuthorLink = " РЅРёРє: <span class=""spnMessageText"">" & profileLink(chkString(strLastPostMember_Name,"display"),intLastPostMember_ID) & "</span>"
 	end if
 
 	ActiveTopicCount = -1
@@ -905,7 +905,7 @@ sub WriteStatistics()
 	'ShowLastHere = (cLng(chkUser(strDBNTUserName, Request.Cookies(strUniqueID & "User")("Pword"),-1)) > 0)
 	Response.Write	"              <tr>" & vbNewline & _
 			"                <td bgcolor=""" & strCategoryCellColor & """ colspan=""" & sGetColspan(7,6) &_
-			"""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strCategoryFontColor & """><b>Статистика</b></font></td>" & vbNewline & _
+			"""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strCategoryFontColor & """><b>РЎС‚Р°С‚РёСЃС‚РёРєР°</b></font></td>" & vbNewline & _
 			"              </tr>" & vbNewline & _
 			"              <tr>" & vbNewline & _
 			"                <td rowspan=""" 
@@ -918,7 +918,7 @@ sub WriteStatistics()
 	if ShowLastHere then 
 		Response.Write	"                <td bgcolor=""" & strForumCellColor & """ colspan=""" & sGetColspan(6,5) &_
 				""">" & _
-		       		"<font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """ color=""" & strForumFontColor & """>Ваш последний визит: " & ChkDate(Session(strCookieURL & "last_here_date"), " " ,true) & "</font></td>" & vbNewline & _
+		       		"<font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """ color=""" & strForumFontColor & """>Р’Р°С€ РїРѕСЃР»РµРґРЅРёР№ РІРёР·РёС‚: " & ChkDate(Session(strCookieURL & "last_here_date"), " " ,true) & "</font></td>" & vbNewline & _
 		       		"              </tr>" & vbNewline & _
 		  		"              <tr>" & vbNewLine
 	end if
@@ -929,24 +929,24 @@ sub WriteStatistics()
 		if Member_Count = 1 and User_Count = 1 then
 			Response.Write	"1 Member has "
 		else
-			Response.Write	Member_Count & " из " & User_Count & " <span class=""spnMessageText""><a href=""members.asp"">Участников МОСТа</a></span> "
+			Response.Write	Member_Count & " РёР· " & User_Count & " <span class=""spnMessageText""><a href=""members.asp"">РЈС‡Р°СЃС‚РЅРёРєРѕРІ РњРћРЎРўР°</a></span> "
 		end if
-		Response.Write	" прислали "
+		Response.Write	" РїСЂРёСЃР»Р°Р»Рё "
 		if intPostCount = 1 then
-			Response.Write	"1 сообщение "
+			Response.Write	"1 СЃРѕРѕР±С‰РµРЅРёРµ "
 		else
-			Response.Write	intPostCount & " сообщений"
+			Response.Write	intPostCount & " СЃРѕРѕР±С‰РµРЅРёР№"
 		end if
-		Response.Write	" на "
+		Response.Write	" РЅР° "
 		if intForumCount = 1 then
-			Response.Write	"1 форум"
+			Response.Write	"1 С„РѕСЂСѓРј"
 		else
-			Response.Write	intForumCount & " форума"
+			Response.Write	intForumCount & " С„РѕСЂСѓРјР°"
 		end if
 		if (LastPostDate = "" or LastPostLink = "" or intPostCount = 0) then 
 			Response.Write	"." 
 		else
-			Response.Write	", последнее было прислано <span class=""spnMessageText"">" & LastPostLink & LastPostDate & "</a></span>"
+			Response.Write	", РїРѕСЃР»РµРґРЅРµРµ Р±С‹Р»Рѕ РїСЂРёСЃР»Р°РЅРѕ <span class=""spnMessageText"">" & LastPostLink & LastPostDate & "</a></span>"
 			if  LastPostAuthorLink <> "" then
 				Response.Write	LastPostAuthorLink & "."
 			else
@@ -959,37 +959,37 @@ sub WriteStatistics()
 	end if
 	Response.Write	"                <td bgcolor=""" & strForumCellColor & """ colspan=""" & sGetColspan(6,5) &_
 			""">" & _
-			"<font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """ color=""" & strForumFontColor & """>На Форуме "
+			"<font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """ color=""" & strForumFontColor & """>РќР° Р¤РѕСЂСѓРјРµ "
 	if intTopicCount = 1 then
 		Response.Write	""
 	else
 		Response.Write	""
 	end if
-	Response.Write	" сейчас "
+	Response.Write	" СЃРµР№С‡Р°СЃ "
 	if intTopicCount > 0 then
 		Response.Write	intTopicCount
 	else
-		Response.Write	"нет"
+		Response.Write	"РЅРµС‚"
 	end if
 	if intTopicCount = 1 then
-		Response.Write	" тема"
+		Response.Write	" С‚РµРјР°"
 	else
-		Response.Write	" тем"
+		Response.Write	" С‚РµРј"
 	end if
 	if ActiveTopicCount > 0 then
-		Response.Write	" и " & ActiveTopicCount & " <span class=""spnMessageText""><a href=""active.asp""> "
+		Response.Write	" Рё " & ActiveTopicCount & " <span class=""spnMessageText""><a href=""active.asp""> "
 		if ActiveTopicCount = 1 then
-			Response.Write	"активная тема"
+			Response.Write	"Р°РєС‚РёРІРЅР°СЏ С‚РµРјР°"
 		else
-			Response.Write	"активных тем"
+			Response.Write	"Р°РєС‚РёРІРЅС‹С… С‚РµРј"
 		end if
-		Response.Write	"</a></span> со времени Вашего последнего визита."
+		Response.Write	"</a></span> СЃРѕ РІСЂРµРјРµРЅРё Р’Р°С€РµРіРѕ РїРѕСЃР»РµРґРЅРµРіРѕ РІРёР·РёС‚Р°."
 	elseif blnHiddenForums and (strLastPostDate > Session(strCookieURL & "last_here_date")) and ShowLastHere then
-		Response.Write	" и  <span class=""spnMessageText""><a href=""active.asp"">активных тем</a></span> со времени Вашего последнего визита."
+		Response.Write	" Рё  <span class=""spnMessageText""><a href=""active.asp"">Р°РєС‚РёРІРЅС‹С… С‚РµРј</a></span> СЃРѕ РІСЂРµРјРµРЅРё Р’Р°С€РµРіРѕ РїРѕСЃР»РµРґРЅРµРіРѕ РІРёР·РёС‚Р°."
 	elseif not(ShowLastHere) then
 		Response.Write	"."
 	else
-		Response.Write	" и ни одной активной темы со времени Вашего последнего визита."
+		Response.Write	" Рё РЅРё РѕРґРЅРѕР№ Р°РєС‚РёРІРЅРѕР№ С‚РµРјС‹ СЃРѕ РІСЂРµРјРµРЅРё Р’Р°С€РµРіРѕ РїРѕСЃР»РµРґРЅРµРіРѕ РІРёР·РёС‚Р°."
 	end if
 	Response.Write	"</font></td>" & vbNewline & _
 			"              </tr>" & vbNewline
@@ -1025,7 +1025,7 @@ sub WriteStatistics()
 		Response.Write	"              <tr>" & vbNewline & _
 				"                <td bgcolor=""" & strForumCellColor & """ colspan=""" & sGetColspan(6,5) &_
 				""">" & _
-				"<font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """ color=""" & strForumFontColor & """>Пожалуйста поприветствуйте самого нового участника МОСТа: " & _
+				"<font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """ color=""" & strForumFontColor & """>РџРѕР¶Р°Р»СѓР№СЃС‚Р° РїРѕРїСЂРёРІРµС‚СЃС‚РІСѓР№С‚Рµ СЃР°РјРѕРіРѕ РЅРѕРІРѕРіРѕ СѓС‡Р°СЃС‚РЅРёРєР° РњРћРЎРўР°: " & _
 				"<span class=""spnMessageText"">" & profileLink(NewMember_Name,NewMember_Id) & "</span>.</font></td>" & vbNewline & _
 				"              </tr>" & vbNewline
 	end if 

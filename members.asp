@@ -111,7 +111,7 @@ mypage = cLng(mypage)
 If strMode = "search"  and (srchUName = "1" or srchFName = "1" or srchLName = "1" or srchInitial = "1" or srchState = "1") then 
 	strSql = "SELECT MEMBER_ID, M_STATUS, M_NAME, M_LEVEL, M_EMAIL, M_COUNTRY, M_HOMEPAGE, "
 
-	'Ш.Е. Вставляю столбец группы
+	'РЁ.Р•. Р’СЃС‚Р°РІР»СЏСЋ СЃС‚РѕР»Р±РµС† РіСЂСѓРїРїС‹
 	strSql = strSql & "M_AIM, M_ICQ, M_MSN, M_YAHOO, M_TITLE, M_POSTS, M_LASTPOSTDATE, M_LASTHEREDATE, M_DATE, M_STATE, M_PHOTO_URL "
 	strSql2 = " FROM " & strMemberTablePrefix & "MEMBERS " 
 '	if Request.querystring("link") <> "sort" then
@@ -134,7 +134,7 @@ If strMode = "search"  and (srchUName = "1" or srchFName = "1" or srchLName = "1
 			tmpSql = tmpSql & "M_LASTNAME LIKE '%" & SearchName & "%' "
 		end if
 
-		'-------------------------------- Ш.Е. Вставляю поиск по группе --------------------------------
+		'-------------------------------- РЁ.Р•. Р’СЃС‚Р°РІР»СЏСЋ РїРѕРёСЃРє РїРѕ РіСЂСѓРїРїРµ --------------------------------
 		if srchState = "1" then
 		    if srchFName = "1" or srchUName = "1" or srchLName = "1" then 
 		        tmpSql = tmpSql & " OR "
@@ -160,7 +160,7 @@ else
 	'## Forum_SQL - Get all members
 	strSql = "SELECT MEMBER_ID, M_STATUS, M_NAME, M_LEVEL, M_EMAIL, M_COUNTRY, M_HOMEPAGE, "
 
-	'----------------------------- Ш.Е. Вставляю столбец группы M_STATE -------------------------
+	'----------------------------- РЁ.Р•. Р’СЃС‚Р°РІР»СЏСЋ СЃС‚РѕР»Р±РµС† РіСЂСѓРїРїС‹ M_STATE -------------------------
 	strSql = strSql & "M_AIM, M_ICQ, M_MSN, M_YAHOO, M_TITLE, M_POSTS, M_LASTPOSTDATE, M_LASTHEREDATE, M_DATE, M_STATE, M_PHOTO_URL "
 	strSql2 = " FROM " & strMemberTablePrefix & "MEMBERS "
 	if mlev = 4 then
@@ -197,7 +197,7 @@ select case SortMethod
 	case "postsasc"
 		strSql4 = " ORDER BY M_POSTS ASC, M_NAME ASC"
 	
-	'------------------------------- Ш.Е. Вставляю сортировку по группе --------------------------------
+	'------------------------------- РЁ.Р•. Р’СЃС‚Р°РІР»СЏСЋ СЃРѕСЂС‚РёСЂРѕРІРєСѓ РїРѕ РіСЂСѓРїРїРµ --------------------------------
 	case "stateasc"
 		strSql4 = " ORDER BY M_STATE ASC, M_NAME ASC"
 	case "statedesc"
@@ -271,8 +271,8 @@ end if
 Response.Write	"      <table width=""100%"" border=""0"">" & vbNewLine & _
 		"        <tr>" & vbNewLine & _
 		"          <td><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & vbNewLine & _
-		"          " & getCurrentIcon(strIconFolderOpen,"","") & "&nbsp;<a href=""default.asp"">Все форумы</a><br />" & vbNewLine & _
-		"          " & getCurrentIcon(strIconBar,"","") & getCurrentIcon(strIconFolderOpenTopic,"","") & "&nbsp;Информация о зарегистрированных участниках</font></td>" & vbNewLine & _
+		"          " & getCurrentIcon(strIconFolderOpen,"","") & "&nbsp;<a href=""default.asp"">Р’СЃРµ С„РѕСЂСѓРјС‹</a><br />" & vbNewLine & _
+		"          " & getCurrentIcon(strIconBar,"","") & getCurrentIcon(strIconFolderOpenTopic,"","") & "&nbsp;РРЅС„РѕСЂРјР°С†РёСЏ Рѕ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅРЅС‹С… СѓС‡Р°СЃС‚РЅРёРєР°С…</font></td>" & vbNewLine & _
 		"          <td align=""right"" valign=""bottom"">" & vbNewLine
 if maxpages > 1 then
 	Response.Write	"            <table border=""0"" align=""right"">" & vbNewLine & _
@@ -293,31 +293,31 @@ Response.Write	"      <table border=""0"" width=""100%"" cellspacing=""0"" cellp
 		"            <table border=""0"" width=""100%"" cellspacing=""1"" cellpadding=""4"">" & vbNewline & _
 		"              <tr>" & vbNewline & _
 		"              <form action=""members.asp" & strSortMethod2 & """ method=""post"" name=""SearchMembers"">" & vbNewline & _
-		"                <td bgcolor=""" & strPopUpTableColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><b>Поиск:</b>&nbsp;" & vbNewline & _
+		"                <td bgcolor=""" & strPopUpTableColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><b>РџРѕРёСЃРє:</b>&nbsp;" & vbNewline & _
 		"                <input type=""checkbox"" name=""UserName"" value=""1"""
 if ((srchUName <> "")  or (srchUName = "" and srchFName = "" and srchLName = "" and srchState = "") ) then Response.Write(" checked")
 
-'----------------------------- Вставил 'and srchState = ""' -------------------------
+'----------------------------- Р’СЃС‚Р°РІРёР» 'and srchState = ""' -------------------------
 
-Response.Write	">По логину" & vbNewline
+Response.Write	">РџРѕ Р»РѕРіРёРЅСѓ" & vbNewline
 
 if strFullName = "1" then
-	Response.Write	"&nbsp;&nbsp;<input type=""checkbox"" name=""FirstName"" value=""1""" & chkRadio(srchFName,1,true) & ">По имени"   & vbNewline & _
-					"&nbsp;&nbsp;<input type=""checkbox"" name=""LastName""  value=""1""" & chkRadio(srchLName,1,true) & ">По фамилии" & vbNewline & _
+	Response.Write	"&nbsp;&nbsp;<input type=""checkbox"" name=""FirstName"" value=""1""" & chkRadio(srchFName,1,true) & ">РџРѕ РёРјРµРЅРё"   & vbNewline & _
+					"&nbsp;&nbsp;<input type=""checkbox"" name=""LastName""  value=""1""" & chkRadio(srchLName,1,true) & ">РџРѕ С„Р°РјРёР»РёРё" & vbNewline & _
 					
-					"&nbsp;&nbsp;<input type=""checkbox"" name=""State""     value=""1""" & chkRadio(srchState,1,true) & ">По группе"  & vbNewline
+					"&nbsp;&nbsp;<input type=""checkbox"" name=""State""     value=""1""" & chkRadio(srchState,1,true) & ">РџРѕ РіСЂСѓРїРїРµ"  & vbNewline
 end if
-'----------------------------- Вставил '<input type=""checkbox"" name=""State"...' -------------------------
+'----------------------------- Р’СЃС‚Р°РІРёР» '<input type=""checkbox"" name=""State"...' -------------------------
 
 Response.Write	"                </font></td>" & vbNewline & _
-		"                <td bgcolor=""" & strPopUpTableColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><b>Текст:</b>&nbsp;" & vbNewline & _
+		"                <td bgcolor=""" & strPopUpTableColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><b>РўРµРєСЃС‚:</b>&nbsp;" & vbNewline & _
 		"                <input type=""text"" name=""M_NAME"" value=""" & SearchName & """></font></td>" & vbNewline & _
 		"                <input type=""hidden"" name=""mode"" value=""search"">" & vbNewline & _
 		"                <input type=""hidden"" name=""initial"" value=""0"">" & vbNewline & _
 		"                <td bgcolor=""" & strPopUpTableColor & """ align=""center"">" & vbNewline
 if strGfxButtons = "1" then
 	'Response.Write	"                <input type=""submit"" value=""search"" style=""color:" & strPopUpBorderColor & ";border: 1px solid " & strPopUpBorderColor & "; background-color: " & strPopUpTableColor & "; cursor: hand;"" id=""submit1"" name=""submit1"">" & vbNewline
-	Response.Write	"                <input src=""" & strImageUrl & "button_go.gif"" alt=""Искать"" type=""image"" value=""search"" id=""submit1"" name=""submit1"">" & vbNewline
+	Response.Write	"                <input src=""" & strImageUrl & "button_go.gif"" alt=""РСЃРєР°С‚СЊ"" type=""image"" value=""search"" id=""submit1"" name=""submit1"">" & vbNewline
 else
 	Response.Write	"                <input type=""submit"" value=""search"" id=""submit1"" name=""submit1"">" & vbNewline
 end if
@@ -326,9 +326,9 @@ Response.Write	"                </td>" & vbNewline & _
 		"              </tr>" & vbNewline & _
 		"              <tr bgcolor=""" & strPopUpTableColor & """>" & vbNewLine & _
 		"                <td colspan=""3"" align=""center"" valign=""top""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & vbNewLine & _
-		"                <a href=""members.asp""" & dWStatus("Display ALL Member Names") & ">Все</a>&nbsp;" & vbNewLine
+		"                <a href=""members.asp""" & dWStatus("Display ALL Member Names") & ">Р’СЃРµ</a>&nbsp;" & vbNewLine
 		
-'А здесь - ссылки по буквам алфавита
+'Рђ Р·РґРµСЃСЊ - СЃСЃС‹Р»РєРё РїРѕ Р±СѓРєРІР°Рј Р°Р»С„Р°РІРёС‚Р°
 for intChar = 65 to 90
 	if intChar <> 90 then
 		Response.Write	"                <a href=""members.asp?mode=search&M_NAME=" & chr(intChar) & "&initial=1" & strSortMethod & """" & dWStatus("Display Member Names starting with the letter '" & chr(intChar) & "'") & ">" & chr(intChar) & "</a>&nbsp;" & vbNewLine
@@ -347,7 +347,7 @@ Response.Write	"              </tr>" & vbNewLine & _
 		"          <td bgcolor=""" & strTableBorderColor & """>" & vbNewLine & _
 		"            <table border=""0"" width=""100%"" cellspacing=""1"" cellpadding=""3"">" & vbNewLine & _
 		"              <tr>" & vbNewLine
-' ---------------- Вставляю строку "&State=" & srchState &_ -------------------
+' ---------------- Р’СЃС‚Р°РІР»СЏСЋ СЃС‚СЂРѕРєСѓ "&State=" & srchState &_ -------------------
 strNames = "UserName=" & srchUName  &_
 	   "&FirstName=" & srchFName &_
 	   "&LastName=" & srchLName &_
@@ -357,31 +357,31 @@ strNames = "UserName=" & srchUName  &_
 Response.Write	"<td align=""center"" bgcolor=""" & strHeadCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>&nbsp;&nbsp;</font></b></td>" & vbNewLine & _
 				"<td align=""center"" bgcolor=""" & strHeadCellColor & """><a href=""members.asp?" & strNames & "link=sort&mode=search&M_NAME=" & SearchName & "&method="
 if Request.QueryString("method") = "nameasc" then Response.Write("namedesc") else Response.Write("nameasc")
-Response.Write	"""" & dWStatus("Сортировка по логину") & "><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Логин</font></b></a></td>" & vbNewLine & _
+Response.Write	"""" & dWStatus("РЎРѕСЂС‚РёСЂРѕРІРєР° РїРѕ Р»РѕРіРёРЅСѓ") & "><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Р›РѕРіРёРЅ</font></b></a></td>" & vbNewLine & _
 
 
 				"<td align=""center"" bgcolor=""" & strHeadCellColor & """><a href=""members.asp?" & strNames & "link=sort&mode=search&M_NAME=" & SearchName & "&method="
-'----------------------------- Ш.Е. Вставляю столбец группы M_STATE -------------------------
+'----------------------------- РЁ.Р•. Р’СЃС‚Р°РІР»СЏСЋ СЃС‚РѕР»Р±РµС† РіСЂСѓРїРїС‹ M_STATE -------------------------
 if Request.QueryString("method") = "stateasc" then Response.Write("statedesc") else Response.Write("stateasc")
-Response.Write	"""" & dWStatus("Сортировка по группе") & "><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Группа</font></b></a></td>" & vbNewLine & _
+Response.Write	"""" & dWStatus("РЎРѕСЂС‚РёСЂРѕРІРєР° РїРѕ РіСЂСѓРїРїРµ") & "><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Р“СЂСѓРїРїР°</font></b></a></td>" & vbNewLine & _
 
 
 				"<td align=""center"" bgcolor=""" & strHeadCellColor & """><a href=""members.asp?" & strNames & "link=sort&mode=search&M_NAME=" & SearchName & "&method="
 if Request.QueryString("method") = "levelasc" then Response.Write("leveldesc") else Response.Write("levelasc")
-Response.Write	"""" & dWStatus("Сортировка по титулу") & "><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Титул</font></b></a></td>" & vbNewLine & _
+Response.Write	"""" & dWStatus("РЎРѕСЂС‚РёСЂРѕРІРєР° РїРѕ С‚РёС‚СѓР»Сѓ") & "><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>РўРёС‚СѓР»</font></b></a></td>" & vbNewLine & _
 				"<td align=""center"" bgcolor=""" & strHeadCellColor & """><a href=""members.asp?" & strNames & "link=sort&mode=search&M_NAME=" & SearchName & "&method="
 if Request.QueryString("method") = "postsdesc" then Response.Write("postsasc") else Response.Write("postsdesc")
-Response.Write	"""" & dWStatus("Сортировка по числу сообщений") & "><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Сообщений</font></b></a></td>" & vbNewLine & _
+Response.Write	"""" & dWStatus("РЎРѕСЂС‚РёСЂРѕРІРєР° РїРѕ С‡РёСЃР»Сѓ СЃРѕРѕР±С‰РµРЅРёР№") & "><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>РЎРѕРѕР±С‰РµРЅРёР№</font></b></a></td>" & vbNewLine & _
 		"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><a href=""members.asp?" & strNames & "link=sort&mode=search&M_NAME=" & SearchName & "&method="
 if Request.QueryString("method") = "lastpostdatedesc" then Response.Write("lastpostdateasc") else Response.Write("lastpostdatedesc")
-Response.Write	"""" & dWStatus("Сортировка по дате последнего сообщения") & "><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Посл.сооб.</font></b></a></td>" & vbNewLine & _
+Response.Write	"""" & dWStatus("РЎРѕСЂС‚РёСЂРѕРІРєР° РїРѕ РґР°С‚Рµ РїРѕСЃР»РµРґРЅРµРіРѕ СЃРѕРѕР±С‰РµРЅРёСЏ") & "><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>РџРѕСЃР».СЃРѕРѕР±.</font></b></a></td>" & vbNewLine & _
 		"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><a href=""members.asp?" & strNames & "link=sort&mode=search&M_NAME=" & SearchName & "&method="
 if Request.QueryString("method") = "datedesc" then Response.Write("dateasc") else Response.Write("datedesc")
-Response.Write	"""" & dWStatus("Сортировка по дате регистрации") & "><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Регистрация</font></b></a></td>" & vbNewLine
+Response.Write	"""" & dWStatus("РЎРѕСЂС‚РёСЂРѕРІРєР° РїРѕ РґР°С‚Рµ СЂРµРіРёСЃС‚СЂР°С†РёРё") & "><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Р РµРіРёСЃС‚СЂР°С†РёСЏ</font></b></a></td>" & vbNewLine
 if strCountry = "1" then
 	Response.Write	"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><a href=""members.asp?" & strNames & "link=sort&mode=search&M_NAME=" & SearchName & "&method="
 	if Request.QueryString("method") = "countryasc" then Response.Write("countrydesc") else Response.Write("countryasc")
-	Response.Write	"""" & dWStatus("Сортировка по стране") & "><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Страна</font></b></a></td>" & vbNewLine
+	Response.Write	"""" & dWStatus("РЎРѕСЂС‚РёСЂРѕРІРєР° РїРѕ СЃС‚СЂР°РЅРµ") & "><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>РЎС‚СЂР°РЅР°</font></b></a></td>" & vbNewLine
 end if
 if mlev = 4 or mlev = 3 then
 	Response.Write	"                <td align=""center"" bgcolor=""" & strHeadCellColor & """><a href=""members.asp?method="
@@ -414,7 +414,7 @@ else
 	mM_LASTHEREDATE = 14
 	mM_DATE = 15
 
-	'------------------------------------- Ш.Е. Вставляю столбец группы -----------------------------
+	'------------------------------------- РЁ.Р•. Р’СЃС‚Р°РІР»СЏСЋ СЃС‚РѕР»Р±РµС† РіСЂСѓРїРїС‹ -----------------------------
 	mM_STATE = 16
 	mM_PHOTO_URL = 17
 
@@ -441,7 +441,7 @@ else
 		Members_MemberDate = arrMemberData(mM_DATE, iMember)
 		userNameV = ChkString(Members_MemberName,"display")
 		
-		'Ш.Е. Вставляю столбец группы
+		'РЁ.Р•. Р’СЃС‚Р°РІР»СЏСЋ СЃС‚РѕР»Р±РµС† РіСЂСѓРїРїС‹
 		Members_MemberState = arrMemberData(mM_STATE, iMember)
 		Members_MemberPhotoUrl = arrMemberData(mM_PHOTO_URL, iMember)
 
@@ -490,7 +490,7 @@ else
 		
 		Response.Write	"</td>" & vbNewLine & _
 		"<td bgcolor=""" & CColor & """ align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strForumFontColor & """>"
-		'Ш.Е. Вставляю столбец группы
+		'РЁ.Р•. Р’СЃС‚Р°РІР»СЏСЋ СЃС‚РѕР»Р±РµС† РіСЂСѓРїРїС‹
 		if IsNull(Members_MemberState) then Response.Write("-") else Response.Write(Members_MemberState) end if
 		Response.Write	"</font></td>" & vbNewLine & _
 				
@@ -606,9 +606,9 @@ sub Paging2(fnum)
 		if srchState <> "" then Response.write("                <input type=""hidden"" name=""State"" value=""" & srchState & """>" & vbNewLine)
 		
 		if fnum = 1 then
-			Response.Write("                <b>Страница: </b><select name=""whichpage"" size=""1"" onchange=""ChangePage(" & fnum & ");"">" & vbNewLine)
+			Response.Write("                <b>РЎС‚СЂР°РЅРёС†Р°: </b><select name=""whichpage"" size=""1"" onchange=""ChangePage(" & fnum & ");"">" & vbNewLine)
         	else
-			Response.Write("                <b>Всего страниц: " & maxpages & ". &nbsp;Перейти к странице: </b><select name=""whichpage"" size=""1"" onchange=""ChangePage(" & fnum & ");"">" & vbNewLine)
+			Response.Write("                <b>Р’СЃРµРіРѕ СЃС‚СЂР°РЅРёС†: " & maxpages & ". &nbsp;РџРµСЂРµР№С‚Рё Рє СЃС‚СЂР°РЅРёС†Рµ: </b><select name=""whichpage"" size=""1"" onchange=""ChangePage(" & fnum & ");"">" & vbNewLine)
 		end if
 		for counter = 1 to maxpages
 			if counter <> cLng(sPageNumber) then
@@ -618,7 +618,7 @@ sub Paging2(fnum)
 			end if
 		next
 		if fnum = 1 then
-			Response.Write("                </select><b> из " & maxPages & "</b>" & vbNewLine)
+			Response.Write("                </select><b> РёР· " & maxPages & "</b>" & vbNewLine)
 		else
 			Response.Write("                </select>" & vbNewLine)
 		end if

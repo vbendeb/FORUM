@@ -56,7 +56,7 @@ if request.servervariables("url") = "/FORUM/default.asp" or _
 		Response.Write "<td align=""right"" valign=""top"" nowrap>" & _
 			"<a href=""http://www2.clustrmaps.com/counter/maps.php?url=http://www.moct.org/FORUM"" id=""clustrMapsLink"">" & _
 			"<img src=""http://www2.clustrmaps.com/counter/index2.php?url=http://www.moct.org/FORUM"" " & _
-			"style=""border:1px solid;"" alt=""Îòêóäà íàñ ïîñåùàþò"" title=""Îòêóäà íàñ ïîñåùàþò"" id=""clustrMapsImg"" " & _
+			"style=""border:1px solid;"" alt=""ÐžÑ‚ÐºÑƒÐ´Ð° Ð½Ð°Ñ Ð¿Ð¾ÑÐµÑ‰Ð°ÑŽÑ‚"" title=""ÐžÑ‚ÐºÑƒÐ´Ð° Ð½Ð°Ñ Ð¿Ð¾ÑÐµÑ‰Ð°ÑŽÑ‚"" id=""clustrMapsImg"" " & _
 			"onError=""this.onError=null; this.src='http://clustrmaps.com/images/clustrmaps-back-soon.jpg'; document.getElementById('clustrMapsLink').href='http://clustrmaps.com'"" /></a>" & _
 		              "</td>" & vbNewLine
 end if

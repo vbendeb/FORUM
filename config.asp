@@ -396,9 +396,9 @@ strTimerPhrase = Application(strCookieURL & "STRTIMERPHRASE")
 strShowFormatButtons = Application(strCookieURL & "STRSHOWFORMATBUTTONS")
 strShowSmiliesTable = Application(strCookieURL & "STRSHOWSMILIESTABLE")
 strShowQuickReply = Application(strCookieURL & "STRSHOWQUICKREPLY")
-strGBTED = "Вернуться чтобы ввести данные"
+strGBTED = "Р’РµСЂРЅСѓС‚СЊСЃСЏ С‡С‚РѕР±С‹ РІРІРµСЃС‚Рё РґР°РЅРЅС‹Рµ"
 strParagraphFormat1 = "<p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>"
-strBackToForum = "Назад на форум"
+strBackToForum = "РќР°Р·Р°Рґ РЅР° С„РѕСЂСѓРј"
 strLegacyFontFace = "Verdana, Arial, Helvetica"
 strQuoteOpen = "<blockquote id=""quote""><font size=""" & strFooterFontSize & """ face=""" & _
 										strDefaultFontFace & """ id=""quote"">"

@@ -114,7 +114,7 @@ end if
 
 	Set rsCheck = my_Conn.Execute(strSql)
 	if ( rsCheck ("M_STATUS") = 0 ) then
-		Go_Result "Публикация сообщений на Форуме Вам временно запрещена<br>"
+		Go_Result "РџСѓР±Р»РёРєР°С†РёСЏ СЃРѕРѕР±С‰РµРЅРёР№ РЅР° Р¤РѕСЂСѓРјРµ Р’Р°Рј РІСЂРµРјРµРЅРЅРѕ Р·Р°РїСЂРµС‰РµРЅР°<br>"
 	end if
 '''''''''''''''''''''''''''''''''''''''''
 if request("ARCHIVE") = "true" then
@@ -427,13 +427,13 @@ select case strRqMethod
 	case "Category"
 		btn = "Post New Category"
 	case "Edit", "EditCategory", "EditForum", "EditTopic", "EditURL"
-		btn = "Опубликовать изменения"
+		btn = "РћРїСѓР±Р»РёРєРѕРІР°С‚СЊ РёР·РјРµРЅРµРЅРёСЏ"
 	case "Forum"
 		btn = "Post New Forum"
 	case "Reply", "ReplyQuote", "TopicQuote"
-		btn = "Опубликовать ответ"
+		btn = "РћРїСѓР±Р»РёРєРѕРІР°С‚СЊ РѕС‚РІРµС‚"
 	case "Topic"
-		btn = "Опубликовать новый топик"
+		btn = "РћРїСѓР±Р»РёРєРѕРІР°С‚СЊ РЅРѕРІС‹Р№ С‚РѕРїРёРє"
 	case "URL"
 		btn = "Post New URL"
 	case else
@@ -472,7 +472,7 @@ if strRqMethod = "Edit" or strRqMethod = "EditTopic" or strRqMethod = "Forum" or
 	strRqMethod = "Reply" or strRqMethod = "ReplyQuote" or _
 	strRqMethod = "Topic" or strRqMethod = "TopicQuote" then 
 	Response.Write	"              <tr>" & vbNewLine & _
-			"                <td bgColor=""" & strPopUpTableColor & """ noWrap vAlign=""top"" align=""right""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><b>Размер Экрана:</b></font></td>" & vbNewLine & _
+			"                <td bgColor=""" & strPopUpTableColor & """ noWrap vAlign=""top"" align=""right""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><b>Р Р°Р·РјРµСЂ Р­РєСЂР°РЅР°:</b></font></td>" & vbNewLine & _
 			"                <td bgColor=""" & strPopUpTableColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & vbNewLine & _
 			"                <select name=""SelectSize"" size=""1"" tabindex=""-1"" onchange=""resizeTextarea()"">" & vbNewLine & _
 			"                	<option value=""1"""
@@ -727,7 +727,7 @@ strRqMethod = "EditForum" or _
 strRqMethod = "EditTopic" or _
 strRqMethod = "Topic" then
 	Response.Write	"              <tr>" & vbNewLine & _
-			"                <td bgColor=""" & strPopUpTableColor & """ noWrap vAlign=""top"" align=""right""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><b>Тема Дискуссии:</b></font></td>" & vbNewLine & _
+			"                <td bgColor=""" & strPopUpTableColor & """ noWrap vAlign=""top"" align=""right""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><b>РўРµРјР° Р”РёСЃРєСѓСЃСЃРёРё:</b></font></td>" & vbNewLine & _
 			"                <td bgColor=""" & strPopUpTableColor & """><input maxLength=""50"" name=""Subject"" value=""" & Trim(ChkString(TxtSub,"edit")) & """ size=""40""></td>" & vbNewLine & _
 			"              </tr>" & vbNewLine
 end if
@@ -747,7 +747,7 @@ strRqMethod = "Forum" or strRqMethod = "EditForum" or _
 strRqMethod = "Reply" or strRqMethod = "ReplyQuote" or _
 strRqMethod = "EditTopic" or strRqMethod = "Topic" or strRqMethod = "TopicQuote" then 
 	Response.Write	"              <tr>" & vbNewLine & _
-			"                <td bgColor=""" & strPopUpTableColor & """ noWrap vAlign=""top"" align=""right""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><b>Ваше Сообщение:</b><br />" & vbNewLine & _
+			"                <td bgColor=""" & strPopUpTableColor & """ noWrap vAlign=""top"" align=""right""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><b>Р’Р°С€Рµ РЎРѕРѕР±С‰РµРЅРёРµ:</b><br />" & vbNewLine & _
 			"                <br />" & vbNewLine & _
 			"                  <table border=""0"">" & vbNewLine & _
 			"                    <tr>" & vbNewLine & _
@@ -1007,7 +1007,7 @@ if strRqMethod = "Edit" or _
 strRqMethod = "URL" or strRqMethod = "EditURL" or _
 strRqMethod = "Reply" or strRqMethod = "ReplyQuote" or _
 strRqMethod = "EditTopic" or strRqMethod = "Topic" or strRqMethod = "TopicQuote" then 
-    strIncSig = "Поставьте птичку, чтобы автоматически добавить Вашу подпись из профиля.<br />"
+    strIncSig = "РџРѕСЃС‚Р°РІСЊС‚Рµ РїС‚РёС‡РєСѓ, С‡С‚РѕР±С‹ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё РґРѕР±Р°РІРёС‚СЊ Р’Р°С€Сѓ РїРѕРґРїРёСЃСЊ РёР· РїСЂРѕС„РёР»СЏ.<br />"
 	Response.Write	"              <tr>" & vbNewLine & _
 			"                <td bgColor=""" & strPopUpTableColor & """>&nbsp;</td>" & vbNewLine & _
 			"                <td bgColor=""" & strPopUpTableColor & """>" & vbNewLine
@@ -1283,10 +1283,10 @@ if strAllowForumCode = "1" or strAllowHTML = "1" then
 	strRqMethod = "EditTopic" or _
 	strRqMethod = "Topic" or _
 	strRqMethod = "TopicQuote" then 
-		Response.Write	"&nbsp;<input name=""Preview"" type=""button"" value=""Предварительный просмотр"" onclick=""OpenPreview()"">"
+		Response.Write	"&nbsp;<input name=""Preview"" type=""button"" value=""РџСЂРµРґРІР°СЂРёС‚РµР»СЊРЅС‹Р№ РїСЂРѕСЃРјРѕС‚СЂ"" onclick=""OpenPreview()"">"
 	end if 
 end if
-Response.Write	"&nbsp;<input name=""Reset"" type=""reset"" value=""Стереть всё"" tabindex=""-1""></td>" & vbNewline & _
+Response.Write	"&nbsp;<input name=""Reset"" type=""reset"" value=""РЎС‚РµСЂРµС‚СЊ РІСЃС‘"" tabindex=""-1""></td>" & vbNewline & _
 		"              </tr>" & vbNewline & _
 		"              </form>" & vbNewLine & _
 		"            </table>" & vbNewline & _
@@ -1346,7 +1346,7 @@ strRqMethod = "ReplyQuote" then
 	if lcase(strTopicNoWrapRight) = "1" then
 		Response.Write " nowrap"
 	end if 
-	Response.Write "><font color=""" & strForumFontColor & """ face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><small>Написано&nbsp;-&nbsp;" & ChkDate(rs("T_DATE"), "&nbsp;:" ,true) & "</small><hr size=""" & strFooterFontSize & """><span class=""spnMessageText"">" & formatStr(rs("T_MESSAGE")) & "</span></font></td>" & vbNewline
+	Response.Write "><font color=""" & strForumFontColor & """ face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><small>РќР°РїРёСЃР°РЅРѕ&nbsp;-&nbsp;" & ChkDate(rs("T_DATE"), "&nbsp;:" ,true) & "</small><hr size=""" & strFooterFontSize & """><span class=""spnMessageText"">" & formatStr(rs("T_MESSAGE")) & "</span></font></td>" & vbNewline
 	Response.Write "              </tr>" & vbNewline
 
 	rs.close
@@ -1409,7 +1409,7 @@ strRqMethod = "ReplyQuote" then
 			if lcase(strTopicNoWrapRight) = "1" then
 				Response.Write " nowrap"
 			end if
-			Response.Write 	"><font color=""" & strForumFontColor & """ face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><small>Написано&nbsp;-&nbsp;" & ChkDate(ReplyDate, "&nbsp;:" ,true) & "</small><hr size=""" & strFooterFontSize & """><span class=""spnMessageText"">" & formatStr(ReplyMessage) & "</span></font></td>" & vbNewline & _
+			Response.Write 	"><font color=""" & strForumFontColor & """ face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><small>РќР°РїРёСЃР°РЅРѕ&nbsp;-&nbsp;" & ChkDate(ReplyDate, "&nbsp;:" ,true) & "</small><hr size=""" & strFooterFontSize & """><span class=""spnMessageText"">" & formatStr(ReplyMessage) & "</span></font></td>" & vbNewline & _
 					"              </tr>" & vbNewline
 			strI = strI + 1
 			if strI = 2 then 

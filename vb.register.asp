@@ -49,8 +49,8 @@ Dim strURLError
 Response.Write	"      <table width=""100%"" border=""0"">" & vbNewLine & _
 		"        <tr>" & vbNewLine & _
 		"          <td><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & getCurrentIcon(strIconFolderOpen,"","") & "&nbsp;<a href=""default.asp"">MOCT Forums</a><br />" & vbNewLine & _
-		"          " & getCurrentIcon(strIconBar,"","") & getCurrentIcon(strIconFolderOpenTopic,"","") & "&nbsp;Правила регистрации и пользования<br />" & vbNewLine & _
-		"          " & getCurrentIcon(strIconBlank,"","") & getCurrentIcon(strIconBar,"","") & getCurrentIcon(strIconFolderOpenTopic,"","") & "&nbsp;Регистрационная форма для " & strForumTitle & "</font></td>" & vbNewLine & _
+		"          " & getCurrentIcon(strIconBar,"","") & getCurrentIcon(strIconFolderOpenTopic,"","") & "&nbsp;РџСЂР°РІРёР»Р° СЂРµРіРёСЃС‚СЂР°С†РёРё Рё РїРѕР»СЊР·РѕРІР°РЅРёСЏ<br />" & vbNewLine & _
+		"          " & getCurrentIcon(strIconBlank,"","") & getCurrentIcon(strIconBar,"","") & getCurrentIcon(strIconFolderOpenTopic,"","") & "&nbsp;Р РµРіРёСЃС‚СЂР°С†РёРѕРЅРЅР°СЏ С„РѕСЂРјР° РґР»СЏ " & strForumTitle & "</font></td>" & vbNewLine & _
 		"        </tr>" & vbNewLine & _
 		"      </table>" & vbNewLine
 
@@ -93,13 +93,13 @@ if strProhibitNewMembers <> "1" then
 
 		if rsKey.EOF or rsKey.BOF then '## activation key not found
 			'Error message to user
-			Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """><b>Ключ Активизации не найден!</b></font></p>" & vbNewLine & _
-					"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHiLiteFontColor & """>Ваш ключ активизации отсутствует в нашей базе данных.<br />Пожалуйста попробуйте зарегистрироваться ещё раз, нажав на ссылку Регистрация в верхнем правом углу.<br />Если это не поможет - напишите <a href=""mailto:" & strSender & """>Администратору</a> форума.</font></p>" & vbNewLine & _
-					"      " & strParagraphFormat1 & "<a href=""default.asp"">Назад на Форум</font></a></p>" & vbNewLine
+			Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """><b>РљР»СЋС‡ РђРєС‚РёРІРёР·Р°С†РёРё РЅРµ РЅР°Р№РґРµРЅ!</b></font></p>" & vbNewLine & _
+					"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHiLiteFontColor & """>Р’Р°С€ РєР»СЋС‡ Р°РєС‚РёРІРёР·Р°С†РёРё РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РІ РЅР°С€РµР№ Р±Р°Р·Рµ РґР°РЅРЅС‹С….<br />РџРѕР¶Р°Р»СѓР№СЃС‚Р° РїРѕРїСЂРѕР±СѓР№С‚Рµ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊСЃСЏ РµС‰С‘ СЂР°Р·, РЅР°Р¶Р°РІ РЅР° СЃСЃС‹Р»РєСѓ Р РµРіРёСЃС‚СЂР°С†РёСЏ РІ РІРµСЂС…РЅРµРј РїСЂР°РІРѕРј СѓРіР»Сѓ.<br />Р•СЃР»Рё СЌС‚Рѕ РЅРµ РїРѕРјРѕР¶РµС‚ - РЅР°РїРёС€РёС‚Рµ <a href=""mailto:" & strSender & """>РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂСѓ</a> С„РѕСЂСѓРјР°.</font></p>" & vbNewLine & _
+					"      " & strParagraphFormat1 & "<a href=""default.asp"">РќР°Р·Р°Рґ РЅР° Р¤РѕСЂСѓРј</font></a></p>" & vbNewLine
 		elseif strComp(key,rsKey("M_KEY")) <> 0 then
 			'Error message to user
-			Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """><b>Несовпадение ключа активизации!</b></font></p>" & vbNewLine & _
-					"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHiLiteFontColor & """>Ваш ключ активизации отличается от ключа в нашей базе данных.<br />Пожалуйста попробуйте зарегистрироваться ещё раз, нажав на ссылку Регистрация в верхнем правом углу.<br />Если это не поможет - напишите <a href=""mailto:" & strSender & """>Администратору</a> форума.</font></p>" & vbNewLine & _
+			Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """><b>РќРµСЃРѕРІРїР°РґРµРЅРёРµ РєР»СЋС‡Р° Р°РєС‚РёРІРёР·Р°С†РёРё!</b></font></p>" & vbNewLine & _
+					"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHiLiteFontColor & """>Р’Р°С€ РєР»СЋС‡ Р°РєС‚РёРІРёР·Р°С†РёРё РѕС‚Р»РёС‡Р°РµС‚СЃСЏ РѕС‚ РєР»СЋС‡Р° РІ РЅР°С€РµР№ Р±Р°Р·Рµ РґР°РЅРЅС‹С….<br />РџРѕР¶Р°Р»СѓР№СЃС‚Р° РїРѕРїСЂРѕР±СѓР№С‚Рµ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊСЃСЏ РµС‰С‘ СЂР°Р·, РЅР°Р¶Р°РІ РЅР° СЃСЃС‹Р»РєСѓ Р РµРіРёСЃС‚СЂР°С†РёСЏ РІ РІРµСЂС…РЅРµРј РїСЂР°РІРѕРј СѓРіР»Сѓ.<br />Р•СЃР»Рё СЌС‚Рѕ РЅРµ РїРѕРјРѕР¶РµС‚ - РЅР°РїРёС€РёС‚Рµ <a href=""mailto:" & strSender & """>РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂСѓ</a> С„РѕСЂСѓРјР°.</font></p>" & vbNewLine & _
 					"      " & strParagraphFormat1 & "<a href=""default.asp"">" & strBackToForum & "</font></a></p>" & vbNewLine
 		else
 			'## Forum_SQL
@@ -194,9 +194,9 @@ if strProhibitNewMembers <> "1" then
 
 			my_Conn.Execute (strSql),,adCmdText + adExecuteNoRecords
 
-			Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """><b>Ваша регистрация прошла успешно!</b></font></p>" & vbNewLine & _
-					"      " & strParagraphFormat1 & "Вы теперь можете писать на форум,"
-			if strAuthType="db" then Response.Write(" пользуясь Вашим именем пользователя и паролем")
+			Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """><b>Р’Р°С€Р° СЂРµРіРёСЃС‚СЂР°С†РёСЏ РїСЂРѕС€Р»Р° СѓСЃРїРµС€РЅРѕ!</b></font></p>" & vbNewLine & _
+					"      " & strParagraphFormat1 & "Р’С‹ С‚РµРїРµСЂСЊ РјРѕР¶РµС‚Рµ РїРёСЃР°С‚СЊ РЅР° С„РѕСЂСѓРј,"
+			if strAuthType="db" then Response.Write(" РїРѕР»СЊР·СѓСЏСЃСЊ Р’Р°С€РёРј РёРјРµРЅРµРј РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ Рё РїР°СЂРѕР»РµРј")
 			Response.Write	".</font></p>" & vbNewLine & _
 					"      " & strParagraphFormat1 & "<a href=""default.asp"">" & strBackToForum & "</font></a></p>" & vbNewLine
 		end if
@@ -224,7 +224,7 @@ if strProhibitNewMembers <> "1" then
 		if rs.BOF and rs.EOF then
 			'## Do Nothing
 		else
-			Err_Msg = Err_Msg & "<li>Имя пользователя уже занято, пожалуйста выберите другое</li>"
+			Err_Msg = Err_Msg & "<li>РРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ СѓР¶Рµ Р·Р°РЅСЏС‚Рѕ, РїРѕР¶Р°Р»СѓР№СЃС‚Р° РІС‹Р±РµСЂРёС‚Рµ РґСЂСѓРіРѕРµ</li>"
 		end if
 
 		rs.close
@@ -240,7 +240,7 @@ if strProhibitNewMembers <> "1" then
 			if rs.BOF and rs.EOF then
 				'## Do Nothing
 			else
-				Err_Msg = Err_Msg & "<li>Это имя пользователя уже занято, пожалуйста выберите другое</li>"
+				Err_Msg = Err_Msg & "<li>Р­С‚Рѕ РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ СѓР¶Рµ Р·Р°РЅСЏС‚Рѕ, РїРѕР¶Р°Р»СѓР№СЃС‚Р° РІС‹Р±РµСЂРёС‚Рµ РґСЂСѓРіРѕРµ</li>"
 			end if
 			rs.close
 			set rs = nothing
@@ -254,38 +254,38 @@ if strProhibitNewMembers <> "1" then
 			chkNameBadWords(trim(Request.Form("Name")))
 		end if
 		if not IsValidString(trim(Request.Form("Name"))) then
-			Err_Msg = Err_Msg & "<li>Эти символы нельзя использовать в bvtyb gjkmpjdfntkz  !#$%^&*()=+{}[]|\;:/?>,<' </li>"
+			Err_Msg = Err_Msg & "<li>Р­С‚Рё СЃРёРјРІРѕР»С‹ РЅРµР»СЊР·СЏ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РІ bvtyb gjkmpjdfntkz  !#$%^&*()=+{}[]|\;:/?>,<' </li>"
 		end if
 		'## NT authentication no additional password needed
 		if strAuthType = "db" then
 			if not IsValidString(trim(Request.Form("Password"))) then
-				Err_Msg = Err_Msg & "<li>Эти символы нельзя использовать в gfhjkt  !#$%^&*()=+{}[]|\;:/?>,<' </li>"
+				Err_Msg = Err_Msg & "<li>Р­С‚Рё СЃРёРјРІРѕР»С‹ РЅРµР»СЊР·СЏ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РІ gfhjkt  !#$%^&*()=+{}[]|\;:/?>,<' </li>"
 			end if
 
 			if trim(Request.Form("Password")) = "" then
-				Err_Msg = Err_Msg &  "<li>Вы обязаны пользоваться паролем</li>"
+				Err_Msg = Err_Msg &  "<li>Р’С‹ РѕР±СЏР·Р°РЅС‹ РїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ РїР°СЂРѕР»РµРј</li>"
 			end if
 
 			if Len(Request.Form("Password")) > 25 then
-				Err_Msg = Err_Msg & "<li>Длина пароля не может превышать 25 символов</li>"
+				Err_Msg = Err_Msg & "<li>Р”Р»РёРЅР° РїР°СЂРѕР»СЏ РЅРµ РјРѕР¶РµС‚ РїСЂРµРІС‹С€Р°С‚СЊ 25 СЃРёРјРІРѕР»РѕРІ</li>"
 			end if
 
 			if Request.Form("Password") <> Request.Form("Password2") then
-				Err_Msg = Err_Msg & "<li>Пароли не совпадают.</li>"
+				Err_Msg = Err_Msg & "<li>РџР°СЂРѕР»Рё РЅРµ СЃРѕРІРїР°РґР°СЋС‚.</li>"
 			end if
 		end if
 
 		If strAutoLogon <> 1 then
 			if Request.Form("Email") = "" then
-				Err_Msg = Err_Msg & "<li>Вы обязаны ввести адрес электронной почты</li>"
+				Err_Msg = Err_Msg & "<li>Р’С‹ РѕР±СЏР·Р°РЅС‹ РІРІРµСЃС‚Рё Р°РґСЂРµСЃ СЌР»РµРєС‚СЂРѕРЅРЅРѕР№ РїРѕС‡С‚С‹</li>"
 			end if
 
 			if Request.Form("Email") <> Request.Form("Email3") then
-				Err_Msg = Err_Msg & "<li>Адреса электронной почты не совпадают.</li>"
+				Err_Msg = Err_Msg & "<li>РђРґСЂРµСЃР° СЌР»РµРєС‚СЂРѕРЅРЅРѕР№ РїРѕС‡С‚С‹ РЅРµ СЃРѕРІРїР°РґР°СЋС‚.</li>"
 			end if
 
 			if EmailField(Request.Form("Email")) = 0 then
-				Err_Msg = Err_Msg & "<li>Вы обязаны ввести адрес электронной почты</li>"
+				Err_Msg = Err_Msg & "<li>Р’С‹ РѕР±СЏР·Р°РЅС‹ РІРІРµСЃС‚Рё Р°РґСЂРµСЃ СЌР»РµРєС‚СЂРѕРЅРЅРѕР№ РїРѕС‡С‚С‹</li>"
 			end if
 		end if
 
@@ -309,7 +309,7 @@ if strProhibitNewMembers <> "1" then
 			if rs.BOF and rs.EOF then
 				'## Do Nothing
 			else
-				Err_Msg = Err_Msg & "<li>Этот адрес электронной почты уже зарегистрирован, введите другой</li>"
+				Err_Msg = Err_Msg & "<li>Р­С‚РѕС‚ Р°РґСЂРµСЃ СЌР»РµРєС‚СЂРѕРЅРЅРѕР№ РїРѕС‡С‚С‹ СѓР¶Рµ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅ, РІРІРµРґРёС‚Рµ РґСЂСѓРіРѕР№</li>"
 			end if
 			set rs = nothing
 
@@ -323,7 +323,7 @@ if strProhibitNewMembers <> "1" then
 				if rs.BOF and rs.EOF then
 					'## Do Nothing
 				else
-					Err_Msg = Err_Msg & "<li>Этот адрес электронной почты уже зарегистрирован, введите другой</li>"
+					Err_Msg = Err_Msg & "<li>Р­С‚РѕС‚ Р°РґСЂРµСЃ СЌР»РµРєС‚СЂРѕРЅРЅРѕР№ РїРѕС‡С‚С‹ СѓР¶Рµ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅ, РІРІРµРґРёС‚Рµ РґСЂСѓРіРѕР№</li>"
 				end if
 				set rs = nothing
 
@@ -336,7 +336,7 @@ if strProhibitNewMembers <> "1" then
 				if rs.BOF and rs.EOF then
 					'## Do Nothing
 				else
-					Err_Msg = Err_Msg & "<li>Этот адрес электронной почты уже зарегистрирован, введите другой</li>"
+					Err_Msg = Err_Msg & "<li>Р­С‚РѕС‚ Р°РґСЂРµСЃ СЌР»РµРєС‚СЂРѕРЅРЅРѕР№ РїРѕС‡С‚С‹ СѓР¶Рµ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅ, РІРІРµРґРёС‚Рµ РґСЂСѓРіРѕР№</li>"
 				end if
 				set rs = nothing
 			end if
@@ -585,25 +585,25 @@ if strProhibitNewMembers <> "1" then
 				strFromName = strForumTitle
 				strsubject = strForumTitle & " Registration "
 				strMessage = "Hello " & Request.Form("name") & vbNewline & vbNewline
-				strMessage = strMessage & "Вы получили это сообщение от " & strForumTitle & " потому что вы запросили доступ к " & strForumURL & " с правом публикации сообщений" & vbNewline & vbNewline
+				strMessage = strMessage & "Р’С‹ РїРѕР»СѓС‡РёР»Рё СЌС‚Рѕ СЃРѕРѕР±С‰РµРЅРёРµ РѕС‚ " & strForumTitle & " РїРѕС‚РѕРјСѓ С‡С‚Рѕ РІС‹ Р·Р°РїСЂРѕСЃРёР»Рё РґРѕСЃС‚СѓРї Рє " & strForumURL & " СЃ РїСЂР°РІРѕРј РїСѓР±Р»РёРєР°С†РёРё СЃРѕРѕР±С‰РµРЅРёР№" & vbNewline & vbNewline
 				if strAuthType="db" then
 				'################################### E-mail Validation Mod #################################
 					if strEmailVal = "1" then
-						strMessage = strMessage & "Пожалуйста нажмите на ссылку под этой строкой для завершения регистрации." & vbNewline & vbNewLine
+						strMessage = strMessage & "РџРѕР¶Р°Р»СѓР№СЃС‚Р° РЅР°Р¶РјРёС‚Рµ РЅР° СЃСЃС‹Р»РєСѓ РїРѕРґ СЌС‚РѕР№ СЃС‚СЂРѕРєРѕР№ РґР»СЏ Р·Р°РІРµСЂС€РµРЅРёСЏ СЂРµРіРёСЃС‚СЂР°С†РёРё." & vbNewline & vbNewLine
 						strMessage = strMessage & strForumURL & "register.asp?actkey=" & actkey & vbNewline & vbNewline
 					else
 				'######################################################################################
 						strMessage = strMessage & "Password: " & Request.Form("Password") & vbNewline & vbNewline
 					end if '<---- E-mail Validation Mod - 1 line #############
 				end if
-				strMessage = strMessage & "Вы можете изменить свои данные нажав на ссылку ""Профиль""." & vbNewline & vbNewline
-				strMessage = strMessage & "Пишите на здоровье!"
+				strMessage = strMessage & "Р’С‹ РјРѕР¶РµС‚Рµ РёР·РјРµРЅРёС‚СЊ СЃРІРѕРё РґР°РЅРЅС‹Рµ РЅР°Р¶Р°РІ РЅР° СЃСЃС‹Р»РєСѓ ""РџСЂРѕС„РёР»СЊ""." & vbNewline & vbNewline
+				strMessage = strMessage & "РџРёС€РёС‚Рµ РЅР° Р·РґРѕСЂРѕРІСЊРµ!"
 %>
 <!--#INCLUDE FILE="inc_mail.asp" -->
 <%
 			end if
 		else
-			Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """>Проблема с вашими данными</font></p>" & vbNewLine & _
+			Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """>РџСЂРѕР±Р»РµРјР° СЃ РІР°С€РёРјРё РґР°РЅРЅС‹РјРё</font></p>" & vbNewLine & _
 					"      <table align=""center"" border=""0"">" & vbNewLine & _
 					"        <tr>" & vbNewLine & _
 					"          <td><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHiLiteFontColor & """><ul>" & Err_Msg & "</ul></font></td>" & vbNewLine & _
@@ -615,24 +615,24 @@ if strProhibitNewMembers <> "1" then
 		end if
 		' ##################### E-mail Validation Mod #########################
 		if lcase(strEmail) = "0" then
-			Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>Ваша регистрация успешно завершена!</font></p>" & vbNewLine & _
-					"      " & strParagraphFormat1 & "Вы теперь можете писать на форум,"
-			if strAuthType = "db" then Response.Write(" пользуясь Вашим именем пользователя и паролем")
+			Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>Р’Р°С€Р° СЂРµРіРёСЃС‚СЂР°С†РёСЏ СѓСЃРїРµС€РЅРѕ Р·Р°РІРµСЂС€РµРЅР°!</font></p>" & vbNewLine & _
+					"      " & strParagraphFormat1 & "Р’С‹ С‚РµРїРµСЂСЊ РјРѕР¶РµС‚Рµ РїРёСЃР°С‚СЊ РЅР° С„РѕСЂСѓРј,"
+			if strAuthType = "db" then Response.Write(" РїРѕР»СЊР·СѓСЏСЃСЊ Р’Р°С€РёРј РёРјРµРЅРµРј РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ Рё РїР°СЂРѕР»РµРј")
 			Response.Write	".</font></p>" & vbNewLine
 	 	else
 			if strEmailVal = "1" then
-				Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>Ваша регистрация почти закончена!</font></p>" & vbNewLine
+				Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>Р’Р°С€Р° СЂРµРіРёСЃС‚СЂР°С†РёСЏ РїРѕС‡С‚Рё Р·Р°РєРѕРЅС‡РµРЅР°!</font></p>" & vbNewLine
 			'#######################################
 				if strRestrictReg = "1" then
-					Response.Write	"      " & strParagraphFormat1 & "Вы получите уведомление электронной почтой, как только Администратор активизирует ваш доступ к форуму.</font></p>" & vbNewLine
+					Response.Write	"      " & strParagraphFormat1 & "Р’С‹ РїРѕР»СѓС‡РёС‚Рµ СѓРІРµРґРѕРјР»РµРЅРёРµ СЌР»РµРєС‚СЂРѕРЅРЅРѕР№ РїРѕС‡С‚РѕР№, РєР°Рє С‚РѕР»СЊРєРѕ РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂ Р°РєС‚РёРІРёР·РёСЂСѓРµС‚ РІР°С€ РґРѕСЃС‚СѓРї Рє С„РѕСЂСѓРјСѓ.</font></p>" & vbNewLine
 				else
-					Response.Write	"      " & strParagraphFormat1 & "Пожалуйста выполните действия перечисленные в сообщении посланном по этому <b>" & ChkString(Request.Form("Email"),"адресу") & "</b> чтобы завершить Вашу регистрацию.</font></p>" & vbNewLine
+					Response.Write	"      " & strParagraphFormat1 & "РџРѕР¶Р°Р»СѓР№СЃС‚Р° РІС‹РїРѕР»РЅРёС‚Рµ РґРµР№СЃС‚РІРёСЏ РїРµСЂРµС‡РёСЃР»РµРЅРЅС‹Рµ РІ СЃРѕРѕР±С‰РµРЅРёРё РїРѕСЃР»Р°РЅРЅРѕРј РїРѕ СЌС‚РѕРјСѓ <b>" & ChkString(Request.Form("Email"),"Р°РґСЂРµСЃСѓ") & "</b> С‡С‚РѕР±С‹ Р·Р°РІРµСЂС€РёС‚СЊ Р’Р°С€Сѓ СЂРµРіРёСЃС‚СЂР°С†РёСЋ.</font></p>" & vbNewLine
 				end if
 			'#######################################
 		 	else
-				Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>Ваша регистрация успешно завершена!</font></p>" & vbNewLine & _
-						"      " & strParagraphFormat1 & "Вы можете начинать писать сообщения на форуме"
-				if strAuthType = "db" then Response.Write(" пользуясь Вашим именем пользователя и паролем")
+				Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>Р’Р°С€Р° СЂРµРіРёСЃС‚СЂР°С†РёСЏ СѓСЃРїРµС€РЅРѕ Р·Р°РІРµСЂС€РµРЅР°!</font></p>" & vbNewLine & _
+						"      " & strParagraphFormat1 & "Р’С‹ РјРѕР¶РµС‚Рµ РЅР°С‡РёРЅР°С‚СЊ РїРёСЃР°С‚СЊ СЃРѕРѕР±С‰РµРЅРёСЏ РЅР° С„РѕСЂСѓРјРµ"
+				if strAuthType = "db" then Response.Write(" РїРѕР»СЊР·СѓСЏСЃСЊ Р’Р°С€РёРј РёРјРµРЅРµРј РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ Рё РїР°СЂРѕР»РµРј")
 				Response.Write	".</font></p>" & vbNewLine
 			end if
 	 	end if
@@ -654,10 +654,10 @@ if strProhibitNewMembers <> "1" then
 		else
 			Response.Write	"      <meta http-equiv=""Refresh"" content=""5; URL=" & Request.Form("refer") & """>" & vbNewLine
 		end if
-		Response.Write	"      " & strParagraphFormat1 & "<a href=""" & Request.Form("refer") & """>Назад на Форум</font></a></p>" & vbNewLine
+		Response.Write	"      " & strParagraphFormat1 & "<a href=""" & Request.Form("refer") & """>РќР°Р·Р°Рґ РЅР° Р¤РѕСЂСѓРј</font></a></p>" & vbNewLine
 	end if
 else
-	Response.Write	"    <br /><p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """>К сожалению в настоящее время новые участники на форум не принимаются.</font></p>" & vbNewLine & _
+	Response.Write	"    <br /><p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """>Рљ СЃРѕР¶Р°Р»РµРЅРёСЋ РІ РЅР°СЃС‚РѕСЏС‰РµРµ РІСЂРµРјСЏ РЅРѕРІС‹Рµ СѓС‡Р°СЃС‚РЅРёРєРё РЅР° С„РѕСЂСѓРј РЅРµ РїСЂРёРЅРёРјР°СЋС‚СЃСЏ.</font></p>" & vbNewLine & _
 			"    <meta http-equiv=""Refresh"" content=""5; URL=default.asp"">" & vbNewLine & _
 			"    " & strParagraphFormat1 & "<a href=""default.asp"">" & strBackToForum & "</font></a></p><br />" & vbNewLine
 end if

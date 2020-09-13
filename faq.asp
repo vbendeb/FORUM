@@ -44,7 +44,7 @@
 <%
 Response.Write	"      <table width=""100%"" border=""0"">" & vbNewLine & _
 		"        <tr>" & vbNewLine & _
-		"          <td><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & getCurrentIcon(strIconFolderOpen,"","") & "&nbsp;<a href=""default.asp"">Вернуться на &nbsp;Форумы</a><br />" & vbNewLine & _
+		"          <td><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & getCurrentIcon(strIconFolderOpen,"","") & "&nbsp;<a href=""default.asp"">Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР° &nbsp;Р¤РѕСЂСѓРјС‹</a><br />" & vbNewLine & _
 		"          " & getCurrentIcon(strIconBar,"","") & getCurrentIcon(strIconFolderOpen,"","") & "&nbsp;Frequently Asked Questions</font></td>" & vbNewLine & _
 		"        </tr>" & vbNewLine & _
 		"      </table>" & vbNewLine & _
@@ -53,13 +53,13 @@ Response.Write	"      <table width=""100%"" border=""0"">" & vbNewLine & _
 		"          <td bgcolor=""" & strTableBorderColor & """>" & vbNewLine & _
 		"            <table border=""0"" width=""100%"" cellspacing=""1"" cellpadding=""4"">" & vbNewLine & _
 		"              <tr>" & vbNewLine & _
-		"                <td bgcolor=""" & strCategoryCellColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strCategoryFontColor & """><b>Содержание FAQ (Часто Задавемые Вопросы)</b></font></td>" & vbNewLine & _
+		"                <td bgcolor=""" & strCategoryCellColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strCategoryFontColor & """><b>РЎРѕРґРµСЂР¶Р°РЅРёРµ FAQ (Р§Р°СЃС‚Рѕ Р—Р°РґР°РІРµРјС‹Рµ Р’РѕРїСЂРѕСЃС‹)</b></font></td>" & vbNewLine & _
 		"              </tr>" & vbNewLine & _
 		"              <tr>" & vbNewLine & _
 		"                <td bgcolor=""" & strForumCellColor & """>" & vbNewLine & _
 		"                <p><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strForumFontColor & """>" & vbNewLine & _
 		"                <ul>" & vbNewLine & _
-		"                <li><span class=""spnMessageText""><a href=""#register"">Нужно ли мне регистрироваться?</a></span></li>" & vbNewLine
+		"                <li><span class=""spnMessageText""><a href=""#register"">РќСѓР¶РЅРѕ Р»Рё РјРЅРµ СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊСЃСЏ?</a></span></li>" & vbNewLine
 if (strIcons = "1") then
 	Response.Write	"                <li><span class=""spnMessageText""><a href=""#smilies"">How can I use smilies and images?</a></span></li>" & vbNewLine
 end if
@@ -100,12 +100,12 @@ Response.Write	"                <li><span class=""spnMessageText""><a href=""#CO
 if strProhibitNewMembers = "1" then
 	Response.Write("The Administrator has turned off Registration for this forum. Only registered members are able to log in.")
 elseif strRequireReg = "1" then
-	Response.Write("Регистрация обязательна для всех участников МОСТа, она бесплатна и занимает всего несколько минут. Вы обязапы ввести логин, который может быть Вашим настоящим именем или псевдонимом, пароль, и действующий адрес Вашей электронной почты (e-mail).<br /><br />")
+	Response.Write("Р РµРіРёСЃС‚СЂР°С†РёСЏ РѕР±СЏР·Р°С‚РµР»СЊРЅР° РґР»СЏ РІСЃРµС… СѓС‡Р°СЃС‚РЅРёРєРѕРІ РњРћРЎРўР°, РѕРЅР° Р±РµСЃРїР»Р°С‚РЅР° Рё Р·Р°РЅРёРјР°РµС‚ РІСЃРµРіРѕ РЅРµСЃРєРѕР»СЊРєРѕ РјРёРЅСѓС‚. Р’С‹ РѕР±СЏР·Р°РїС‹ РІРІРµСЃС‚Рё Р»РѕРіРёРЅ, РєРѕС‚РѕСЂС‹Р№ РјРѕР¶РµС‚ Р±С‹С‚СЊ Р’Р°С€РёРј РЅР°СЃС‚РѕСЏС‰РёРј РёРјРµРЅРµРј РёР»Рё РїСЃРµРІРґРѕРЅРёРјРѕРј, РїР°СЂРѕР»СЊ, Рё РґРµР№СЃС‚РІСѓСЋС‰РёР№ Р°РґСЂРµСЃ Р’Р°С€РµР№ СЌР»РµРєС‚СЂРѕРЅРЅРѕР№ РїРѕС‡С‚С‹ (e-mail).<br /><br />")
 else
 	Response.Write("Registration is not required to view current topics on the Forum; however, if you wish to post a new topic or reply to an existing topic registration is required. Registration is free and only takes a few minutes. The only required fields are your Username, which may be your real name or a nickname, and a valid e-mail address.<br /><br />")
 end if
 if strProhibitNewMembers = "0" then
-	Response.Write("Эта информация не будет использована в коммерческих целях или в целях рекламы администрацией " & strForumTitle & ".<br /><br />Если Вы подозреваете что Ваша персональная информация используется не по назначению - пожалуйста НЕМЕДЛЕННО поставьте нас в известность!")
+	Response.Write("Р­С‚Р° РёРЅС„РѕСЂРјР°С†РёСЏ РЅРµ Р±СѓРґРµС‚ РёСЃРїРѕР»СЊР·РѕРІР°РЅР° РІ РєРѕРјРјРµСЂС‡РµСЃРєРёС… С†РµР»СЏС… РёР»Рё РІ С†РµР»СЏС… СЂРµРєР»Р°РјС‹ Р°РґРјРёРЅРёСЃС‚СЂР°С†РёРµР№ " & strForumTitle & ".<br /><br />Р•СЃР»Рё Р’С‹ РїРѕРґРѕР·СЂРµРІР°РµС‚Рµ С‡С‚Рѕ Р’Р°С€Р° РїРµСЂСЃРѕРЅР°Р»СЊРЅР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РЅРµ РїРѕ РЅР°Р·РЅР°С‡РµРЅРёСЋ - РїРѕР¶Р°Р»СѓР№СЃС‚Р° РќР•РњР•Р”Р›Р•РќРќРћ РїРѕСЃС‚Р°РІСЊС‚Рµ РЅР°СЃ РІ РёР·РІРµСЃС‚РЅРѕСЃС‚СЊ!")
 end if
 Response.Write	"</font></p></td>" & vbNewLine & _
 		"              </tr>" & vbNewLine
@@ -115,13 +115,13 @@ if (strIcons = "1") then
 	strSmileName = array(strIconSmile,strIconSmileBig,strIconSmileCool,strIconSmileBlush,strIconSmileTongue,strIconSmileEvil,strIconSmileWink,strIconSmileClown,strIconSmileBlackeye,strIconSmile8ball,strIconSmileSad,strIconSmileShy,strIconSmileShock,strIconSmileAngry,strIconSmileDead,strIconSmileSleepy,strIconSmileKisses,strIconSmileApprove,strIconSmileDisapprove,strIconSmileQuestion)
 
 	Response.Write	"              <tr>" & vbNewLine & _
-			"                <td bgcolor=""" & strCategoryCellColor & """><a href=""#top"">" & getCurrentIcon(strIconGoUp,"Go To Top Of Page","align=""right""") & "</a><a name=""smilies""></a><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strCategoryFontColor & """><b>Смайлики</b></font></td>" & vbNewLine & _
+			"                <td bgcolor=""" & strCategoryCellColor & """><a href=""#top"">" & getCurrentIcon(strIconGoUp,"Go To Top Of Page","align=""right""") & "</a><a name=""smilies""></a><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strCategoryFontColor & """><b>РЎРјР°Р№Р»РёРєРё</b></font></td>" & vbNewLine & _
 			"              </tr>" & vbNewLine & _
 			"              <tr>" & vbNewLine & _
 			"                <td bgcolor=""" & strForumCellColor & """>" & vbNewLine & _
 			"                <p><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strForumFontColor & """>" & vbNewLine & _
-			"                Вы наверное замечали как раньше использовались смайлики в e-mail письмах или в чатах. " & vbNewLine & _
-			"                Смайлики - это символы для выражения эмоций, как например улыбка " & vbNewLine & _
+			"                Р’С‹ РЅР°РІРµСЂРЅРѕРµ Р·Р°РјРµС‡Р°Р»Рё РєР°Рє СЂР°РЅСЊС€Рµ РёСЃРїРѕР»СЊР·РѕРІР°Р»РёСЃСЊ СЃРјР°Р№Р»РёРєРё РІ e-mail РїРёСЃСЊРјР°С… РёР»Рё РІ С‡Р°С‚Р°С…. " & vbNewLine & _
+			"                РЎРјР°Р№Р»РёРєРё - СЌС‚Рѕ СЃРёРјРІРѕР»С‹ РґР»СЏ РІС‹СЂР°Р¶РµРЅРёСЏ СЌРјРѕС†РёР№, РєР°Рє РЅР°РїСЂРёРјРµСЂ СѓР»С‹Р±РєР° " & vbNewLine & _
 			"                " & getCurrentIcon(strIconSmile,"","hspace=""10"" align=""absmiddle""") & " or a frown " & vbNewLine & _
 			"                " & getCurrentIcon(strIconSmileSad,"","hspace=""10"" align=""absmiddle""") & ". This bulletin board " & vbNewLine & _
 			"                automatically converts certain text to a graphical representation when it is " & vbNewLine & _
