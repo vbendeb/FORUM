@@ -332,6 +332,7 @@ strRqMethod = "ReplyQuote" then
 	set rs = my_Conn.Execute (strSql)
 	
 	strAuthor = rs("R_AUTHOR")
+	strName = rs("M_NAME" ) 
 
 	if strRqMethod = "Edit" then
 		TxtMsg = dropSig ( fixOldQuotation (rs("R_MESSAGE")), rs ( "M_SIG" ) )
@@ -463,6 +464,7 @@ Response.Write	">" & vbNewLine & _
 		"              <input name=""TOPIC_ID"" type=""hidden"" value=""" & strRqTopicID & """>" & vbNewLine & _
 		"              <input name=""FORUM_ID"" type=""hidden"" value=""" & strRqForumId & """> " & vbNewLine & _
 		"              <input name=""CAT_ID"" type=""hidden"" value=""" & strRqCatID & """>" & vbNewLine & _
+		"              <input name=""M_NAME"" type=""hidden"" value=""" & strName & """>" & vbNewLine & _
 		"              <input name=""Refer"" type=""hidden"" value=""" & replace(strRefer,"&#","#") & """>" & vbNewLine & _
 		"              <input name=""cookies"" type=""hidden"" value=""yes"">" & vbNewLine
 

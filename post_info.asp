@@ -54,7 +54,7 @@ else
 	strActivePrefix = strTablePrefix
 	ArchiveView = ""
 end if
-
+ 
 'Topic Move Check
 Dim blnTopicMoved
 Dim fSubscription
@@ -74,6 +74,7 @@ if strAuthType = "db" and strDBNTUserName = "" then
 end if
 
 MethodType = chkString(Request.Form("Method_Type"),"SQLString")
+PostUserName = chkString(Request.Form("M_NAME"),"SQLString")
 
 if Request.Form("CAT_ID") <> "" then
 	if IsNumeric(Request.Form("CAT_ID")) = True then
@@ -193,7 +194,7 @@ MethodType = "TopicQuote" then
 		strTablePrefix & "FORUM F" &_
 		" WHERE C.CAT_ID = F.CAT_ID " &_
 		" AND F.FORUM_ID = " & Forum_ID & ""
-        end if
+    end if
  
 	set rsStatus = my_Conn.Execute(strSql)
 	if rsStatus.EOF or rsStatus.BOF then
@@ -361,7 +362,7 @@ if MethodType = "Edit" then
 		'## Forum_SQL - Do DB Update
 		strSql = "UPDATE " & strActivePrefix & "REPLY "
 		strSql = strSql & " SET R_MESSAGE = '" & txtMessage & vbcrlf & _
-									getSig ( strDBNTUserName ) & "'"
+							   getSig ( postUserName ) & "'"
 		if Request.Form("sig") = "yes" and strDSignatures = "1" then
 		 	strSql = strSql & ", R_SIG = 1"
 		else
@@ -1696,7 +1697,7 @@ sub Go_Result(str_err_Msg, boolOk)
 		Response.write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>"
 		select case MethodType
 			case "Edit"
-			        Response.Write("Your Reply Was Changed Successfully!")
+			        Response.Write("Ваше сообщение отредактировано")
 			case "EditCategory"
 			        ' DEM --> Added if statement to handle if subscriptions or moderation is allowed
 			        if strSubscription > 0 or strModeration > 0 then

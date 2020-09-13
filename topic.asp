@@ -1191,15 +1191,12 @@ function GetPhotoLinkStr(AuthorID)
 	strSql = "SELECT MEMBER_ID,M_PHOTO_URL FROM FORUM_MEMBERS WHERE MEMBER_ID=" & AuthorID & ";"
 	rs.open strSql, my_Conn, adOpenForwardOnly, adLockReadOnly, adCmdText
 	if not rs.EOF and (trim(rs("M_PHOTO_URL")) <> "") and (lcase(rs("M_PHOTO_URL")) <> "http://") then
-		url = rs("M_PHOTO_URL")
-		if inStr (url,"tp:") > 0 then
-			str = "<IMG src=""" & url & """height=""100""> </IMG>"
-		else
-			str = "<IMG src=""" & GetPhotoUrlByID(rs("M_PHOTO_URL")) & """height=""100""> </IMG>" 
-		end if	
+		url = GetPhotoUrlByID( rs("M_PHOTO_URL") )
+		smallUrl = Replace(url,"-big","")
+		str = "<a href=""" & url & """><IMG src=""" & smallUrl & """height=""100""></IMG></a>" 
 	end if	
 	'Если задана большая фотография - убрать суффикс '-big'  и получить превью версию фото
-	GetPhotoLinkStr = Replace(str,"-big","")
+	GetPhotoLinkStr = str
 end function
 
 'Получить  URL фото по номеру 
