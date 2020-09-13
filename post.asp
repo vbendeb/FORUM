@@ -325,7 +325,7 @@ end select
 if strRqMethod = "Edit" or _
 strRqMethod = "ReplyQuote" then
 	'## Forum_SQL
-	strSql = "SELECT M.M_NAME, R.R_AUTHOR, R.R_SIG, R.R_MESSAGE "
+	strSql = "SELECT M.M_NAME, M.M_SIG, R.R_AUTHOR, R.R_SIG, R.R_MESSAGE "
 	strSql = strSql & " FROM " & strMemberTablePrefix & "MEMBERS M, " & strActivePrefix & "REPLY R "
 	strSql = strSql & " WHERE M.MEMBER_ID = R.R_AUTHOR AND R.REPLY_ID = " & strRqReplyID
 
@@ -337,16 +337,14 @@ strRqMethod = "ReplyQuote" then
 		TxtMsg = fixOldQuotation (rs("R_MESSAGE"))
 	else
 		if strRqMethod = "ReplyQuote" then
-			TxtMsg = "[quote=""" & chkString(rs("M_NAME"),"display") & """]" & vbNewline
-			TxtMsg = TxtMsg & fixOldQuotation ( rs("R_MESSAGE") ) & vbNewline
-			TxtMsg = TxtMsg & "[/quote]"
+			TxtMsg = quoteMsg ( rs("M_NAME"), rs("R_MESSAGE"), rs ( "M_SIG") )
 		end if
 	end if
 end if
 
 if strRqMethod = "EditTopic" or strRqMethod = "TopicQuote" then
 	'## Forum_SQL
-	strSql = "SELECT M.M_NAME, T.CAT_ID, T.FORUM_ID, T.TOPIC_ID, T.T_SUBJECT, T.T_AUTHOR, T.T_STICKY, T.T_SIG, T.T_MESSAGE "
+	strSql = "SELECT M.M_NAME, M.M_SIG, T.CAT_ID, T.FORUM_ID, T.TOPIC_ID, T.T_SUBJECT, T.T_AUTHOR, T.T_STICKY, T.T_SIG, T.T_MESSAGE "
 	strSql = strSql & " FROM " & strMemberTablePrefix & "MEMBERS M, " & strActivePrefix & "TOPICS T "
 	strSql = strSql & " WHERE M.MEMBER_ID = T.T_AUTHOR AND T.TOPIC_ID = " & strRqTopicID
 
@@ -362,9 +360,7 @@ if strRqMethod = "EditTopic" or strRqMethod = "TopicQuote" then
 		TxtMsg = rs("T_MESSAGE")
 	else
 		if strRqMethod = "TopicQuote" then
-			TxtMsg = "[quote=""" & chkString(rs("M_NAME"),"display") & """]" & vbNewline
-			TxtMsg = TxtMsg & fixOldQuotation ( rs("T_MESSAGE") ) & vbNewline
-			TxtMsg = TxtMsg & "[/quote]"
+			TxtMsg = quoteMsg ( rs("M_NAME"), rs("T_MESSAGE"), rs ( "M_SIG") )
 		end if
 	end if
 end if
@@ -1061,6 +1057,7 @@ if strRqMethod = "Edit" or _
 strRqMethod = "URL" or strRqMethod = "EditURL" or _
 strRqMethod = "Reply" or strRqMethod = "ReplyQuote" or _
 strRqMethod = "EditTopic" or strRqMethod = "Topic" or strRqMethod = "TopicQuote" then 
+    strIncSig = "Поставьте птичку, чтобы автоматически добавить Вашу подпись из профиля.<br />"
 	Response.Write	"              <tr>" & vbNewLine & _
 			"                <td bgColor=""" & strPopUpTableColor & """>&nbsp;</td>" & vbNewLine & _
 			"                <td bgColor=""" & strPopUpTableColor & """>" & vbNewLine
@@ -1069,17 +1066,17 @@ strRqMethod = "EditTopic" or strRqMethod = "Topic" or strRqMethod = "TopicQuote"
 		if (strRqMethod = "Reply" or strRqMethod = "ReplyQuote" or _
 		strRqMethod = "Topic" or strRqMethod = "TopicQuote") and strSignatures = "1" and strDSignatures <> "1" then 
 			Response.Write	"                <font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & vbNewLine & _
-					"                <input name=""Sig"" type=""checkbox"" value=""yes"" checked>Check here to include your profile signature.<br /></font>" & vbNewLine
+					"                <input name=""Sig"" type=""checkbox"" value=""yes"" checked>" & strIncSig & "</font>" & vbNewLine
 		end if
 		if strSignatures = "1" and strDSignatures = "1" then
 	        	Response.Write "                <font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>"
 			if strRqMethod = "Edit" then
-			        Response.Write "<input name=""Sig"" type=""checkbox"" value=""yes""" & chkCheckbox(rs("R_SIG"),1,true) & ">Check here to include your profile signature.<br /></font>" & vbNewLine
+			        Response.Write "<input name=""Sig"" type=""checkbox"" value=""yes""" & chkCheckbox(rs("R_SIG"),1,true) & ">" & strIncSig & "</font>" & vbNewLine
         		elseif strRqMethod = "EditTopic" then
-	        		Response.Write "<input name=""Sig"" type=""checkbox"" value=""yes""" & chkCheckbox(rs("T_SIG"),1,true) & ">Check here to include your profile signature.<br /></font>" & vbNewLine
+	        		Response.Write "<input name=""Sig"" type=""checkbox"" value=""yes""" & chkCheckbox(rs("T_SIG"),1,true) & ">" & strIncSig & "</font>" & vbNewLine
 			else
 			        intSigDefault = getSigDefault(MemberID)
-			        Response.Write	"<input name=""Sig"" type=""checkbox"" value=""yes""" & chkCheckbox(intSigDefault,1,true) & ">Check here to include your profile signature.<br /></font>" & vbNewLine
+			        Response.Write	"<input name=""Sig"" type=""checkbox"" value=""yes""" & chkCheckbox(intSigDefault,1,true) & ">" & strIncSig & "</font>" & vbNewLine
 			end if 
 		end if 
 		'## Subscribe checkbox start ##
@@ -1485,5 +1482,21 @@ function Go_Result(message)
 			"      <meta http-equiv=""Refresh"" content=""2; URL=default.asp"">"
 	WriteFooter
 	Response.end
+end function
+
+function quoteMsg ( uname, umessage, usig )
+  Dim regEx
+  Set regEx = New RegExp
+  
+	quoteMsg = "[quote=""" & chkString( uname,"display") & """]" & vbNewline
+	quoteMsg = quoteMsg & fixOldQuotation ( umessage )
+
+	if usig <> "" then
+		' get rid of the signature - not needed in quotation
+		regEx.Pattern = usig & "$"
+		quoteMsg = regEx.replace( quoteMsg, "" )
+	end if
+	
+	quoteMsg = quoteMsg & "[/quote]" & vbCrLf
 end function
 %>
