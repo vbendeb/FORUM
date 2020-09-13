@@ -334,7 +334,7 @@ strRqMethod = "ReplyQuote" then
 	strAuthor = rs("R_AUTHOR")
 
 	if strRqMethod = "Edit" then
-		TxtMsg = fixOldQuotation (rs("R_MESSAGE"))
+		TxtMsg = dropSig ( fixOldQuotation (rs("R_MESSAGE")), rs ( "M_SIG" ) )
 	else
 		if strRqMethod = "ReplyQuote" then
 			TxtMsg = quoteMsg ( rs("M_NAME"), rs("R_MESSAGE"), rs ( "M_SIG") )
@@ -1432,18 +1432,27 @@ function Go_Result(message)
 	Response.end
 end function
 
-function quoteMsg ( uname, umessage, usig )
+function dropSig ( message, sig )
   Dim regEx
   Set regEx = New RegExp
   
-	quoteMsg = "[quote=""" & chkString( uname,"display") & """]" & vbNewline
-	quoteMsg = quoteMsg & fixOldQuotation ( umessage )
-
-	if usig <> "" then
+	if sig <> "" then
+		sig = replace ( sig, "[", "\[" )
+		sig = replace ( sig, "]", "\]" )
+		
 		' get rid of the signature - not needed in quotation
-		regEx.Pattern = usig & "$"
-		quoteMsg = regEx.replace( quoteMsg, "" )
+		regEx.Pattern = sig & "$"
+		message = regEx.replace( message, "" )
 	end if
+	
+	dropSig = message
+	
+end function
+
+function quoteMsg ( uname, umessage, usig )
+  
+	quoteMsg = "[quote=""" & chkString( uname,"display") & """]" & vbNewline
+	quoteMsg = quoteMsg & dropSig ( fixOldQuotation ( umessage ), usig )
 	
 	quoteMsg = quoteMsg & "[/quote]" & vbCrLf
 end function

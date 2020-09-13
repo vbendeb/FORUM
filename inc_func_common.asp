@@ -127,9 +127,9 @@ end function
 ' the lines
 '
 function debugComment ( comment, data )
-	response.write vbcrlf & "<!-- " & comment & vbcrlf
+	response.write vbcrlf & vbcrlf & "<!-- " & comment & vbcrlf
 	response.write data
-	response.write vbcrlf & comment & "-->" & vbcrlf
+	response.write vbcrlf & comment & "-->" & vbcrlf & vbcrlf
 end function
 
 '
@@ -224,7 +224,7 @@ end function
 function FormatStr(fString)
 	on Error resume next
 	fString = Replace(fString, CHR(13), "")
-	fString = replace(fString, "]" & chr(10), "]")
+	fString = replace(fString, "quote]" & chr(10), "quote]")
 	fString = Replace(fString, CHR(10), "<br>")
 	fString = replace(fString, "<br />", "<br>")
 	if strBadWordFilter = 1 or strBadWordFilter = "1" then
@@ -1103,183 +1103,118 @@ function chkUser(fName, fPassword, fAuthor)
 
 end function
 
-Function ReplaceURLs(ByVal strToFormat)
-	Dim oTag, c1Tag, oTag2, c2Tag
-	Dim roTag, rc1Tag, rc2Tag
-	Dim oTagPos, c1TagPos, oTagPos2, c1TagPos2
-	Dim Counter
-	Dim strArray, strArray2
-	Dim strFirstPart, strSecondPart
+function buildUrl ( urlStr, textStr )
 
-	oTag = "[url="""
-	c1Tag = """]"
-	oTag2 = "[url]"
-	c2Tag = "[/url]"
+	urlStr = replace(urlStr, """", "") ' ## filter out "
+	urlStr = replace(urlStr, ";", "", 1, -1, 1) ' ## filter out ;
+	urlStr = replace(urlStr, "+", "", 1, -1, 1) ' ## filter out +
+	urlStr = replace(urlStr, "(", "", 1, -1, 1) ' ## filter out (
+	urlStr = replace(urlStr, ")", "", 1, -1, 1) ' ## filter out )
+	urlStr = replace(urlStr, "*", "", 1, -1, 1) ' ## filter out *
+	urlStr = replace(urlStr, "'", "", 1, -1, 1) ' ## filter out '
+	urlStr = replace(urlStr, ">", "", 1, -1, 1) ' ## filter out >
+	urlStr = replace(urlStr, "<", "", 1, -1, 1) ' ## filter out <
+	urlStr = replace(urlStr, "script", "", 1, -1, 1) ' ## filter out any script
 
-	roTag = "<a href="""
-	rc1Tag = """ target=""_blank"">"
-	rc2Tag = "</a>"
+  	Set regx = New RegExp
+  	regx.global = true
+  	regx.ignoreCase = true
+  	
+ 	regx.pattern = "^(http|https|ftp|mailto):"
 
-	oTagPos = InStr(1, strToFormat, oTag, 1) 'Position of opening tag
-	c1TagPos = InStr(1, strToFormat, c1Tag, 1) 'Position of closing tag
+ 	dim matches
 
-	'if opening tag and closing tag is found...
-	If (oTagpos > 0) And (c1TagPos > 0) Then
-		'Split string at the opening tag
-		strArray = Split(strToFormat, oTag, -1, 1)
+  	set matches = regx.execute ( urlStr )
 
-		'Loop through array
-		For Counter = 0 To UBound(strArray)
-			'if the closing tag is found in the string then...
-			If (InStr(1, strArray(Counter), c1Tag, 1) > 0) Then
-				'split string at the closing tag...
-				strArray2 = Split(strArray(Counter), c1Tag, -1, 1)
+  	if matches.count = 0 then
+  		urlStr = "http://" & urlStr
+  	end if
+  	
+  	buildUrl = "<a href=""" & urlStr & """ target=""_blank"">" & textStr & "</a>"
+end function
 
-				strArray2(0) = replace(strArray2(0), """", " ") ' ## filter out "
-				'strArray2(0) = replace(strArray2(0), "&", " ", 1, -1, 1) ' ## filter out &
-				'strArray2(0) = replace(strArray2(0), "#", " ", 1, -1, 1) ' ## filter out #
-				strArray2(0) = replace(strArray2(0), ";", " ", 1, -1, 1) ' ## filter out ;
-				strArray2(0) = replace(strArray2(0), "+", " ", 1, -1, 1) ' ## filter out +
-				strArray2(0) = replace(strArray2(0), "(", " ", 1, -1, 1) ' ## filter out (
-				strArray2(0) = replace(strArray2(0), ")", " ", 1, -1, 1) ' ## filter out )
-				'strArray2(0) = replace(strArray2(0), "[", " ", 1, -1, 1) ' ## filter out [
-				'strArray2(0) = replace(strArray2(0), "]", " ", 1, -1, 1) ' ## filter out ]
-				'strArray2(0) = replace(strArray2(0), "=", " ", 1, -1, 1) ' ## filter out =
-				strArray2(0) = replace(strArray2(0), "*", " ", 1, -1, 1) ' ## filter out *
-				strArray2(0) = replace(strArray2(0), "'", " ", 1, -1, 1) ' ## filter out '
-				strArray2(0) = replace(strArray2(0), ">", " ", 1, -1, 1) ' ## filter out >
-				strArray2(0) = replace(strArray2(0), "<", " ", 1, -1, 1) ' ## filter out <
-				strArray2(0) = replace(strArray2(0), "javascript", " ", 1, -1, 1) ' ## filter out javascript
-				strArray2(0) = replace(strArray2(0), "jscript", " ", 1, -1, 1) ' ## filter out jscript
-				strArray2(0) = replace(strArray2(0), "vbscript", " ", 1, -1, 1) ' ## filter out vbscript
+function ReplaceOneURL ( fstring )
+  dim urlOpen, urlClose, regx, resultStr
 
-				'if the closing url tag is found in the string and
-				'[URL] is not found in the string then...
-				If InStr(1, strArray2(1), c2Tag, 1) And _
-					Not InStr(1, UCase(strArray2(1)), "[URL]", 1) Then
+  Set regx = New RegExp
+  dim matches
+  
+  regx.global = true
+  regx.multiline = true
+  
+''''''''''''''''''''''''''''''''''''''''''''''''''''
+' make sure we replace only 'closed' URL references - those having both opening and closing
+' brackets.
+'
+' there are two froms of URL references:
+'
+' [url="actual url"]link text[/url] and [url]actual url[/url]
+'
+' we will replace both forms with the correct HTML code
+'
+  regx.pattern = "\[(url=""[^""]+""|url|/url)\]"
+  dim match, txt, stack(40), valueStack(40), index, str, totalLen
+  index = 0
+  totalLen = len ( fstring )
+  
+  ReplaceOneUrl = ""
+  set matches = regx.execute ( fstring )
+  if matches.Count = 0 then
+  	exit function
+  end if
+  
+  For Each Match in Matches
+	str = match.value
 
-					strFirstPart = Left(strArray2(1), InStr(1, strArray2(1), c2Tag, 1)-1)
-					strSecondPart = Right(strArray2(1), (Len(strArray2(1)) - Instr(1, strArray2(1), c2Tag,1) - len(c2Tag)+1))
+	if InStr ( str, "[url" ) then
+		stack ( index )      = Match.FirstIndex + 0
+		valueStack ( index ) = str
+		index = index + 1
+	else
 
-					If strFirstPart <> "" Then
-						If UCase(Left(strFirstPart, 5)) = "[IMG]" Then
-							ReplaceURLs = ReplaceURLs & "<a href=""" & strArray2(0) & """ target=""_blank"">" & strFirstPart & "</a>" & strSecondPart
-						ElseIf UCase(Left(strArray2(0), 7)) = "HTTP://" Then
-							'ReplaceURLs = ReplaceURLs & edit_hrefs(strArray2(0), 1) & strSecondPart
-							ReplaceURLs = ReplaceURLs & roTag & strArray2(0) & rc1Tag & strFirstPart & rc2Tag & strSecondPart
-						ElseIf UCase(Left(strArray2(0), 8)) = "HTTPS://" Then
-							'ReplaceURLs = ReplaceURLs & edit_hrefs(strArray2(0), 2) & strSecondPart
-							ReplaceURLs = ReplaceURLs & roTag & strArray2(0) & rc1Tag & strFirstPart & rc2Tag & strSecondPart
-						ElseIf UCase(Left(strArray2(0), 4)) = "WWW." Then
-							'ReplaceURLs = ReplaceURLs & edit_hrefs(strArray2(0), 3) & strSecondPart
-							ReplaceURLs = ReplaceURLs & roTag & "http://" & strArray2(0) & rc1Tag & strFirstPart & rc2Tag & strSecondPart
-						ElseIf UCase(Left(strArray2(0), 7)) = "MAILTO:" Then
-							'ReplaceURLs = ReplaceURLs & edit_hrefs(strArray2(0), 4) & strSecondPart
-							ReplaceURLs = ReplaceURLs & roTag & strArray2(0) & rc1Tag & strFirstPart & rc2Tag & strSecondPart
-						ElseIf UCase(Left(strArray2(0), 6)) = "FTP://" Then
-							'ReplaceURLs = ReplaceURLs & edit_hrefs(strArray2(0), 5) & strSecondPart
-							ReplaceURLs = ReplaceURLs & roTag & strArray2(0) & rc1Tag & strFirstPart & rc2Tag & strSecondPart
-						ElseIf InStr(strArray2(0), "@") > 0 Then
-							'ReplaceURLs = ReplaceURLs & edit_hrefs(strArray2(0), 4) & strSecondPart
-							ReplaceURLs = ReplaceURLs & roTag & "mailto:" & strArray2(0) & rc1Tag & strFirstPart & rc2Tag & strSecondPart
-						ElseIf UCase(Left(strArray2(0), 6)) = "FILE:///" Then
-							ReplaceURLs = ReplaceURLs & roTag & strArray2(0) & rc1Tag & strFirstPart & rc2Tag & strSecondPart
-						Else
-							ReplaceURLs = ReplaceURLs & roTag & strArray2(0) & rc1Tag & strFirstPart & rc2Tag & strSecondPart
-						End If
-					Else
-						If UCase(Left(strArray2(0), 7)) = "HTTP://" Then
-							ReplaceURLs = ReplaceURLs & edit_hrefs(strArray2(0), 1) & strSecondPart
-							'ReplaceURLs = ReplaceURLs & roTag & strArray2(0) & rc1Tag & strFirstPart & rc2Tag & strSecondPart
-						ElseIf UCase(Left(strArray2(0), 8)) = "HTTPS://" Then
-							ReplaceURLs = ReplaceURLs & edit_hrefs(strArray2(0), 2) & strSecondPart
-							'ReplaceURLs = ReplaceURLs & roTag & strArray2(0) & rc1Tag & strFirstPart & rc2Tag & strSecondPart
-						ElseIf UCase(Left(strArray2(0), 4)) = "WWW." Then
-							ReplaceURLs = ReplaceURLs & edit_hrefs(strArray2(0), 3) & strSecondPart
-							'ReplaceURLs = ReplaceURLs & roTag & "http://" & strArray2(0) & rc1Tag & strFirstPart & rc2Tag & strSecondPart
-						ElseIf UCase(Left(strArray2(0), 7)) = "MAILTO:" Then
-							ReplaceURLs = ReplaceURLs & edit_hrefs(strArray2(0), 4) & strSecondPart
-							'ReplaceURLs = ReplaceURLs & roTag & strArray2(0) & rc1Tag & strFirstPart & rc2Tag & strSecondPart
-						ElseIf UCase(Left(strArray2(0), 6)) = "FTP://" Then
-							ReplaceURLs = ReplaceURLs & edit_hrefs(strArray2(0), 5) & strSecondPart
-							'ReplaceURLs = ReplaceURLs & roTag & strArray2(0) & rc1Tag & strFirstPart & rc2Tag & strSecondPart
-						ElseIf InStr(strArray2(0), "@") > 0 Then
-							ReplaceURLs = ReplaceURLs & edit_hrefs(strArray2(0), 4) & strSecondPart
-							'ReplaceURLs = ReplaceURLs & roTag & "mailto:" & strArray2(0) & rc1Tag & strFirstPart & rc2Tag & strSecondPart
-						ElseIf UCase(Left(strArray2(0), 6)) = "FILE:///" Then
-							ReplaceURLs = ReplaceURLs & roTag & strArray2(0) & rc1Tag & strArray2(0) & rc2Tag & strSecondPart
-						Else
-							ReplaceURLs = ReplaceURLs & roTag & strArray2(0) & rc1Tag & strArray2(0) & rc2Tag & strSecondPart
-						End If
-					End If
-				Else
-					ReplaceURLs = ReplaceURLs & roTag & strArray2(0) & rc1Tag & strArray2(0) & rc2Tag & strArray2(1)
-				End If
-			Else
-				ReplaceURLs = ReplaceURLs & strArray(Counter)
-			End If
-		Next
-	Else
-		ReplaceURLs = strToFormat
-	End If
+' we're here, this means the match is [/url]
+		if index > 0 then
+		
+' index is more than 0, this means there was a proper opening '[url..]' before,
+' depending on the kind of opening we do different replacements
+'
+     	  dim leftStr, rightStr, midStr, midStart, urlStr
+     	  
+			index = index - 1
 
-	oTagPos2 = InStr(1, ReplaceURLs, oTag2, 1)
-	c1TagPos2 = InStr(1, ReplaceURLs, c2Tag, 1)
+			midStart = stack ( index ) + len ( valueStack ( index ) )
+			leftStr  = left ( fstring, stack ( index ) )
+			rightStr = right ( fstring, totalLen - match.firstIndex - match.length )
+			midStr = mid ( fstring, midStart + 1, match.firstIndex - midStart )
+			
+			if InStr ( valueStack ( index ), "[url=" ) then
+			  ' url is embedded in the tag
+				urlStr = replace ( valueStack ( index ), "[url=""", "" )
+				urlStr = replace ( urlStr, """]", "" )	
+			else
+			   ' url is between the tags
+				urlStr = midStr
+			end if
 
-	'if opening tag and closing tag is found then...
-	If (oTagpos2 > 0) And (c1TagPos2 > 0) Then
-		'split string at opening tag
-		strArray = Split(ReplaceURLs, oTag2, -1, 1)
+			urlStr = buildUrl ( urlStr, midStr )
+			ReplaceOneUrl = leftStr & urlStr & rightStr
+			exit function
+		end if
+	end if
+  Next ' iterate through all matches
+end function
 
-		ReplaceURLs = ""
-		For Counter = 0 To Ubound(strArray)
-			'if closing url tag is found in string then...
-			If InStr(1, strArray(Counter), c2Tag, 1) > 0 Then
-				'split string at closing url tag
-				strArray2 = Split(strArray(Counter), c2Tag, -1, 1)
-
-				strArray2(0) = replace(strArray2(0), """", " ") ' ## filter out "
-				'strArray2(0) = replace(strArray2(0), "&", " ", 1, -1, 1) ' ## filter out &
-				'strArray2(0) = replace(strArray2(0), "#", " ", 1, -1, 1) ' ## filter out #
-				strArray2(0) = replace(strArray2(0), ";", " ", 1, -1, 1) ' ## filter out ;
-				strArray2(0) = replace(strArray2(0), "+", " ", 1, -1, 1) ' ## filter out +
-				strArray2(0) = replace(strArray2(0), "(", " ", 1, -1, 1) ' ## filter out (
-				strArray2(0) = replace(strArray2(0), ")", " ", 1, -1, 1) ' ## filter out )
-				'strArray2(0) = replace(strArray2(0), "[", " ", 1, -1, 1) ' ## filter out [
-				'strArray2(0) = replace(strArray2(0), "]", " ", 1, -1, 1) ' ## filter out ]
-				'strArray2(0) = replace(strArray2(0), "=", " ", 1, -1, 1) ' ## filter out =
-				strArray2(0) = replace(strArray2(0), "*", " ", 1, -1, 1) ' ## filter out *
-				strArray2(0) = replace(strArray2(0), "'", " ", 1, -1, 1) ' ## filter out '
-				strArray2(0) = replace(strArray2(0), ">", " ", 1, -1, 1) ' ## filter out >
-				strArray2(0) = replace(strArray2(0), "<", " ", 1, -1, 1) ' ## filter out <
-				strArray2(0) = replace(strArray2(0), "javascript", " ", 1, -1, 1) ' ## filter out javascript
-				strArray2(0) = replace(strArray2(0), "jscript", " ", 1, -1, 1) ' ## filter out jscript
-				strArray2(0) = replace(strArray2(0), "vbscript", " ", 1, -1, 1) ' ## filter out vbscript
-
-				If UCase(Left(strArray2(0), 7)) = "HTTP://" Then
-					ReplaceURLs = ReplaceURLs & edit_hrefs(strArray2(0), 1) & strArray2(1)
-				ElseIf UCase(Left(strArray2(0), 8)) = "HTTPS://" Then
-					ReplaceURLs = ReplaceURLs & edit_hrefs(strArray2(0), 2) & strArray2(1)
-				ElseIf UCase(Left(strArray2(0), 4)) = "WWW." Then
-					ReplaceURLs = ReplaceURLs & edit_hrefs(strArray2(0), 3) & strArray2(1)
-				ElseIf UCase(Left(strArray2(0), 7)) = "MAILTO:" Then
-					'ReplaceURLs = ReplaceURLs & edit_hrefs(strArray2(0), 4) & strArray2(1)
-					ReplaceURLs = ReplaceURLs & roTag & strArray2(0) & rc1Tag & strArray2(0) & rc2Tag & strArray2(1)
-				ElseIf UCase(Left(strArray2(0), 6)) = "FTP://" Then
-					ReplaceURLs = ReplaceURLs & edit_hrefs(strArray2(0), 5) & strArray2(1)
-				ElseIf InStr(strArray2(0), "@") > 0 Then
-					ReplaceURLs = ReplaceURLs & edit_hrefs(strArray2(0), 4) & strArray2(1)
-				ElseIf UCase(Left(strArray2(0), 6)) = "FILE:///" Then
-					ReplaceURLs = ReplaceURLs & edit_hrefs(strArray2(0), 7) & strArray2(1)
-				Else
-					ReplaceURLs = ReplaceURLs & roTag & strArray2(0) & rc1Tag & strArray2(0) & rc2Tag & strArray2(1)
-				End If
-			Else
-				ReplaceURLs = ReplaceURLs & strArray(Counter)
-			End If
-		Next
-	End If
-End Function
+Function ReplaceURLs ( strToFormat )
+  dim result
+  
+	do
+		result = ReplaceOneUrl ( strToFormat )
+		if result <> "" then
+			strToFormat = result
+		end if
+	loop until result = ""
+	ReplaceURLs = strToFormat
+end function
 
 
 function isAllowedMember(fForum_ID,fMemberID)

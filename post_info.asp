@@ -360,7 +360,8 @@ if MethodType = "Edit" then
 	if Err_Msg = "" then
 		'## Forum_SQL - Do DB Update
 		strSql = "UPDATE " & strActivePrefix & "REPLY "
-		strSql = strSql & " SET R_MESSAGE = '" & txtMessage & "'"
+		strSql = strSql & " SET R_MESSAGE = '" & txtMessage & vbcrlf & _
+									getSig ( strDBNTUserName ) & "'"
 		if Request.Form("sig") = "yes" and strDSignatures = "1" then
 		 	strSql = strSql & ", R_SIG = 1"
 		else
@@ -927,7 +928,7 @@ if MethodType = "Reply" or MethodType = "ReplyQuote" or MethodType = "TopicQuote
 				Go_Result "Sorry! We have flood control activated.<br />You cannot post within " & strTimeLimit & " seconds of your last post.<br />Please try again after this period of time elapses.", 0
 			end if
 		end if
-
+		
 		txtMessage = ChkString(Request.Form("Message"),"message")
 
 		if txtMessage = " " then
