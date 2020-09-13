@@ -1,5 +1,4 @@
 <!--#INCLUDE FILE="inc_adovbs.asp"-->
-<!--#INCLUDE FILE="serverspecific.asp"-->
 <%
 '#################################################################################
 '## Copyright (C) 2000-02 Michael Anderson, Pierre Gorissen,
@@ -58,9 +57,7 @@ strDBType = "access"
 'strConnString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Server.MapPath("snitz_forums_2000.mdb") '## MS Access 2000 using virtual path
 'strConnString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Server.MapPath("/USERNAME/db/snitz_forums_2000.mdb") '## MS Access 2000 on Brinkster
 
-strConnString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & strBasePath & "\moct_forum1251.mdb" '## MS Access 2000
-strStudentsConnString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & strBasePath & "\moct_students.mdb"		 '## MS Access 2000
-'strStudentsConnString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\inetpub\128\forum_db\moct_students.mdb"		 '## MS Access 2000
+strConnString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\inetpub\128\forum_db\moct_forum1251.mdb" '## MS Access 2000
 
 'strConnString = "DRIVER={Microsoft Access Driver (*.mdb)}; DBQ=" & Server.MapPath("snitz_forums_2000.mdb") '## MS Access 97 using virtual path
 'strConnString = "DRIVER={Microsoft Access Driver (*.mdb)}; DBQ=" & Server.MapPath("/USERNAME/db/snitz_forums_2000.mdb") '## MS Access 97 on Brinkster
@@ -130,8 +127,7 @@ Dim strNTGroups, strAutoLogon, strModeration, strSubscription, strArchiveState, 
 Dim strFloodCheck, strFloodCheckTime, strTimeLimit, strEmailVal, strProhibitNewMembers, strRequireReg, strRestrictReg
 Dim strGroupCategories, strPageBGImageUrl, strImageUrl, strJumpLastPost, strStickyTopic, strShowSendToFriend
 Dim strShowPrinterFriendly, strShowTimer, strTimerPhrase, strShowFormatButtons, strShowSmiliesTable, strShowQuickReply
-Dim SubCount, MySubCount, strInvalidChars
-Dim quoteStyleStr, altQuoteStyleStr, tdStyleStr
+Dim SubCount, MySubCount
 
 strCookieURL = Left(Request.ServerVariables("Path_Info"), InstrRev(Request.ServerVariables("Path_Info"), "/"))
 strUniqueID = "Snitz00"
@@ -399,20 +395,6 @@ strShowQuickReply = Application(strCookieURL & "STRSHOWQUICKREPLY")
 strGBTED = "Вернуться чтобы ввести данные"
 strParagraphFormat1 = "<p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>"
 strBackToForum = "Назад на форум"
-strLegacyFontFace = "Verdana, Arial, Helvetica"
-strQuoteOpen = "<blockquote id=""quote""><font size=""" & strFooterFontSize & """ face=""" & _
-										strDefaultFontFace & """ id=""quote"">"
-strQuoteOpen1 = "<blockquote id=""quote""><font size=""" & strFooterFontSize & """ face=""" & _
-										strLegacyFontFace & """ id=""quote"">"
-strQuoteFontSpec="<font size=""1"">"
-strNewQuoteOpen = chr(10) & "<table width=""90%"" cellspacing=""1"" " & _
-		"cellpadding=""3"" align=""center"" class=""quote""><tr><td class=""quoteTd"">"
-strNewQuoteClose = "</font></td></tr></table><br>" & chr(10)
-strQuoteClose = "</blockquote id=""quote""></font id=""quote"">"
-strRuler = "<hr height=""1"" noshade id=""quote"">"
-
-	' Disallowed characters
-strInvalidChars = "!#$%^&*()=+{}[]|\;:/?>,<'"
 
 if strSecureAdmin = "0" then
 	Session(strCookieURL & "Approval") = "15916941253"

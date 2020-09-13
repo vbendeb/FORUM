@@ -36,26 +36,6 @@
 '## PO Box 200
 '## Harpswell, ME 04079
 '#################################################################################
-
-inputTab=" bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle"" nowrap><b>" &_
-	"<font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ "
-	
-Sub	showYesNow ( fieldN, pickYes )
-    if pickYes = 1 then
-        yp = "selected"
-        np = ""
-    else
-    	np = "selected"
-    	yp = ""
-    end If
-	Response.Write	"<td bgColor=""" & strPopUpTableColor & """ valign=""middle"">" & _
-					"<font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & vbNewLine & _
-					"<select name=""" & fieldN & """>" & vbNewLine & _
-					"<option value=""1"" " & yp & ">Да</option>" & vbNewLine & _
-					"<option value=""0"" " & np & ">Нет</option>" & vbNewLine & _
-					"</select></font></td>" 
-end sub
-	
 Sub DisplayProfileForm
 	on error resume next
 	strMode = Request.QueryString("mode")
@@ -65,8 +45,7 @@ Sub DisplayProfileForm
 			"          <td bgColor=""" & strPageBGColor & """ align=""center""" & strColSpan & "><p><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><b>Все графы отмеченные знаком <font size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """>*</font> должны быть заполнены</b></font>"
 	if lcase(strEmail) = "1" and strEmailVal = "1" then
 		if strMode = "Register" then
-			Response.Write("<br /><small><font color=""" & strHiLiteFontColor & """>Чтобы зарегистрироваться, Вы должны указать действительный Е-mail адрес!</small></font>")
-			Response.Write("<br /><small><font color=""" & strHiLiteFontColor & """>В случае проблем с регистрацией напишите вебмастеру по адресу <a href=""mailto:webmaster@moct.org""> webmaster@moct.org</a></small></font>")
+			Response.Write("<br /><small><font color=""" & strHiLiteFontColor & """>Чтобы зарегистрироваться, Вы должны иcпользовать действительный Е-mail адрес!</small></font>")
 		else
 			if strMode <> "goModify" then
 				Response.Write("<br /><small><font color=""" & strHiLiteFontColor & """>Если Вы изменили Ваш Е-mail адрес, подтверждение будет послано на новый адрес.<br />Пожалуйста проверьте этот адрес, убедитесь что он работает и правильно напечатан!</small></font>")
@@ -86,10 +65,10 @@ Sub DisplayProfileForm
 		Response.Write	"                <td width=""50%"" bgColor=""" & strPopUpTableColor & """ valign=""top"">" & vbNewLine & _
 				"                  <table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""1"">" & vbNewLine & _
 				"                    <tr>" & vbNewLine & _
-				"                      <td align=""center"" bgcolor=""" & strCategoryCellColor & """ colspan=""2""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strCategoryFontColor & """>&nbsp;Контактная Информация&nbsp;</font></b></td>" & vbNewLine & _
+				"                      <td align=""center"" bgcolor=""" & strCategoryCellColor & """ colspan=""2""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strCategoryFontColor & """>&nbsp;Contact Info&nbsp;</font></b></td>" & vbNewLine & _
 				"                    </tr>" & vbNewLine & _
 				"                    <tr>" & vbNewLine & _
-				"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle"" width=""10%"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><font color=""" & strHiLiteFontColor & """>*</font> E-mail адрес:&nbsp;</font></b></td>" & vbNewLine & _
+				"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle"" width=""10%"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><font color=""" & strHiLiteFontColor & """>*</font> Ваш E-mail адрес:&nbsp;</font></b></td>" & vbNewLine & _
 				"                      <td bgColor=""" & strPopUpTableColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><input name=""Email"" size=""25"" maxLength=""50"" value="""
 		if strMode <> "Register" then  Response.Write(rs("M_EMAIL"))
 		Response.Write	""">" & vbNewLine & _
@@ -97,14 +76,31 @@ Sub DisplayProfileForm
 		if strMode <> "Register" then Response.Write(rs("M_EMAIL"))
 		Response.Write	"""></font></td>" & vbNewLine & _
 				"                    </tr>" & vbNewLine
-		Response.Write	"                    <tr valign=""middle"">" & vbNewLine & _
-				"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle"" width=""10%"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """>Разрешаете участникам форума&nbsp;&nbsp;<br />послать Вам E-Mail?:&nbsp;</font></b></td>" & vbNewLine
-		if ( strMode = "Register" ) or ( rs("M_RECEIVE_EMAIL") <> "0" ) then
-			sel = 1
-		else
-	    	sel = 0
+		if strMode = "Register" then
+			Response.Write	"                    <tr>" & vbNewLine & _
+					"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle"" width=""10%"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><font color=""" & strHiLiteFontColor & """>*</font> Подтвердите E-mail адрес:&nbsp;</font></b></td>" & vbNewLine & _
+					"                      <td bgColor=""" & strPopUpTableColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><input name=""Email3"" size=""25"" maxLength=""50"" value=""""></font></td>" & vbNewLine & _
+					"                    </tr>" & vbNewLine
 		end if
-		showYesNow "ReceiveEMail", sel
+		Response.Write	"                    <tr valign=""middle"">" & vbNewLine & _
+				"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle"" width=""10%"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """>Участники форума могут <br />послать Вам E-Mail?:&nbsp;</font></b></td>" & vbNewLine
+		if strMode = "Register" then
+			Response.Write	"                      <td bgColor=""" & strPopUpTableColor & """ valign=""middle""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & vbNewLine & _
+					"                      <select name=""ReceiveEMail"">" & vbNewLine & _
+					"                      	<option value=""1"" selected>Yes</option>" & vbNewLine & _
+					"                      	<option value=""0"">No</option>" & vbNewLine & _
+					"                      </select></font></td>" & vbNewLine
+		else
+			Response.Write	"                      <td bgColor=""" & strPopUpTableColor & """ valign=""middle""><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """>" & vbNewLine & _
+					"                      <select name=""ReceiveEMail"">" & vbNewLine & _
+					"                      	<option value=""1"""
+			if rs("M_RECEIVE_EMAIL") <> "0" then Response.Write(" selected")
+			Response.Write	">Yes</option>" & vbNewLine & _
+					"                      	<option value=""0"""
+			if rs("M_RECEIVE_EMAIL") = "0" then Response.Write(" selected")
+			Response.Write	">No</option>" & vbNewLine & _
+					"                      </select></font></td>" & vbNewLine
+		end if
 		Response.Write	"                    </tr>" & vbNewLine
 		if strMode = "goModify" then
 			Response.Write	"                    <tr>" & vbNewLine & _
@@ -194,7 +190,7 @@ Sub DisplayProfileForm
 					"                      <b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strCategoryFontColor & """>Фото&nbsp;</font></b></td>" & vbNewLine & _
 					"                    </tr>" & vbNewLine & _
 					"                    <tr>" & vbNewLine & _
-					"                      <td " & inputTab & ">Номер фотографии на сайте:&nbsp;</font></b></td>" & vbNewLine & _
+					"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>Номер фотографии на сайте:&nbsp;</font></b></td>" & vbNewLine & _
 					"                      <td bgColor=""" & strPopUpTableColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><input name=""Photo_URL"" size=""25"" maxLength=""255"" value="""
 			if strMode <> "Register" then
 '				if rs("M_PHOTO_URL") <> " " and lcase(rs("M_PHOTO_URL")) <> "http://" then Response.Write(ChkString(rs("M_PHOTO_URL"), "displayimage")) else Response.Write("http://")
@@ -205,16 +201,7 @@ Sub DisplayProfileForm
 				Response.Write("")
 			end if
 			Response.Write	"""></font></td>" & vbNewLine & _
-					"                    </tr>" & vbNewLine & _
-					"<tr><td" & inputTab & ">Показывать аватары участников?:&nbsp;</font></b></td>" & vbNewLine
-			if ( strMode = "Register" ) or ( rs("M_AGE") = "" ) or ( rs("M_AGE") =  "1" ) then
-				sel = 1
-			else
-				sel = 0
-			end if
-			showYesNow "showAvatars", sel
-			Response.Write "</tr>" & vbNewLine
-
+					"                    </tr>" & vbNewLine
 		end if ' strPicture
 		if (strBio + strHobbies + strLNews + strQuote)	> 0 then 
 			if strMode <> "Register" then
@@ -258,10 +245,10 @@ Sub DisplayProfileForm
 	Response.Write	"                <td bgColor=""" & strPopUpTableColor & """ valign=""top"">" & vbNewLine & _
 			"                  <table border=""0"" width=""100%"" cellspacing=""0"" cellpadding=""1"">" & vbNewLine & _
 			"                    <tr>" & vbNewLine & _
-			"                      <td valign=""top"" align=""center"" colspan=""2"" bgcolor=""" & strCategoryCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strCategoryFontColor & """>Ваша информация для Форума</font></b></td>" & vbNewLine & _
+			"                      <td valign=""top"" align=""center"" colspan=""2"" bgcolor=""" & strCategoryCellColor & """><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strCategoryFontColor & """>Basics</font></b></td>" & vbNewLine & _
 			"                    </tr>" & vbNewLine & _
 			"                    <tr>" & vbNewLine & _
-			"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle"" nowrap width=""10%""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><font color=""" & strHiLiteFontColor & """>*</font> Логин (ник для Форума):&nbsp;</font></b></td>" & vbNewLine & _
+			"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle"" nowrap width=""10%""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><font color=""" & strHiLiteFontColor & """>*</font> Логин (имя/ник):&nbsp;</font></b></td>" & vbNewLine & _
 			"                      <td bgColor=""" & strPopUpTableColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & vbNewLine
 	if (strMode = "goEdit") or (strMode = "goModify" and cLng(Request.Form("MEMBER_ID")) = cLng(intAdminMemberID)) then
 		Response.Write	"                      <font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & ChkString(rs("M_NAME"), "display") & "</font>" & vbNewLine & _
@@ -293,7 +280,7 @@ Sub DisplayProfileForm
 	else
 		if strMode = "Register" then
 			Response.Write	"                    <tr>" & vbNewLine & _
-					"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><font color=""" & strHiLiteFontColor & """>*</font> Пароль:&nbsp;</font></b></td>" & vbNewLine & _
+					"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><font color=""" & strHiLiteFontColor & """>*</font> Ваш Пароль:&nbsp;</font></b></td>" & vbNewLine & _
 					"                      <td bgColor=""" & strPopUpTableColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><input name=""Password"" type=""Password"" size=""25"" maxLength=""25"" value=""""></font></td>" & vbNewLine & _
 					"                    </tr>" & vbNewLine & _
 					"                    <tr>" & vbNewLine & _
@@ -316,7 +303,7 @@ Sub DisplayProfileForm
 	end if
 	if strFullName = "1" then
 		Response.Write	"                    <tr>" & vbNewLine & _
-				"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><font color=""" & strHiLiteFontColor & """>*</font> Имя:&nbsp;</font></b></td>" & vbNewLine & _
+				"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><font color=""" & strHiLiteFontColor & """>*</font> Ваше Имя:&nbsp;</font></b></td>" & vbNewLine & _
 				"                      <td bgColor=""" & strPopUpTableColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><input name=""FirstName"" size=""25"" maxLength=""50"" value="""
 		if strMode <> "Register" then Response.Write(rs("M_FIRSTNAME"))
 		Response.Write	"""></font></td>" & vbNewLine & _
@@ -328,6 +315,14 @@ Sub DisplayProfileForm
 		Response.Write	"""></font></td>" & vbNewLine & _
 				"                    </tr>" & vbNewLine
 	end if
+	if strCity = "1" then
+		Response.Write	"                    <tr>" & vbNewLine & _
+				"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><font color=""" & strHiLiteFontColor & """>*</font> Город:&nbsp;</font></b></td>" & vbNewLine & _
+				"                      <td bgColor=""" & strPopUpTableColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><input name=""City"" size=""25"" maxLength=""50"" value="""
+		if strMode <> "Register" then Response.Write(rs("M_CITY"))
+		Response.Write	"""></font></td>" & vbNewLine & _
+				"                    </tr>" & vbNewLine
+	end if
 	if strState = "1" then
 		Response.Write	"                    <tr>" & vbNewLine & _
 				"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><font color=""" & strHiLiteFontColor & """>*</font> Группа:&nbsp;</font></b></td>" & vbNewLine & _
@@ -336,17 +331,9 @@ Sub DisplayProfileForm
 		Response.Write	"""></font></td>" & vbNewLine & _
 				"                    </tr>" & vbNewLine
 	end if
-	if strCity = "1" then
-		Response.Write	"                    <tr>" & vbNewLine & _
-				"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>Город:&nbsp;</font></b></td>" & vbNewLine & _
-				"                      <td bgColor=""" & strPopUpTableColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><input name=""City"" size=""25"" maxLength=""50"" value="""
-		if strMode <> "Register" then Response.Write(rs("M_CITY"))
-		Response.Write	"""></font></td>" & vbNewLine & _
-				"                    </tr>" & vbNewLine
-	end if
 	if strCountry = "1" then
 		Response.Write	"                    <tr>" & vbNewLine & _
-				"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>Страна:&nbsp;</font></b></td>" & vbNewLine & _
+				"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><font color=""" & strHiLiteFontColor & """>*</font> Страна:&nbsp;</font></b></td>" & vbNewLine & _
 				"                      <td bgColor=""" & strPopUpTableColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & vbNewLine & _
 				"                      <select name=""Country"" size=""1"">" & vbNewLine
 		if strMode <> "Register" then
@@ -433,7 +420,7 @@ Sub DisplayProfileForm
 				"                    <tr>" & vbNewLine & _
 				"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""top"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>Подпись:&nbsp;</font></b><br />" & vbNewLine & _
 				"                      <span style=""font-size: 4px;""><br /></span>" & vbNewLine & _
-				"                      <input name=""Preview"" type=""button"" value=""Нажмите для проверки подписи"" onclick=""OpenSigPreview()"">&nbsp;</td>" & vbNewLine & _
+				"                      <input name=""Preview"" type=""button"" value=""Проверка"" onclick=""OpenSigPreview()"">&nbsp;</td>" & vbNewLine & _
 				"                      <td bgColor=""" & strPopUpTableColor & """><textarea name=""Sig"" cols=""25"" rows=""4"">" & Trim(cleancode(strTxtSig)) & "</textarea></td>" & vbNewLine & _
 				"                    </tr>" & vbNewLine
 		if strMode <> "goModify" then
@@ -453,14 +440,18 @@ Sub DisplayProfileForm
 						"                    </tr>" & vbNewLine
 			end if
 			Response.Write	"                    <tr>" & vbNewLine & _
-					"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """>Добавлять Подпись&nbsp;&nbsp;<br />по умолчанию?:&nbsp;</font></b></td>" & vbNewLine
-			if ( strMode = "Register" ) or ( rs("M_SIG_DEFAULT") <> 0 ) then
-				sel = 1
+					"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """>Отметка Подпись<br />по умолчанию?:&nbsp;</font></b></td>" & vbNewLine & _
+					"                      <td bgColor=""" & strPopUpTableColor & """ valign=""middle""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & vbNewLine & _
+					"                      <select name=""fSigDefault"">" & vbNewLine
+			if strMode = "Register" then
+				Response.Write	"                      	<option value=""1"" selected>Yes</option>" & vbNewLine & _
+						"                      	<option value=""0"">No</option>" & vbNewLine
 			else
-				sel = 0
+				Response.Write	"                      	<option value=""1""" & chkSelect(rs("M_SIG_DEFAULT"),1) & ">Yes</option>" & vbNewLine & _
+						"                      	<option value=""0""" & chkSelect(rs("M_SIG_DEFAULT"),0) & ">No</option>" & vbNewLine
 			end if
-			showYesNow "fSigDefault", sel
-			Response.Write	"            </tr>" & vbNewLine
+			Response.Write	"                      </select></font></td>" & vbNewLine & _
+					"                    </tr>" & vbNewLine
 		end if
 	end if
 	if Request.Form("Method_Type") = "Modify" then
@@ -488,7 +479,7 @@ Sub DisplayProfileForm
 	end if
 	if not(strUseExtendedProfile) then
 		Response.Write	"                    <tr>" & vbNewLine & _
-				"                      <td align=""center"" bgcolor=""" & strCategoryCellColor & """ colspan=""2""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strCategoryFontColor & """>&nbsp;Контактная Информация&nbsp;</font></b></td>" & vbNewLine & _
+				"                      <td align=""center"" bgcolor=""" & strCategoryCellColor & """ colspan=""2""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strCategoryFontColor & """>&nbsp;Contact Info&nbsp;</font></b></td>" & vbNewLine & _
 				"                    </tr>" & vbNewLine & _
 				"                    <tr>" & vbNewLine & _
 				"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle"" width=""10%"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><font color=""" & strHiLiteFontColor & """>*</font> E-mail Address:&nbsp;</font></b></td>" & vbNewLine & _
@@ -499,14 +490,31 @@ Sub DisplayProfileForm
 		if strMode <> "Register" then Response.Write(rs("M_EMAIL"))
 		Response.Write	"""></font></td>" & vbNewLine & _
 				"                    </tr>" & vbNewLine
+		if strMode = "Register" then
+			Response.Write	"                    </tr>" & vbNewLine & _
+					"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle"" width=""10%"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><font color=""" & strHiLiteFontColor & """>*</font> E-mail Address Again:&nbsp;</font></b></td>" & vbNewLine & _
+					"                      <td bgColor=""" & strPopUpTableColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><input name=""Email3"" size=""25"" maxLength=""50"" value=""""></font></td>" & vbNewLine & _
+					"                    </tr>" & vbNewLine
+		end if
 		Response.Write	"                    <tr valign=""middle"">" & vbNewLine & _
 				"                      <td bgColor=""" & strPopUpTableColor & """ align=""right"" valign=""middle"" width=""10%"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """>Allow Forum Members<br />to Send you E-Mail?:&nbsp;</font></b></td>" & vbNewLine
-		if ( strMode = "Register" ) or ( rs("M_RECEIVE_EMAIL") <> "0" ) then
-			sel = 1
+		if strMode = "Register" then
+			Response.Write	"                      <td bgColor=""" & strPopUpTableColor & """ valign=""middle""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & vbNewLine & _
+					"                      <select name=""ReceiveEMail"">" & vbNewLine & _
+					"                      	<option value=""1"" selected>Yes</option>" & vbNewLine & _
+					"                      	<option value=""0"">No</option>" & vbNewLine & _
+					"                      </select></font></td>" & vbNewLine
 		else
-	    	sel = 0
+			Response.Write	"                      <td bgColor=""" & strPopUpTableColor & """ valign=""middle""><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """>" & vbNewLine & _
+					"                      <select name=""ReceiveEMail"">" & vbNewLine & _
+					"                      	<option value=""1"""
+			if rs("M_RECEIVE_EMAIL") <> "0" then Response.Write(" selected")
+			Response.Write	">Yes</option>" & vbNewLine & _
+					"                      	<option value=""0"""
+			if rs("M_RECEIVE_EMAIL") = "0" then Response.Write(" selected")
+			Response.Write	">No</option>" & vbNewLine & _
+					"                      </select></font></td>" & vbNewLine
 		end if
-		showYesNow "ReceiveEMail", sel
 		Response.Write	"                    </tr>" & vbNewLine
 		if strAIM = "1" then
 			Response.Write	"                    <tr>" & vbNewLine & _

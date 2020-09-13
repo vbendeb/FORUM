@@ -224,7 +224,6 @@ mypage = cLng(mypage)
 
 '## Forum_SQL - Find all records with the search criteria in them
 strSql = "SELECT M_NAME, M_EMAIL, MEMBER_ID, M_DATE, M_IP, M_KEY, M_APPROVE"
-strSql = strSql & ", M_FIRSTNAME, M_LASTNAME, M_STATE"
 strSql2 = " FROM " & strMemberTablePrefix & "MEMBERS_PENDING"
 strSql3 = " ORDER BY MEMBER_ID ASC;"
 
@@ -375,9 +374,6 @@ else
 	mM_IP = 4
 	mM_KEY = 5
 	mM_APPROVE = 6
-	mM_FIRSTNAME = 7
-	mM_LASTNAME = 8
-	mM_STATE = 9
 
 	rec = 1
 	intI = 0
@@ -392,9 +388,6 @@ else
 		MP_MemberIP = arrMemberData(mM_IP, iMember)
 		MP_MemberKey = arrMemberData(mM_KEY, iMember)
 		MP_MemberApprove = arrMemberData(mM_APPROVE, iMember)
-		MP_MemberFirstname = arrMemberData(mM_FIRSTNAME, iMember)
-		MP_MemberLastName = arrMemberData(mM_LASTNAME, iMember)
-		MP_MemberState = arrMemberData(mM_STATE, iMember)
 
 		if intI = 1 then 
 			CColor = strAltForumCellColor
@@ -414,9 +407,8 @@ else
 		else
 			days2 = days
 		end if
-		titleStringV = """" & MP_MemberFirstName & " " & MP_MemberLastName  & " " & MP_MemberState & " " & MP_MemberIp & """"
 		Response.Write	"              <tr>" & vbNewLine & _
-				"                <td title=" & titleStringV & " bgcolor=""" & CColor & """ align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strForumFontColor & """>" & MP_MemberName & "</font></td>" & vbNewLine & _
+				"                <td bgcolor=""" & CColor & """ align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strForumFontColor & """>" & chkString(MP_MemberName, "display") & "</a></font></td>" & vbNewLine & _
 				"                <td bgcolor=""" & CColor & """ align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strForumFontColor & """>" & MP_MemberEMail & "</font></td>" & vbNewLine & _
 				"                <td bgcolor=""" & CColor & """ align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strForumFontColor & """>" & ChkDate(MP_MemberDate,"",true) & "</font></td>" & vbNewLine & _
 				"                <td bgcolor=""" & CColor & """ align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color="""
@@ -485,27 +477,7 @@ sub DropDownPaging(fnum)
 	end if
 end sub
 
-function compileEmail ( mname, mkey )
-	compileEmail = 	"Здравствуйте " & mname & vbNewline & vbNewline
-	compileEmail = compileEmail & "Вы получили это сообщение от " & strForumTitle & " чтобы подтвердить Вашу регистрацию на форуме " & strForumURL & "." & vbNewline & vbNewline
-	
-	if strAuthType="db" then
-		compileEmail = compileEmail & "Нажмите на ссылку в следующей строке, чтобы завершить регистрацию." & vbNewline & vbNewLine
-		compileEmail = compileEmail & strForumURL & "register.asp?actkey=" & mkey & vbNewline & vbNewline
-	end if
-	
-	compileEmail = compileEmail & "Вы можете изменить вашу информацию на форуме нажав на ссылку  ""Профиль"" вверху страницы форума." & vbNewline & vbNewline
-	compileEmail = compileEmail & "В случае проблем с регистрацией или использованием форума напишите по адресу webmaster@moct.org" & vbNewline & vbNewline
-	compileEmail = compileEmail & "Добро пожаловать на наш Форум!"
-
-end function
-
 sub EmailMembers(who)
-
-	strFrom = strSender
-	strFromName = strForumTitle
-	strSubject = "Регистрация на " & strForumTitle
-	
 	if who = "all" then
 		'## Forum_SQL - Get all pending members
 		strSql = "SELECT M_NAME, M_EMAIL, M_KEY, M_APPROVE"
@@ -541,7 +513,17 @@ sub EmailMembers(who)
 					'## E-mails Message to all pending members.
 					strRecipientsName = MP_MemberName
 					strRecipients = MP_MemberEMail
-					strMessage = compileEmail ( MP_MemberName, MP_MemberKey )
+					strFrom = strSender
+					strFromName = strForumTitle
+					strsubject = strForumTitle & " Registration "
+					strMessage = "Hello " & MP_MemberName & vbNewline & vbNewline
+					strMessage = strMessage & "You received this message from " & strForumTitle & " because you have registered for a new account which allows you to post new messages and reply to existing ones on the forums at " & strForumURL & vbNewline & vbNewline
+					if strAuthType="db" then
+						strMessage = strMessage & "Please click on the link below to complete your registration." & vbNewline & vbNewLine
+						strMessage = strMessage & strForumURL & "register.asp?actkey=" & MP_MemberKey & vbNewline & vbNewline
+					end if
+					strMessage = strMessage & "You can change your information at our website by selecting the ""Profile"" link." & vbNewline & vbNewline
+					strMessage = strMessage & "Happy Posting!"
 %>
 <!--#INCLUDE FILE="inc_mail.asp" -->
 <%
@@ -562,7 +544,17 @@ sub EmailMembers(who)
 				'## E-mails Message to all pending members.
 				strRecipientsName = rsApprove("M_NAME")
 				strRecipients = rsApprove("M_EMAIL")
-				strMessage = compileEmail ( rsApprove("M_NAME"), rsApprove("M_KEY") )
+				strFrom = strSender
+				strFromName = strForumTitle
+				strsubject = strForumTitle & " Registration "
+				strMessage = "Hello " & rsApprove("M_NAME") & vbNewline & vbNewline
+				strMessage = strMessage & "You received this message from " & strForumTitle & " because you have registered for a new account which allows you to post new messages and reply to existing ones on the forums at " & strForumURL & vbNewline & vbNewline
+				if strAuthType="db" then
+					strMessage = strMessage & "Please click on the link below to complete your registration." & vbNewline & vbNewLine
+					strMessage = strMessage & strForumURL & "register.asp?actkey=" & rsApprove("M_KEY") & vbNewline & vbNewline
+				end if
+				strMessage = strMessage & "You can change your information at our website by selecting the ""Profile"" link." & vbNewline & vbNewline
+				strMessage = strMessage & "Happy Posting!"
 %>
 <!--#INCLUDE FILE="inc_mail.asp" -->
 <%

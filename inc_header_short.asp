@@ -59,13 +59,15 @@ mLev = cLng(chkUser(strDBNTUserName, Request.Cookies(strUniqueID & "User")("Pwor
 chkCookie = 0
 
 Response.Write	"<html>" & vbNewline & _
-		"<head>" & vbNewline
-Response.Write "<meta http-equiv=""Content-Type""; content=""text/html""; charset=""windows-1251"">" & vbNewline
-Response.Write "<title>" & strForumTitle & "</title>" & vbNewline
+		vbNewline & _
+		"<head>" & vbNewline & _
+		"<title>" & strForumTitle & "</title>" & vbNewline
+
 
 '## START - REMOVAL, MODIFICATION OR CIRCUMVENTING THIS CODE WILL VIOLATE THE SNITZ FORUMS 2000 LICENSE AGREEMENT
 Response.Write	"<meta name=""copyright"" content=""This Forum code is Copyright (C) 2000-02 Michael Anderson, Pierre Gorissen, Huw Reddick and Richard Kinser, Non-Forum Related code is Copyright (C) " & strCopyright & """>" & vbNewline 
 '## END   - REMOVAL, MODIFICATION OR CIRCUMVENTING THIS CODE WILL VIOLATE THE SNITZ FORUMS 2000 LICENSE AGREEMENT
+Response.Write "<meta http-equiv=""Content-Type""; content=""text/html""; charset=""windows-1251"">" & vbNewline
 
 Response.Write	"<style><!--" & vbNewline & _
 		"a:link    {color:" & strLinkColor & ";text-decoration:" & strLinkTextDecoration & "}" & vbNewline & _
@@ -77,7 +79,6 @@ Response.Write	"<style><!--" & vbNewline & _
 		".spnMessageText a:hover   {color:" & strForumHoverFontColor & ";text-decoration:" & strForumHoverTextDecoration & "}" & vbNewLine & _
 		".spnMessageText a:active  {color:" & strForumActiveLinkColor & ";text-decoration:" & strForumActiveTextDecoration & "}" & vbNewLine & _
 		"input.radio {background:" & strPopUpTableColor & ";color:#000000}" & vbNewLine & _
-		quoteStyleStr & altQuoteStyleStr & tdStyleStr & _
 		"--></style>" & vbNewline & _
 		"</head>" & vbNewline & _
 		vbNewline & _

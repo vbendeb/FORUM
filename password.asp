@@ -136,18 +136,18 @@ elseif Request.Form("pwkey") <> "" and Request.Form("mode") = "UpdateIt" then
 						"          <td><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHiLiteFontColor & """><ul>" & Err_Msg & "</ul></font></td>" & vbNewLine & _
 						"        </tr>" & vbNewLine & _
 						"      </table>" & vbNewLine & _
-						"      " & strParagraphFormat1 & "<a href=""JavaScript:history.go(-1)"">Нажмите здесь чтобы попробовать ещё раз</a></font></p>" & vbNewLine
+						"      " & strParagraphFormat1 & "<a href=""JavaScript:history.go(-1)"">Go Back To Enter Data</a></font></p>" & vbNewLine
 				rsKey.close
 				set rsKey = nothing
 				WriteFooter
 				Response.End 
 			end if
 		end if
-		Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>Ваш новый пароль запомнен!</font></p>" & vbNewLine & _
-				"      " & strParagraphFormat1 & "Вы теперь можете войти на форум"
-		if strAuthType = "db" then Response.Write(" введя Ваше имя пользователя и новый пароль<br> (автоматический переход на страницу входа на форум через 5 секунд...)")
+		Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>Your Password has been updated!</font></p>" & vbNewLine & _
+				"      " & strParagraphFormat1 & "You may now login"
+		if strAuthType = "db" then Response.Write(" пользуясь Вашим именем пользователя и новым паролем")
 		Response.Write	".</font></p>" & vbNewLine
-		Response.Write	"      <meta http-equiv=""Refresh"" content=""5; URL=default.asp"">" & vbNewLine
+		Response.Write	"      <meta http-equiv=""Refresh"" content=""2; URL=default.asp"">" & vbNewLine
 		Response.Write	"      " & strParagraphFormat1 & "<a href=""default.asp"">" & strBackToForum & "</font></a></p>" & vbNewLine
 	end if
 
@@ -223,7 +223,7 @@ else
 	end if
 	Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>Первая часть окончена!</font></p>" & vbNewLine & _
 			"      " & strParagraphFormat1 & "Пожалуйста выполние действия перечисленные в сообщении высланном по адресу <b>" & ChkString(PWMember_Email,"") & "</b> чтобы завершить этот процесс.</font></p>" & vbNewLine
-'	Response.Write	"      <meta http-equiv=""Refresh"" content=""5; URL=default.asp"">" & vbNewLine
+	Response.Write	"      <meta http-equiv=""Refresh"" content=""5; URL=default.asp"">" & vbNewLine
 	Response.Write	"      " & strParagraphFormat1 & "<a href=""default.asp"">Назад на Форум</font></a></p>" & vbNewLine
 end if 
 WriteFooter
@@ -240,23 +240,23 @@ sub ShowForm()
 			"                <td colspan=""2"" align=""center"" bgcolor=""" & strHeadCellColor & """ valign=""top""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Забыли пароль?</font></b></td>" & vbNewline & _
 			"              </tr>" & vbNewLine & _
 			"              <tr>" & vbNewline & _
-			"                <td colspan=""2"" align=""left"" bgcolor=""" & strForumCellColor & """ valign=""top""><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """ color=""" & strForumFontColor & """>Этот процесс включает в себя 3 шага:<br>" & vbNewLine & _
+			"                <td colspan=""2"" align=""left"" bgcolor=""" & strForumCellColor & """ valign=""top""><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """ color=""" & strForumFontColor & """>Этот процесс включает в себя 3 шага:" & vbNewLine & _
 			"                <ul>" & vbNewLine & _
-			"                 <font color=""" & strHiLiteFontColor & """><li><b>Первый шаг:</b><br />Введите в форму внизу Ваше имя пользователя (ник) и e-mail использованный при регистрации и нажмите кнопку ""Отправить"". В результате вам будет послано e-mail сообщение с информацией о дальнейших действиях.</li></font>" & vbNewLine & _
+			"                 <font color=""" & strHiLiteFontColor & """><li><b>Первый шаг:</b><br />Введите Ваше логин имя/ник и e-mail адрес в форму для получения e-mail сообщения с кодом для Вашей идентификации и нажмите кнопку Submit.</li></font>" & vbNewLine & _
 			"                <li><b>Второй шаг:</b><br />Проверьте Вашу e-mail почту и нажмите на линк в сообщении для возврата на эту страницу.</li>" & vbNewLine & _
-			"                <li><b>Третий шаг:</b><br />Введите новый пароль.</li>" & vbNewLine & _
+			"                <li><b>Третий шаг:</b><br />Выберите новый пароль.</li>" & vbNewLine & _
 			"                </ul></font></td>" & vbNewline & _
 			"              </tr>" & vbNewLine & _
 			"              <tr>" & vbNewLine & _
-			"                <td width=""50%"" align=""right"" bgcolor=""" & strForumCellColor & """ nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>&nbsp;Имя пользователя (Ник):&nbsp;</font></b></td>" & vbNewLine & _
+			"                <td width=""50%"" align=""right"" bgcolor=""" & strForumCellColor & """ nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>&nbsp;UserName:&nbsp;</font></b></td>" & vbNewLine & _
 			"                <td width=""50%"" bgcolor=""" & strForumCellColor & """><input type=""text"" name=""Name"" size=""25"" maxLength=""25""></td>" & vbNewLine & _
 			"              </tr>" & vbNewLine & _
 			"              <tr>" & vbNewLine & _
-			"                <td width=""50%"" align=""right"" bgcolor=""" & strForumCellColor & """ nowrap><b><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>Адрес email (электронной почты):&nbsp;</font></b></td>" & vbNewLine & _
+			"                <td width=""50%"" align=""right"" bgcolor=""" & strForumCellColor & """ nowrap><b><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>E-mail Address:&nbsp;</font></b></td>" & vbNewLine & _
 			"                <td width=""50%"" bgcolor=""" & strForumCellColor & """><input type=""text"" name=""Email"" size=""25"" maxLength=""50""></td>" & vbNewLine & _
 			"              </tr>" & vbNewLine & _
 			"              <tr>" & vbNewLine & _
-			"                <td colspan=""2"" bgcolor=""" & strForumCellColor & """ align=""center""><input type=""submit"" value=""Отправить"" id=""Submit1"" name=""Submit1"">&nbsp;&nbsp;&nbsp;<input type=""reset"" value=""Сброс"" id=""Submit1"" name=""Submit1""></td>" & vbNewLine & _
+			"                <td colspan=""2"" bgcolor=""" & strForumCellColor & """ align=""center""><input type=""submit"" value=""Submit"" id=""Submit1"" name=""Submit1"">&nbsp;&nbsp;&nbsp;<input type=""reset"" value=""Reset"" id=""Submit1"" name=""Submit1""></td>" & vbNewLine & _
 			"              </tr>" & vbNewLine & _
 			"            </table>" & vbNewLine & _
 			"          </td>" & vbNewLine & _
@@ -275,22 +275,26 @@ sub ShowForm2()
 			"          <td bgcolor=""" & strTableBorderColor & """>" & vbNewline & _
 			"            <table border=""0"" width=""100%"" cellspacing=""1"" cellpadding=""4"">" & vbNewline & _
 			"              <tr>" & vbNewline & _
-			"                <td colspan=""2"" align=""center"" bgcolor=""" & strHeadCellColor & """ valign=""top""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Выбор нового пароля</font></b></td>" & vbNewline & _
+			"                <td colspan=""2"" align=""center"" bgcolor=""" & strHeadCellColor & """ valign=""top""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHeadFontColor & """>Forgot your Password?</font></b></td>" & vbNewline & _
+			"              </tr>" & vbNewLine & _
 			"              <tr>" & vbNewline & _
-			"                <td colspan=""2"" align=""left"" bgcolor=""" & strForumCellColor & """ valign=""top""><font face=""" & strDefaultFontFace & """ color=""" & strForumFontColor & """>" & vbNewLine  & _
-			"                <font color=""" & strHiLiteFontColor & """><b><li>Введите новый пароль дважды и нажмите кнопку ""Отправить"":</li></b></font>" & vbNewLine & _
+			"                <td colspan=""2"" align=""left"" bgcolor=""" & strForumCellColor & """ valign=""top""><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """ color=""" & strForumFontColor & """>This is a 3 step process:" & vbNewLine & _
+			"                <ul>" & vbNewLine & _
+			"                <li><b>First Step:</b><br />Enter your username and e-mail address in the form below to receive an e-mail containing a code to verify that you are who you say you are. <b>(COMPLETED)</b></li>" & vbNewLine & _
+			"                <li><b>Second Step:</b><br />Check your e-mail and then click on the link that is provided to return to this page. <b>(COMPLETED)</b></li>" & vbNewLine & _
+			"                <font color=""" & strHiLiteFontColor & """><li><b>Third Step:</b><br />Choose your new password.</li></font>" & vbNewLine & _
 			"                </ul></font></td>" & vbNewline & _
 			"              </tr>" & vbNewLine & _
        			"              <tr>" & vbNewLine & _
-			"                <td width=""50%"" bgColor=""" & strForumCellColor & """ align=""right"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>Новый пароль:&nbsp;</font></b></td>" & vbNewLine & _
+			"                <td width=""50%"" bgColor=""" & strForumCellColor & """ align=""right"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>Password:&nbsp;</font></b></td>" & vbNewLine & _
 			"                <td width=""50%"" bgColor=""" & strForumCellColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><input name=""Password"" type=""Password"" size=""25"" maxLength=""25"" value=""""></font></td>" & vbNewLine & _
 			"              </tr>" & vbNewLine & _
        			"              <tr>" & vbNewLine & _
-			"                <td width=""50%"" bgColor=""" & strForumCellColor & """ align=""right"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>Новый пароль ещё раз:&nbsp;</font></b></td>" & vbNewLine & _
+			"                <td width=""50%"" bgColor=""" & strForumCellColor & """ align=""right"" nowrap><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>Password Again:&nbsp;</font></b></td>" & vbNewLine & _
 			"                <td width=""50%"" bgColor=""" & strForumCellColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><input name=""Password2"" type=""Password"" maxLength=""25"" size=""25"" value=""""></font></td>" & vbNewLine & _
 			"              </tr>" & vbNewLine & _
 			"              <tr>" & vbNewLine & _
-			"                <td colspan=""2"" bgcolor=""" & strForumCellColor & """ align=""center""><input type=""submit"" value=""Отправить"" id=""Submit1"" name=""Submit1"">&nbsp;&nbsp;&nbsp;<input type=""reset"" value=""Сбросить"" id=""Submit1"" name=""Submit1""></td>" & vbNewLine & _
+			"                <td colspan=""2"" bgcolor=""" & strForumCellColor & """ align=""center""><input type=""submit"" value=""Submit"" id=""Submit1"" name=""Submit1"">&nbsp;&nbsp;&nbsp;<input type=""reset"" value=""Reset"" id=""Submit1"" name=""Submit1""></td>" & vbNewLine & _
 			"              </tr>" & vbNewLine & _
 			"            </table>" & vbNewLine & _
 			"          </td>" & vbNewLine & _

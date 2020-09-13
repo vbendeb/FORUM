@@ -159,27 +159,6 @@ end if
 rsTopic.close
 set rsTopic = nothing
 
-
-' do we want this user to see avatars?
-showAvatars = 1
-if strAuthType="nt" then
-  thisUser = Session(strCookieURL & "username")
-else 
-  thisUser = ChkString(strDBNTUserName, "display")
-end if
-
-strSql = "select M_AGE FROM " & strMemberTablePrefix & "MEMBERS where M_NAME='" & thisUser & "'"
-
-set ma = my_Conn.Execute(TopSQL(strSql,1))
-
-if not ma.EOF and ma ("M_AGE")= "0" then
-	showAvatars = 0
-end if
-
-ma.close
-set ma = nothing
-
-
 if recTopicCount = "" then
 	if ArchiveView <> "true" then
 		Response.Redirect("topic.asp?ARCHIVE=true&" & Request.QueryString)
@@ -687,15 +666,11 @@ else
 					"                    </tr>" & vbNewLine & _
 					"                    <tr>" & vbNewLine & _
 					"                      <td valign=""top"" height=""100%""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strForumFontColor & """><span class=""spnMessageText"" id=""msg"">"
-			Reply_Content =	formatStr(Reply_Content)
 			if Request.QueryString("SearchTerms") <> "" then
-				Reply_Content =	SearchHiLite(Reply_Content)
+				Response.Write	SearchHiLite(formatStr(Reply_Content))
+			else
+				Response.Write	formatStr(Reply_Content)
 			end if
-			if intI = 1 then
-				Reply_Content = replace ( Reply_Content, "=""quote""", "=""quoteAlt""" )
-				Reply_Content = replace ( Reply_Content, "=""quoteFirst""", "=""quoteAltFirst""" )
-			end if
-			Response.Write	Reply_Content
 			Response.Write	"</span id=""msg""></font></td>" & vbNewLine & _
 					"                    </tr>" & vbNewLine
 			if CanShowSignature = 1 and Reply_Sig = 1 and Reply_MemberSig <> "" then
@@ -1183,20 +1158,19 @@ end sub
 'Обрабатываем как url (http://www...), так и PhotoID(obsolete, храним URL)
 function GetPhotoLinkStr(AuthorID)
 	str = ""
-	if ( showAvatars <> 1 ) then
-		GetPhotoLinkStr = str
-		exit function
-	end if
 	set rs = Server.CreateObject("ADODB.Recordset")
 	strSql = "SELECT MEMBER_ID,M_PHOTO_URL FROM FORUM_MEMBERS WHERE MEMBER_ID=" & AuthorID & ";"
 	rs.open strSql, my_Conn, adOpenForwardOnly, adLockReadOnly, adCmdText
 	if not rs.EOF and (trim(rs("M_PHOTO_URL")) <> "") and (lcase(rs("M_PHOTO_URL")) <> "http://") then
-		url = GetPhotoUrlByID( rs("M_PHOTO_URL") )
-		smallUrl = Replace(url,"-big","")
-		str = "<a href=""" & url & """><IMG src=""" & smallUrl & """height=""100""></IMG></a>" 
+		url = rs("M_PHOTO_URL")
+		if inStr (url,"tp:") > 0 then
+			str = "<IMG src=""" & url & """height=""100""> </IMG>"
+		else
+			str = "<IMG src=""" & GetPhotoUrlByID(rs("M_PHOTO_URL")) & """height=""100""> </IMG>" 
+		end if	
 	end if	
 	'Если задана большая фотография - убрать суффикс '-big'  и получить превью версию фото
-	GetPhotoLinkStr = str
+	GetPhotoLinkStr = Replace(str,"-big","")
 end function
 
 'Получить  URL фото по номеру 

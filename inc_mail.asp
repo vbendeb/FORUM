@@ -140,7 +140,6 @@ select case lcase(strMailMode)
         	Err.Clear
 
 		objNewMail.To = strRecipients
-		objNewMail.Cc = strSender
 		objNewMail.From = strSender
 		objNewMail.Subject = strSubject
 		objNewMail.TextBody = strMessage

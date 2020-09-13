@@ -56,9 +56,6 @@ end if
 <!--#INCLUDE FILE="inc_profile.asp" -->
 <%
 Dim strURLError
-Dim strEmailUsed
-
-strEmailUsed = "<li>Этот адрес э-почты уже задействован, пожалуйста выберите другой</li>"
 
 if Instr(1,Request.Form("refer"),"search.asp",1) > 0 then
 	strRefer = "search.asp"
@@ -91,7 +88,6 @@ end if
 
 '############################# E-mail Validation Mod #################################
 if Request.QueryString("verkey") <> "" then
-    dim flag
 	verkey = chkString(Request.QueryString("verkey"),"SQLString")
 
 	'###Forum_SQL
@@ -101,19 +97,32 @@ if Request.QueryString("verkey") <> "" then
 
 	set rsKey = my_Conn.Execute (strSql)
 
-	flag = rsKey.EOF or rsKey.BOF
-	if not flag then
-		flag = strComp(verkey,rsKey("M_KEY")) <> 0
-	end if
-	if flag then
+	if rsKey.EOF or rsKey.BOF then
 		'Error message to user
-		Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """><b>Проблема!</b></font></p>" & vbNewLine & _
-				"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHiLiteFontColor & """>Ваш код подтверждения не совпадает со значением находящимся в нашей базе данных.<br />Попытайтесь поменять ваш адрес ещё раз (нажмите дла этого на ссылку ""Профиль"" вверху справа).<br />Если это не поможет - пошлите сообщение <a href=""mailto:" & strSender & """>Администратору</a> форума.</font></p>" & vbNewLine & _
+		Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """><b>There is a Problem!</b></font></p>" & vbNewLine & _
+				"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHiLiteFontColor & """>Your verification key did not match the one that we have in our database.<br />Please try changing your e-mail address again by clicking the Profile link at the top right hand corner.<br />If this problem persists, please contact the <a href=""mailto:" & strSender & """>Administrator</a> of this forum.</font></p>" & vbNewLine & _
 				"      " & strParagraphFormat1 & "<a href=""default.asp"">Вернуться на Форум</a></font></p>" & vbNewLine
+		rsKey.close
+		set rsKey = nothing
+		WriteFooter
+		Response.End
+	elseif strComp(verkey,rsKey("M_KEY")) <> 0 then
+		'Error message to user
+		Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """><b>There is a Problem!</b></font></p>" & vbNewLine & _
+				"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHiLiteFontColor & """>Your verification key did not match the one that we have in our database.<br />Please try changing your e-mail address again by clicking the Profile link at the top right hand corner.<br />If this problem persists, please contact the <a href=""mailto:" & strSender & """>Administrator</a> of this forum.</font></p>" & vbNewLine & _
+				"      " & strParagraphFormat1 & "<a href=""default.asp"">Вернуться на Форум</a></font></p>" & vbNewLine
+		rsKey.close
+		set rsKey = nothing
+		WriteFooter
+		Response.End
 	elseif rsKey("M_EMAIL") = rsKey("M_NEWEMAIL") then
-		Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """><b>Ваш адрес уже подтверждён!</b></font></p>" & vbNewLine & _
-				"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHiLiteFontColor & """>Ваш новый адрес уже сохранён в нашей базе данных.<br />Если проблема повторится - пошлите сообщение <a href=""mailto:" & strSender & """>Администратору</a> форума.</font></p>" & vbNewLine & _
+		Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """><b>E-mail Already Verified!</b></font></p>" & vbNewLine & _
+				"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHiLiteFontColor & """>Your e-mail address has already been updated in our database.<br />If this problem persists, please contact the <a href=""mailto:" & strSender & """>Administrator</a> of this forum.</font></p>" & vbNewLine & _
 				"      " & strParagraphFormat1 & "<a href=""default.asp"">Вернуться на Форум</a></font></p>" & vbNewLine
+		rsKey.close
+		set rsKey = nothing
+		WriteFooter
+		Response.End
 	else
 		userID = rsKey("MEMBER_ID")
 
@@ -124,14 +133,14 @@ if Request.QueryString("verkey") <> "" then
 		strSql = strSql & " WHERE MEMBER_ID = " & userID
 
 		my_Conn.Execute (strSql),,adCmdText + adExecuteNoRecords
-		Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """><b>Ваш адрес э-почты успешно изменён,</b></font></p>" & vbNewLine & _
-				"      " & strParagraphFormat1 & "Новый адрес сохранён в базе данных форума.</font></p>" & vbNewLine & _
+		Response.Write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """><b>Your E-mail Address Has Been Updated!</b></font></p>" & vbNewLine & _
+				"      " & strParagraphFormat1 & "Your new e-mail address has been successfully updated in our database.</font></p>" & vbNewLine & _
 				"      " & strParagraphFormat1 & "<a href=""default.asp"">Вернуться на Форум</a></font></p>" & vbNewLine
+		rsKey.close
+		set rsKey = nothing
+		WriteFooter
+		Response.End
 	end if
-	rsKey.close
-	set rsKey = nothing
-	WriteFooter
-	Response.End
 end if
 '#################################################################################
 
@@ -1083,7 +1092,7 @@ select case Request.QueryString("mode")
 				if rs.BOF and rs.EOF then 
 					'## Do Nothing - proceed
 				else 
-					Err_Msg = Err_Msg & strEmailUsed
+					Err_Msg = Err_Msg & "<li>E-mail Address already in use, Please Choose Another</li>"
 				end if
 				set rs = nothing
 
@@ -1097,7 +1106,7 @@ select case Request.QueryString("mode")
 					if rs.BOF and rs.EOF then 
 						'## Do Nothing
 					else
-						Err_Msg = Err_Msg & strEmailUsed
+						Err_Msg = Err_Msg & "<li>E-mail Address already in use, Please Choose Another</li>"
 					end if
 					set rs = nothing
 
@@ -1110,7 +1119,7 @@ select case Request.QueryString("mode")
 					if rs.BOF and rs.EOF then 
 						'## Do Nothing
 					else
-						Err_Msg = Err_Msg & strEmailUsed
+						Err_Msg = Err_Msg & "<li>E-mail Address already in use, Please Choose Another</li>"
 					end if
 					set rs = nothing
 				end if
@@ -1218,11 +1227,9 @@ select case Request.QueryString("mode")
 				strsql = strsql & ",	M_LINK1 = '" & ChkString(Trim(regLink1),"SQLString") & "'"
 				strSql = strSql & ",	M_LINK2 = '" & ChkString(Trim(regLink2),"SQLString") & "'"
 			end if
-'			if strAge = "1" then
-'				strSql = strsql & ",	M_AGE = '" & ChkString(Request.Form("Age"),"SQLString") & "'"
-'			end if
-			strSql = strsql & ", M_AGE ='" & cLng(Request.Form("showAvatars")) & "'"
-
+			if strAge = "1" then
+				strSql = strsql & ",	M_AGE = '" & ChkString(Request.Form("Age"),"SQLString") & "'"
+			end if
 			if strAgeDOB = "1" then
 				strSql = strsql & ",	M_DOB = '" & ChkString(Request.Form("AgeDOB"),"SQLString") & "'"
 			end if
@@ -1266,15 +1273,15 @@ select case Request.QueryString("mode")
 				Response.Cookies(strUniqueID & "User").Expires = dateAdd("d", intCookieDuration, strForumTimeAdjust)
 			end if
 
-			Response.Write	"    <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>Профиль(ваши данные на форуме) изменён</font></p>" & vbNewLine
+			Response.Write	"    <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>Profile Updated.</font></p>" & vbNewLine
 			if lcase(Request.Form("Email")) <> lcase(Request.Form("Email2")) and lcase(strEmail) = "1" and strEmailVal = "1" then
 				if (strUseExtendedProfile) then
-					Response.Write	"    " & strParagraphFormat1 & "Изменился Ваш адрес э-почты. Для подтверждения этого изменения<br />выполните действия перечисленные в собщении, только что отправленом на Ваш новый адрес.</font></p>" & vbNewLine & _
+					Response.Write	"    " & strParagraphFormat1 & "Your e-mail address has changed. To complete your e-mail address change,<br />please follow the instructions in the e-mail that has been sent to your new e-mail address.</font></p>" & vbNewLine & _
 							"    " & strParagraphFormat1 & "<a href="""
 					if InStr(1,Request.Form("refer"),"register.asp",1) > 0 then Response.Write("default.asp") else Response.Write(Request.Form("refer"))
 					Response.Write	""">" & strBackToForum & "</a>" & vbNewLine
 				else
-					Response.Write	"    " & strParagraphFormat1 & "Изменился Ваш адрес э-почты. Для подтверждения этого изменения<br />выполните действия перечисленные в собщении, только что отправленом на Ваш новый адрес.<br /><br /></font></p>" & vbNewLine
+					Response.Write	"    " & strParagraphFormat1 & "Your e-mail address has changed. To complete your e-mail address change, please follow the instructions in the e-mail that has been sent to your new e-mail address.<br /><br /></font></p>" & vbNewLine
 				end if
 			else
 				if (strUseExtendedProfile) then
@@ -1283,13 +1290,13 @@ select case Request.QueryString("mode")
 				end if
 			end if
 		else
-			Response.Write	"    <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """>Проблема с Вашими данными</font></p>" & vbNewLine & _
+			Response.Write	"    <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """ color=""" & strHiLiteFontColor & """>There Was A Problem With Your Details</font></p>" & vbNewLine & _
 					"      <table align=""center"">" & vbNewLine & _
 					"        <tr>" & vbNewLine & _
 					"          <td align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHiLiteFontColor & """><ul>" & Err_Msg & "</ul></font></td>" & vbNewLine & _
 					"        </tr>" & vbNewLine & _
 					"      </table>" & vbNewLine & _
-					"    " & strParagraphFormat1 & "<a href=""JavaScript:onClick=history.go(-1)"">Ввести данные ещё раз</a></font></p>" & vbNewLine
+					"    " & strParagraphFormat1 & "<a href=""JavaScript:onClick=history.go(-1)"">Go Back To Enter Data</a></font></p>" & vbNewLine
 			if strUseExtendedProfile then
 				Response.Write	"    " & strParagraphFormat1 & "<a href=""" & strRefer & """>Вернуться на Форум</a></font></p>" & vbNewLine
 			end if 
@@ -1380,7 +1387,7 @@ select case Request.QueryString("mode")
 						if rs.BOF and rs.EOF then
 							'## Do Nothing - proceed
 						Else
-							Err_Msg = Err_Msg & strEmailUsed
+							Err_Msg = Err_Msg & "<li>E-mail Address already in use, Please Choose Another</li>"
 						end if
 						set rs = nothing
 
@@ -1394,7 +1401,7 @@ select case Request.QueryString("mode")
 							if rs.BOF and rs.EOF then 
 								'## Do Nothing
 							else
-								Err_Msg = Err_Msg & strEmailUsed
+								Err_Msg = Err_Msg & "<li>E-mail Address already in use, Please Choose Another</li>"
 							end if
 							set rs = nothing
 
@@ -1407,7 +1414,7 @@ select case Request.QueryString("mode")
 							if rs.BOF and rs.EOF then 
 								'## Do Nothing
 							else
-								Err_Msg = Err_Msg & strEmailUsed
+								Err_Msg = Err_Msg & "<li>E-mail Address already in use, Please Choose Another</li>"
 							end if
 							set rs = nothing
 						end if
@@ -1560,7 +1567,7 @@ select case Request.QueryString("mode")
 						my_Conn.Execute (strSql),,adCmdText + adExecuteNoRecords
 					end if
 
-					Response.Write	"    <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>Профиль(ваши данные на форуме) изменён.</font></p>" & vbNewLine
+					Response.Write	"    <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>Profile Updated.</font></p>" & vbNewLine
 					if lcase(Request.Form("Email")) <> lcase(Request.Form("Email2")) and lcase(strEmail) = "1" and strEmailVal = "1" then
 						if (strUseExtendedProfile) then
 							Response.Write	"      " & strParagraphFormat1 & "Ваш e-mail адрес изменен. Подтверждение будет послано на новый e-mail адрес.</font></p>" & vbNewLine & _
@@ -1583,7 +1590,7 @@ select case Request.QueryString("mode")
 							"          <td align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strHiLiteFontColor & """><ul>" & Err_Msg & "</ul></font></td>" & vbNewLine & _
 							"        </tr>" & vbNewLine & _
 							"      </table>" & vbNewLine & _
-							"    <p align=""center""><font size=""" & strDefaultFontSize & """><a href=""JavaScript:onClick=history.go(-1)"">Ввести данные ещё раз</a></font></p>" & vbNewLine
+							"    <p align=""center""><font size=""" & strDefaultFontSize & """><a href=""JavaScript:onClick=history.go(-1)"">Go Back To Enter Data</a></font></p>" & vbNewLine
 					if strUseExtendedProfile then
 						Response.Write	"    " & strParagraphFormat1 & "<a href=""" & strRefer & """>Вернуться на Форум</a></font></p>" & vbNewLine
 					end if 
@@ -1671,6 +1678,8 @@ End Function
 function GetPhotoUrlByID(PhotoID)
 	str = PhotoID
 	if IsNumeric (PhotoID) then
+'		strStudentsConnString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=c:\moct\forum_db\moct_students.mdb"		 '## MS Access 2000
+		strStudentsConnString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\inetpub\128\forum_db\moct_students.mdb"		 '## MS Access 2000
 		set StudentConn = Server.CreateObject("ADODB.Connection")
 		StudentConn.Open strStudentsConnString
 		set rsStd = Server.CreateObject("ADODB.Recordset")
@@ -1689,6 +1698,8 @@ function GetPhotoIDByURL(url)
 	str = ""
 	url = replace (url,"http://www.moct.org/pictures/","")
 	url = replace (url,"-big.jpg","")
+'	strStudentsConnString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=c:\moct\forum_db\moct_students.mdb"		 '## MS Access 2000
+	strStudentsConnString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\inetpub\128\forum_db\moct_students.mdb"		 '## MS Access 2000
 	set StudentConn = Server.CreateObject("ADODB.Connection")
 	StudentConn.Open strStudentsConnString
 	set rsStd = Server.CreateObject("ADODB.Recordset")

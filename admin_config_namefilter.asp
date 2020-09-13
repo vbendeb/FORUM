@@ -41,7 +41,6 @@
 <!--#INCLUDE FILE="config.asp" -->
 <!--#INCLUDE FILE="inc_sha256.asp"-->
 <!--#INCLUDE FILE="inc_header_short.asp" -->
-<!--#INCLUDE FILE="inc_func_common.asp" -->
 <%
 if Session(strCookieURL & "Approval") <> "15916941253" then
 	scriptname = split(request.servervariables("SCRIPT_NAME"),"/")
@@ -370,4 +369,35 @@ sub DropDownPaging()
 		Response.Write	"                </select>&nbsp;<b>of " & maxpages & "</b></font></td>" & vbNewLine
 	end if
 end sub 
+
+Function IsValidString(sValidate)
+	Dim sInvalidChars
+	Dim bTemp
+	Dim i 
+	' Disallowed characters
+	sInvalidChars = "!#$%^&*()=+{}[]|\;:/?>,<'"
+	for i = 1 To Len(sInvalidChars)
+		if InStr(sValidate, Mid(sInvalidChars, i, 1)) > 0 then bTemp = True
+		if bTemp then Exit For
+	next
+	for i = 1 to Len(sValidate)
+		if Asc(Mid(sValidate, i, 1)) = 160 then bTemp = True
+		if bTemp then Exit For
+	next
+
+	' extra checks
+	' no two consecutive dots or spaces
+	if not bTemp then
+		bTemp = InStr(sValidate, "..") > 0
+	end if
+	if not bTemp then
+		bTemp = InStr(sValidate, "  ") > 0
+	end if
+	if not bTemp then
+		bTemp = (len(sValidate) <> len(Trim(sValidate)))
+	end if 'Addition for leading and trailing spaces
+
+	' if any of the above are true, invalid string
+	IsValidString = Not bTemp
+End Function
 %>

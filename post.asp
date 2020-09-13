@@ -107,16 +107,6 @@ end if
 '## Page-code start
 '#################################################################################
 
-'''''''''''''''''''''''''''''''''''''''''
-	strSql = "SELECT M_STATUS "
-	strSql = strSql & " FROM " & strMemberTablePrefix & "MEMBERS "
-	strSql = strSql & " WHERE MEMBER_ID =" & MemberID
-
-	Set rsCheck = my_Conn.Execute(strSql)
-	if ( rsCheck ("M_STATUS") = 0 ) then
-		Go_Result "Публикация сообщений на Форуме Вам временно запрещена<br>"
-	end if
-'''''''''''''''''''''''''''''''''''''''''
 if request("ARCHIVE") = "true" then
 	strActivePrefix = strTablePrefix & "A_"
 	ArchiveView = "true"
@@ -267,13 +257,13 @@ select case strSelectSize
 		intRows = 12
 	case "3"
 		intCols = 90
-		intRows = 16
+		intRows = 12
 	case "4"
 		intCols = 130
 		intRows = 15
 	case else
-		intCols = 90
-		intRows = 16
+		intCols = 70
+		intRows = 12
 end select
 
 Response.Write	"    <script language=""JavaScript"" type=""text/javascript"" src=""inc_code.js""></script>" & vbNewLine & _
@@ -325,27 +315,28 @@ end select
 if strRqMethod = "Edit" or _
 strRqMethod = "ReplyQuote" then
 	'## Forum_SQL
-	strSql = "SELECT M.M_NAME, M.M_SIG, R.R_AUTHOR, R.R_SIG, R.R_MESSAGE "
+	strSql = "SELECT M.M_NAME, R.R_AUTHOR, R.R_SIG, R.R_MESSAGE "
 	strSql = strSql & " FROM " & strMemberTablePrefix & "MEMBERS M, " & strActivePrefix & "REPLY R "
 	strSql = strSql & " WHERE M.MEMBER_ID = R.R_AUTHOR AND R.REPLY_ID = " & strRqReplyID
 
 	set rs = my_Conn.Execute (strSql)
 	
 	strAuthor = rs("R_AUTHOR")
-	strName = rs("M_NAME" ) 
 
 	if strRqMethod = "Edit" then
-		TxtMsg = dropSig ( fixOldQuotation (rs("R_MESSAGE")), rs ( "M_SIG" ) )
+		TxtMsg = rs("R_MESSAGE")
 	else
 		if strRqMethod = "ReplyQuote" then
-			TxtMsg = quoteMsg ( rs("M_NAME"), rs("R_MESSAGE"), rs ( "M_SIG") )
+			TxtMsg = "[quote][i]Originally posted by " & chkString(rs("M_NAME"),"display") & "[/i]" & vbNewline
+			TxtMsg = TxtMsg & "[br]" & rs("R_MESSAGE") & vbNewline
+			TxtMsg = TxtMsg & "[/quote]"
 		end if
 	end if
 end if
 
 if strRqMethod = "EditTopic" or strRqMethod = "TopicQuote" then
 	'## Forum_SQL
-	strSql = "SELECT M.M_NAME, M.M_SIG, T.CAT_ID, T.FORUM_ID, T.TOPIC_ID, T.T_SUBJECT, T.T_AUTHOR, T.T_STICKY, T.T_SIG, T.T_MESSAGE "
+	strSql = "SELECT M.M_NAME, T.CAT_ID, T.FORUM_ID, T.TOPIC_ID, T.T_SUBJECT, T.T_AUTHOR, T.T_STICKY, T.T_SIG, T.T_MESSAGE "
 	strSql = strSql & " FROM " & strMemberTablePrefix & "MEMBERS M, " & strActivePrefix & "TOPICS T "
 	strSql = strSql & " WHERE M.MEMBER_ID = T.T_AUTHOR AND T.TOPIC_ID = " & strRqTopicID
 
@@ -361,7 +352,9 @@ if strRqMethod = "EditTopic" or strRqMethod = "TopicQuote" then
 		TxtMsg = rs("T_MESSAGE")
 	else
 		if strRqMethod = "TopicQuote" then
-			TxtMsg = quoteMsg ( rs("M_NAME"), rs("T_MESSAGE"), rs ( "M_SIG") )
+			TxtMsg = "[quote][i]Originally posted by " & chkString(rs("M_NAME"),"display") & "[/i]" & vbNewline
+			TxtMsg = TxtMsg & "[br]" & rs("T_MESSAGE") & vbNewline
+			TxtMsg = TxtMsg & "[/quote]"
 		end if
 	end if
 end if
@@ -427,20 +420,67 @@ select case strRqMethod
 	case "Category"
 		btn = "Post New Category"
 	case "Edit", "EditCategory", "EditForum", "EditTopic", "EditURL"
-		btn = "Опубликовать изменения"
+		btn = "Post Changes"
 	case "Forum"
 		btn = "Post New Forum"
 	case "Reply", "ReplyQuote", "TopicQuote"
-		btn = "Опубликовать ответ"
+		btn = "Post New Reply"
 	case "Topic"
-		btn = "Опубликовать новый топик"
+		btn = "Post New Topic"
 	case "URL"
 		btn = "Post New URL"
 	case else
 		btn = "Post"
 end select
 
-Response.Write	vbNewLine & _
+Response.Write	"      <table border=""0"" width=""100%"" align=""center"">" & vbNewLine & _
+		"        <tr>" & vbNewLine & _
+		"          <td width=""33%"" align=""left""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & vbNewLine & _
+		"          " & getCurrentIcon(strIconFolderOpen,"","align=""absmiddle""") & "&nbsp;<a href=""default.asp"" tabindex=""-1"">MOCT Forums</a><br />" & vbNewLine
+if strRqMethod = "EditCategory" then
+	Response.Write	"          " & getCurrentIcon(strIconBar,"","align=""absmiddle""") & getCurrentIcon(strIconFolderOpen,"","align=""absmiddle""") & "&nbsp;" & ChkString(TxtSub,"display") & "<br />" & vbNewLine
+elseif strRqMethod = "EditForum" or strRqMethod = "EditURL" then
+	Response.Write	"          " & getCurrentIcon(strIconBar,"","align=""absmiddle""") & getCurrentIcon(strIconFolderOpen,"","align=""absmiddle""") & "&nbsp;<a href=""default.asp?CAT_ID=" & strRqCatID & """ tabindex=""-1"">" & ChkString(strCatName,"display") & "</a><br />" & vbNewLine
+	Response.Write	"          " & getCurrentIcon(strIconBlank,"","align=""absmiddle""") & getCurrentIcon(strIconBar,"","align=""absmiddle""") & getCurrentIcon(strIconFolderOpen,"","align=""absmiddle""") & "&nbsp;" & ChkString(TxtSub,"display") & "<br />" & vbNewLine
+else
+	if strRqMethod = "Edit" or strRqMethod = "EditTopic" or _
+	strRqMethod = "Reply" or strRqMethod = "ReplyQuote" or _
+	strRqMethod = "Topic" or strRqMethod = "TopicQuote" then 
+		Response.Write	"          " & getCurrentIcon(strIconBar,"","align=""absmiddle""")
+		if blnCStatus <> 0 then
+			Response.Write	getCurrentIcon(strIconFolderOpen,"","align=""absmiddle""")
+		else
+			Response.Write	getCurrentIcon(strIconFolderClosed,"","align=""absmiddle""")
+		end if
+		Response.Write	"&nbsp;<a href=""default.asp?CAT_ID=" & strRqCatId & """ tabindex=""-1"">" & ChkString(Cat_Name,"display") & "</a><br />" & vbNewLine
+		Response.Write	"          " & getCurrentIcon(strIconBlank,"","align=""absmiddle""") & getCurrentIcon(strIconBar,"","align=""absmiddle""")
+		if blnFStatus <> 0 and blnCStatus <> 0 then
+			Response.Write	getCurrentIcon(strIconFolderOpen,"","align=""absmiddle""")
+		else
+			if strRqMethod <> "Topic" then
+				Response.Write	getCurrentIcon(strIconFolderClosed,"","align=""absmiddle""")
+			else
+				Response.Write	getCurrentIcon(strIconFolderClosedTopic,"","align=""absmiddle""")
+			end if
+		end if
+		Response.Write	"&nbsp;<a href=""forum.asp?FORUM_ID=" & strRqForumId & """ tabindex=""-1"">" & ChkString(Forum_Subject,"display") & "</a><br />" & vbNewLine
+	end if 
+ end if 
+
+if strRqMethod = "Edit" or strRqMethod = "EditTopic" or _
+strRqMethod = "Reply" or strRqMethod = "ReplyQuote" or _
+strRqMethod = "TopicQuote" then 
+	Response.Write	"          " & getCurrentIcon(strIconBlank,"","align=""absmiddle""") & getCurrentIcon(strIconBlank,"","align=""absmiddle""") & getCurrentIcon(strIconBar,"","align=""absmiddle""")
+	if blnTStatus <> 0 and blnFStatus <> 0 and blnCStatus <> 0 then
+		Response.Write	getCurrentIcon(strIconFolderOpenTopic,"","align=""absmiddle""")
+	else
+		Response.Write	getCurrentIcon(strIconFolderClosedTopic,"","align=""absmiddle""")
+	end if
+	Response.Write	"&nbsp;<a href=""topic.asp?TOPIC_ID=" & strRqTopicID & """ tabindex=""-1"">" & ChkString(Topic_Title,"title") & "</a>" & vbNewLine
+end if 
+Response.Write	"          </font></td>" & vbNewLine & _
+		"        </tr>" & vbNewLine & _
+		"      </table>" & vbNewLine & _
 		"      " & strParagraphFormat1 & "" & Msg & "</font></p>" & vbNewLine & _
 		"      <table border=""0"" cellspacing=""0"" cellpadding=""0"" align=""center"">" & vbNewLine & _
 		"        <tr>" & vbNewLine & _
@@ -464,7 +504,6 @@ Response.Write	">" & vbNewLine & _
 		"              <input name=""TOPIC_ID"" type=""hidden"" value=""" & strRqTopicID & """>" & vbNewLine & _
 		"              <input name=""FORUM_ID"" type=""hidden"" value=""" & strRqForumId & """> " & vbNewLine & _
 		"              <input name=""CAT_ID"" type=""hidden"" value=""" & strRqCatID & """>" & vbNewLine & _
-		"              <input name=""M_NAME"" type=""hidden"" value=""" & strName & """>" & vbNewLine & _
 		"              <input name=""Refer"" type=""hidden"" value=""" & replace(strRefer,"&#","#") & """>" & vbNewLine & _
 		"              <input name=""cookies"" type=""hidden"" value=""yes"">" & vbNewLine
 
@@ -479,10 +518,10 @@ if strRqMethod = "Edit" or strRqMethod = "EditTopic" or strRqMethod = "Forum" or
 	if strSelectSize = "1" then Response.Write(" selected")
 	Response.Write	">640  x 480</option>" & vbNewLine & _
 			"                	<option value=""2"""
-	if strSelectSize = "2" then Response.Write(" selected")
+	if strSelectSize = "2" or strSelectSize = "" then Response.Write(" selected")
 	Response.Write	">800  x 600</option>" & vbNewLine & _
 			"                	<option value=""3"""
-	if strSelectSize = "3" or strSelectSize = "" then Response.Write(" selected")
+	if strSelectSize = "3" then Response.Write(" selected")
 	Response.Write	">1024 x 768</option>" & vbNewLine & _
 			"                	<option value=""4"""
 	if strSelectSize = "4" then Response.Write(" selected")
@@ -729,7 +768,8 @@ strRqMethod = "Topic" then
 	Response.Write	"              <tr>" & vbNewLine & _
 			"                <td bgColor=""" & strPopUpTableColor & """ noWrap vAlign=""top"" align=""right""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><b>Тема Дискуссии:</b></font></td>" & vbNewLine & _
 			"                <td bgColor=""" & strPopUpTableColor & """><input maxLength=""50"" name=""Subject"" value=""" & Trim(ChkString(TxtSub,"edit")) & """ size=""40""></td>" & vbNewLine & _
-			"              </tr>" & vbNewLine
+			"              </tr>" & vbNewLine & _
+			"              <script language=""JavaScript"" type=""text/javascript"">document.PostTopic.Subject.focus();</script>" & vbNewLine
 end if
 
 if strRqMethod = "URL" or _
@@ -778,6 +818,10 @@ strRqMethod = "EditTopic" or strRqMethod = "Topic" or strRqMethod = "TopicQuote"
 			"                <td bgColor=""" & strPopUpTableColor & """><textarea cols=""" & intCols & """ name=""Message"" rows=""" & intRows & """ wrap=""VIRTUAL"" onselect=""storeCaret(this);"" onclick=""storeCaret(this);"" onkeyup=""storeCaret(this);"" onchange=""storeCaret(this);"">" & Trim(CleanCode(TxtMsg)) & "</textarea><br /></td>" & vbNewLine & _
 			"              </tr>" & vbNewLine
 end if
+select case strRqMethod
+	case "Reply", "ReplyQuote", "TopicQuote"
+		Response.Write	"              <script language=""JavaScript"" type=""text/javascript"">document.PostTopic.Message.focus();</script>" & vbNewLine
+end select
 
 '#################################################################################
 '## Forum Moderators - listbox Code
@@ -1007,7 +1051,6 @@ if strRqMethod = "Edit" or _
 strRqMethod = "URL" or strRqMethod = "EditURL" or _
 strRqMethod = "Reply" or strRqMethod = "ReplyQuote" or _
 strRqMethod = "EditTopic" or strRqMethod = "Topic" or strRqMethod = "TopicQuote" then 
-    strIncSig = "Поставьте птичку, чтобы автоматически добавить Вашу подпись из профиля.<br />"
 	Response.Write	"              <tr>" & vbNewLine & _
 			"                <td bgColor=""" & strPopUpTableColor & """>&nbsp;</td>" & vbNewLine & _
 			"                <td bgColor=""" & strPopUpTableColor & """>" & vbNewLine
@@ -1016,17 +1059,17 @@ strRqMethod = "EditTopic" or strRqMethod = "Topic" or strRqMethod = "TopicQuote"
 		if (strRqMethod = "Reply" or strRqMethod = "ReplyQuote" or _
 		strRqMethod = "Topic" or strRqMethod = "TopicQuote") and strSignatures = "1" and strDSignatures <> "1" then 
 			Response.Write	"                <font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & vbNewLine & _
-					"                <input name=""Sig"" type=""checkbox"" value=""yes"" checked>" & strIncSig & "</font>" & vbNewLine
+					"                <input name=""Sig"" type=""checkbox"" value=""yes"" checked>Check here to include your profile signature.<br /></font>" & vbNewLine
 		end if
 		if strSignatures = "1" and strDSignatures = "1" then
 	        	Response.Write "                <font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>"
 			if strRqMethod = "Edit" then
-			        Response.Write "<input name=""Sig"" type=""checkbox"" value=""yes""" & chkCheckbox(rs("R_SIG"),1,true) & ">" & strIncSig & "</font>" & vbNewLine
+			        Response.Write "<input name=""Sig"" type=""checkbox"" value=""yes""" & chkCheckbox(rs("R_SIG"),1,true) & ">Check here to include your profile signature.<br /></font>" & vbNewLine
         		elseif strRqMethod = "EditTopic" then
-	        		Response.Write "<input name=""Sig"" type=""checkbox"" value=""yes""" & chkCheckbox(rs("T_SIG"),1,true) & ">" & strIncSig & "</font>" & vbNewLine
+	        		Response.Write "<input name=""Sig"" type=""checkbox"" value=""yes""" & chkCheckbox(rs("T_SIG"),1,true) & ">Check here to include your profile signature.<br /></font>" & vbNewLine
 			else
 			        intSigDefault = getSigDefault(MemberID)
-			        Response.Write	"<input name=""Sig"" type=""checkbox"" value=""yes""" & chkCheckbox(intSigDefault,1,true) & ">" & strIncSig & "</font>" & vbNewLine
+			        Response.Write	"<input name=""Sig"" type=""checkbox"" value=""yes""" & chkCheckbox(intSigDefault,1,true) & ">Check here to include your profile signature.<br /></font>" & vbNewLine
 			end if 
 		end if 
 		'## Subscribe checkbox start ##
@@ -1283,10 +1326,10 @@ if strAllowForumCode = "1" or strAllowHTML = "1" then
 	strRqMethod = "EditTopic" or _
 	strRqMethod = "Topic" or _
 	strRqMethod = "TopicQuote" then 
-		Response.Write	"&nbsp;<input name=""Preview"" type=""button"" value=""Предварительный просмотр"" onclick=""OpenPreview()"">"
+		Response.Write	"&nbsp;<input name=""Preview"" type=""button"" value="" Preview "" onclick=""OpenPreview()"">"
 	end if 
 end if
-Response.Write	"&nbsp;<input name=""Reset"" type=""reset"" value=""Стереть всё"" tabindex=""-1""></td>" & vbNewline & _
+Response.Write	"&nbsp;<input name=""Reset"" type=""reset"" value=""Reset Fields"" tabindex=""-1""></td>" & vbNewline & _
 		"              </tr>" & vbNewline & _
 		"              </form>" & vbNewLine & _
 		"            </table>" & vbNewline & _
@@ -1432,32 +1475,5 @@ function Go_Result(message)
 			"      <meta http-equiv=""Refresh"" content=""2; URL=default.asp"">"
 	WriteFooter
 	Response.end
-end function
-
-function dropSig ( message, sig )
-  Dim regEx
-  Set regEx = New RegExp
-  
-	if sig <> "" then
-		sig = replace ( sig, "[", "\[" )
-		sig = replace ( sig, "]", "\]" )
-		sig = replace ( sig, ")", "\)" )
-		sig = replace ( sig, "(", "\(" )
-		
-		' get rid of the signature - not needed in quotation
-		regEx.Pattern = sig & "$"
-		message = regEx.replace( message, "" )
-	end if
-	
-	dropSig = message
-	
-end function
-
-function quoteMsg ( uname, umessage, usig )
-  
-	quoteMsg = "[quote=""" & chkString( uname,"display") & """]" & vbNewline
-	quoteMsg = quoteMsg & dropSig ( fixOldQuotation ( umessage ), usig )
-	
-	quoteMsg = quoteMsg & "[/quote]" & vbCrLf
 end function
 %>

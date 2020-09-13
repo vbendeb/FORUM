@@ -45,7 +45,6 @@ Dim NewConfig
 ResponseCode = Request.QueryString("RC")
 %>
 <!--#INCLUDE FILE="inc_sha256.asp"-->
-<!--#INCLUDE FILE="inc_func_common.asp"-->
 <%
 Dim strCurrentDateTime
 Dim strlhDateTime
@@ -4484,6 +4483,37 @@ function DateToStr(dtDateTime)
 
 	DateToStr = year(dtDateTime) & doublenum(Month(dtdateTime)) & doublenum(Day(dtdateTime)) & doublenum(Hour(dtdateTime)) & doublenum(Minute(dtdateTime)) & doublenum(Second(dtdateTime)) & ""
 end function
+
+Function IsValidString(sValidate)
+	Dim sInvalidChars
+	Dim bTemp
+	Dim i 
+	' Disallowed characters
+	sInvalidChars = "!#$%^&*()=+{}[]|\;:/?>,<'"
+	for i = 1 To Len(sInvalidChars)
+		if InStr(sValidate, Mid(sInvalidChars, i, 1)) > 0 then bTemp = True
+		if bTemp then Exit For
+	next
+	for i = 1 to Len(sValidate)
+		if Asc(Mid(sValidate, i, 1)) = 160 then bTemp = True
+		if bTemp then Exit For
+	next
+
+	' extra checks
+	' no two consecutive dots or spaces
+	if not bTemp then
+		bTemp = InStr(sValidate, "..") > 0
+	end if
+	if not bTemp then
+		bTemp = InStr(sValidate, "  ") > 0
+	end if
+	if not bTemp then
+		bTemp = (len(sValidate) <> len(Trim(sValidate)))
+	end if 'Addition for leading and trailing spaces
+
+	' if any of the above are true, invalid string
+	IsValidString = Not bTemp
+End Function
 
 function CheckSelected(ByVal chkval1, chkval2)
 	if IsNumeric(chkval1) then chkval1 = cLng(chkval1)

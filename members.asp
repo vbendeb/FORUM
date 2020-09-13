@@ -1,4 +1,11 @@
 <%@CODEPAGE=1251%>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title></title>
+</head>
+
 <%
 '#################################################################################
 '## Copyright (C) 2000-02 Michael Anderson, Pierre Gorissen,
@@ -439,7 +446,6 @@ else
 		Members_MemberLastPostDate = arrMemberData(mM_LASTPOSTDATE, iMember)
 		Members_MemberLastHereDate = arrMemberData(mM_LASTHEREDATE, iMember)
 		Members_MemberDate = arrMemberData(mM_DATE, iMember)
-		userNameV = ChkString(Members_MemberName,"display")
 		
 		'Ш.Е. Вставляю столбец группы
 		Members_MemberState = arrMemberData(mM_STATE, iMember)
@@ -454,36 +460,36 @@ else
 		Response.Write	"              <tr>" & vbNewLine & _
 				"                <td bgcolor=""" & CColor & """ align=""center"">" & vbNewLine
 		if strUseExtendedProfile then
-			Response.Write	"                <a href=""pop_profile.asp?mode=display&id=" & Members_MemberID & """" & dWStatus("View " & userNameV & "'s Profile") & ">"
+			Response.Write	"                <a href=""pop_profile.asp?mode=display&id=" & Members_MemberID & """" & dWStatus("View " & ChkString(Members_MemberName,"display") & "'s Profile") & ">"
 		else
-			Response.Write	"                <a href=""JavaScript:openWindow3('pop_profile.asp?mode=display&id=" & Members_MemberID & "')""" & dWStatus("View " & userNameV & "'s Profile") & ">"
+			Response.Write	"                <a href=""JavaScript:openWindow3('pop_profile.asp?mode=display&id=" & Members_MemberID & "')""" & dWStatus("View " & ChkString(Members_MemberName,"display") & "'s Profile") & ">"
 		end if
 		if Members_MemberStatus = 0 then
-			Response.Write	getCurrentIcon(strIconProfileLocked,"View " & userNameV & "'s Profile","align=""absmiddle"" hspace=""0""")
+			Response.Write	getCurrentIcon(strIconProfileLocked,"View " & ChkString(Members_MemberName,"display") & "'s Profile","align=""absmiddle"" hspace=""0""")
 		else 
-			Response.Write	getCurrentIcon(strIconProfile,"View " & userNameV & "'s Profile","align=""absmiddle"" hspace=""0""")
+			Response.Write	getCurrentIcon(strIconProfile,"View " & ChkString(Members_MemberName,"display") & "'s Profile","align=""absmiddle"" hspace=""0""")
 		end if 
 		Response.Write	"</a>" & vbNewLine
 		if strAIM = "1" and Trim(Members_MemberAIM) <> "" then
-			Response.Write	"                <a href=""JavaScript:openWindow('pop_messengers.asp?mode=AIM&ID=" & Members_MemberID & "')""" & dWStatus("Send " & userNameV & " an AOL message") & ">" & getCurrentIcon(strIconAIM,"Send " & userNameV & " an AOL message","align=""absmiddle"" hspace=""0""") & "</a>" & vbNewLine
+			Response.Write	"                <a href=""JavaScript:openWindow('pop_messengers.asp?mode=AIM&ID=" & Members_MemberID & "')""" & dWStatus("Send " & ChkString(Members_MemberName,"display") & " an AOL message") & ">" & getCurrentIcon(strIconAIM,"Send " & ChkString(Members_MemberName,"display") & " an AOL message","align=""absmiddle"" hspace=""0""") & "</a>" & vbNewLine
 		end if
 		if strICQ = "1" and Trim(Members_MemberICQ) <> "" then
-			Response.Write	"                <a href=""JavaScript:openWindow('pop_messengers.asp?mode=ICQ&ID=" & Members_MemberID & "')""" & dWStatus("Send " & userNameV & " an ICQ Message") & ">" & getCurrentIcon(strIconICQ,"Send " & userNameV & " an ICQ Message","align=""absmiddle"" hspace=""0""") & "</a>" & vbNewLine
+			Response.Write	"                <a href=""JavaScript:openWindow('pop_messengers.asp?mode=ICQ&ID=" & Members_MemberID & "')""" & dWStatus("Send " & ChkString(Members_MemberName,"display") & " an ICQ Message") & ">" & getCurrentIcon(strIconICQ,"Send " & ChkString(Members_MemberName,"display") & " an ICQ Message","align=""absmiddle"" hspace=""0""") & "</a>" & vbNewLine
 		end if
 		if strMSN = "1" and Trim(Members_MemberMSN) <> "" then
-			Response.Write	"                <a href=""JavaScript:openWindow('pop_messengers.asp?mode=MSN&ID=" & Members_MemberID & "')""" & dWStatus("Click to see " & userNameV & "'s MSN Messenger address") & ">" & getCurrentIcon(strIconMSNM,"Click to see " & userNameV & "'s MSN Messenger address","align=""absmiddle"" hspace=""0""") & "</a>" & vbNewLine
+			Response.Write	"                <a href=""JavaScript:openWindow('pop_messengers.asp?mode=MSN&ID=" & Members_MemberID & "')""" & dWStatus("Click to see " & ChkString(Members_MemberName,"display") & "'s MSN Messenger address") & ">" & getCurrentIcon(strIconMSNM,"Click to see " & ChkString(Members_MemberName,"display") & "'s MSN Messenger address","align=""absmiddle"" hspace=""0""") & "</a>" & vbNewLine
 		end if
 		if strYAHOO = "1" and Trim(Members_MemberYAHOO) <> "" then
-			Response.Write	"                <a href=""http://edit.yahoo.com/config/send_webmesg?.target=" & ChkString(Members_MemberYAHOO, "urlpath") & "&.src=pg"" target=""_blank""" & dWStatus("Send " & userNameV & " a Yahoo! Message") & ">" & getCurrentIcon(strIconYahoo,"Send " & userNameV & " a Yahoo! Message","align=""absmiddle"" hspace=""0""") & "</a>" & vbNewLine
+			Response.Write	"                <a href=""http://edit.yahoo.com/config/send_webmesg?.target=" & ChkString(Members_MemberYAHOO, "urlpath") & "&.src=pg"" target=""_blank""" & dWStatus("Send " & ChkString(Members_MemberName,"display") & " a Yahoo! Message") & ">" & getCurrentIcon(strIconYahoo,"Send " & ChkString(Members_MemberName,"display") & " a Yahoo! Message","align=""absmiddle"" hspace=""0""") & "</a>" & vbNewLine
 		end if
 		Response.Write	"                </td>" & vbNewLine & _
 				"                <td bgcolor=""" & CColor & """><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & vbNewLine
 		if strUseExtendedProfile then
-			Response.Write	"                <span class=""spnMessageText""><a href=""pop_profile.asp?mode=display&id=" & Members_MemberID & """ title=" & getUserInfo ( userNameV ) & dWStatus("View " & userNameV & "'s Profile") & ">"
+			Response.Write	"                <span class=""spnMessageText""><a href=""pop_profile.asp?mode=display&id=" & Members_MemberID & """ title=""View " & ChkString(Members_MemberName,"display") & "'s Profile""" & dWStatus("View " & ChkString(Members_MemberName,"display") & "'s Profile") & ">"
 		else
-			Response.Write	"                <span class=""spnMessageText""><a href=""JavaScript:openWindow3('pop_profile.asp?mode=display&id=" & Members_MemberID & "')"" title=""View this" & getUserInfo ( userNameV) & "'s Profile""" & dWStatus("View " & userNameV & "'s Profile") & ">"
+			Response.Write	"                <span class=""spnMessageText""><a href=""JavaScript:openWindow3('pop_profile.asp?mode=display&id=" & Members_MemberID & "')"" title=""View " & ChkString(Members_MemberName,"display") & "'s Profile""" & dWStatus("View " & ChkString(Members_MemberName,"display") & "'s Profile") & ">"
 		end if
-		Response.Write	userNameV & "</a></span></font>"
+		Response.Write	ChkString(Members_MemberName,"display") & "</a></span></font>"
 		if (trim (Members_MemberPhotoUrl) <> "") then
 			Response.Write  "</BR></BR><IMG src=""" & Members_MemberPhotoUrl & """height=""100""> </IMG>"
 		end if
@@ -518,10 +524,7 @@ else
 			Response.Write	"</font></td>" & vbNewLine
 		end if
 		if mlev = 4 or mlev = 3 then
-			Response.Write	"                <td bgcolor=""" & CColor & """ align=""center"" nowrap title=""" & _
-				chkTime(Members_MemberLastHereDate ) & """><font face=""" & strDefaultFontFace & """ size=""" & _
-				strDefaultFontSize & """ color=""" & strForumFontColor & """>" & _
-				ChkDate(Members_MemberLastHereDate,"",false) & "</font></td>" & vbNewLine
+			Response.Write	"                <td bgcolor=""" & CColor & """ align=""center"" nowrap><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strForumFontColor & """>" & ChkDate(Members_MemberLastHereDate,"",false) & "</font></td>" & vbNewLine
 		end if
 		if mlev = 4 or (lcase(strNoCookies) = "1") then
 			Response.Write	"                <td bgcolor=""" & CColor & """ align=""center""><b><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & vbNewLine

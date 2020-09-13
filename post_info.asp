@@ -54,7 +54,7 @@ else
 	strActivePrefix = strTablePrefix
 	ArchiveView = ""
 end if
- 
+
 'Topic Move Check
 Dim blnTopicMoved
 Dim fSubscription
@@ -74,7 +74,6 @@ if strAuthType = "db" and strDBNTUserName = "" then
 end if
 
 MethodType = chkString(Request.Form("Method_Type"),"SQLString")
-PostUserName = chkString(Request.Form("M_NAME"),"SQLString")
 
 if Request.Form("CAT_ID") <> "" then
 	if IsNumeric(Request.Form("CAT_ID")) = True then
@@ -194,7 +193,7 @@ MethodType = "TopicQuote" then
 		strTablePrefix & "FORUM F" &_
 		" WHERE C.CAT_ID = F.CAT_ID " &_
 		" AND F.FORUM_ID = " & Forum_ID & ""
-    end if
+        end if
  
 	set rsStatus = my_Conn.Execute(strSql)
 	if rsStatus.EOF or rsStatus.BOF then
@@ -361,8 +360,7 @@ if MethodType = "Edit" then
 	if Err_Msg = "" then
 		'## Forum_SQL - Do DB Update
 		strSql = "UPDATE " & strActivePrefix & "REPLY "
-		strSql = strSql & " SET R_MESSAGE = '" & txtMessage & vbcrlf & _
-							   getSig ( postUserName ) & "'"
+		strSql = strSql & " SET R_MESSAGE = '" & txtMessage & "'"
 		if Request.Form("sig") = "yes" and strDSignatures = "1" then
 		 	strSql = strSql & ", R_SIG = 1"
 		else
@@ -929,7 +927,7 @@ if MethodType = "Reply" or MethodType = "ReplyQuote" or MethodType = "TopicQuote
 				Go_Result "Sorry! We have flood control activated.<br />You cannot post within " & strTimeLimit & " seconds of your last post.<br />Please try again after this period of time elapses.", 0
 			end if
 		end if
-		
+
 		txtMessage = ChkString(Request.Form("Message"),"message")
 
 		if txtMessage = " " then
@@ -1697,7 +1695,7 @@ sub Go_Result(str_err_Msg, boolOk)
 		Response.write	"      <p align=""center""><font face=""" & strDefaultFontFace & """ size=""" & strHeaderFontSize & """>"
 		select case MethodType
 			case "Edit"
-			        Response.Write("Ваше сообщение отредактировано")
+			        Response.Write("Your Reply Was Changed Successfully!")
 			case "EditCategory"
 			        ' DEM --> Added if statement to handle if subscriptions or moderation is allowed
 			        if strSubscription > 0 or strModeration > 0 then
@@ -1717,7 +1715,7 @@ sub Go_Result(str_err_Msg, boolOk)
 			        if Moderation = "Yes" then
 			                Response.Write("New Reply Posted!  It will appear once approved by a moderator")
 			        else
-			                Response.Write("Ваше сообщение опубликовано")
+			                Response.Write("New Reply Posted!")
 			                DoPCount
 					if ForumCountMPosts <> 0 then
 				                DoUCount Request.Form("UserName")
@@ -1729,7 +1727,7 @@ sub Go_Result(str_err_Msg, boolOk)
 			        if Moderation = "Yes" then
 			                Response.Write("New Topic Posted!  It will appear once approved by a moderator")
 			        else
-			                Response.Write("Новый топик опубликован на форуме")
+			                Response.Write("New Topic Posted!")
 			                DoTCount
 			                DoPCount
 					if ForumCountMPosts <> 0 then
@@ -1758,13 +1756,13 @@ sub Go_Result(str_err_Msg, boolOk)
 			case "Forum"
 				Response.Write("The new forum is ready for users to begin posting!")
 			case "EditForum", "EditCategory"
-				Response.Write("Спасибо за участие в Форуме!")
+				Response.Write("Thank you for your contribution!")
 			case "URL"
 				Response.Write("The new URL is in place!")
 			case "EditURL"
 				Response.Write("Cheers! Have a nice day!")
 			case "Topic", "TopicQuote", "EditTopic", "Reply", "ReplyQuote", "Edit" 
-				Response.Write("Спасибо за участие в Форуме!")
+				Response.Write("Thank you for your contribution!")
 			case else
 				Response.Write("Have a nice day!")
 		end select

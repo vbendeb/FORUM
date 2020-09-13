@@ -48,20 +48,8 @@ Response.Write	"    </td>" & vbNewLine & _
 		"    <td>" & vbNewLine & _
 		"      <table border=""0"" width=""100%"" align=""center"" cellpadding=""4"" cellspacing=""0"">" & vbNewLine & _
 		"        <tr>" & vbNewLine & _
-		"          <td bgcolor=""" & strForumCellColor & """ align=""left"" valign=""center"" nowrap><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """ color=""" & strForumFontColor & """>" & strForumTitle & "</font></td>" & vbNewLine
-
-if request.servervariables("url") = "/FORUM/default.asp" or _
-   request.servervariables("url") = "/FORUM/" or _
-   request.servervariables("url") = "/FORUM/Default.asp"then
-		Response.Write "<td align=""right"" valign=""top"" nowrap>" & _
-			"<a href=""http://www2.clustrmaps.com/counter/maps.php?url=http://www.moct.org/FORUM"" id=""clustrMapsLink"">" & _
-			"<img src=""http://www2.clustrmaps.com/counter/index2.php?url=http://www.moct.org/FORUM"" " & _
-			"style=""border:1px solid;"" alt=""Откуда нас посещают"" title=""Откуда нас посещают"" id=""clustrMapsImg"" " & _
-			"onError=""this.onError=null; this.src='http://clustrmaps.com/images/clustrmaps-back-soon.jpg'; document.getElementById('clustrMapsLink').href='http://clustrmaps.com'"" /></a>" & _
-		              "</td>" & vbNewLine
-end if
-Response.Write	_
-		"          <td bgcolor=""" & strForumCellColor & """ align=""right"" valign=""center"" nowrap><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """ color=""" & strForumFontColor & """>&copy; " & strCopyright & "</font></td>" & vbNewLine & _
+		"          <td bgcolor=""" & strForumCellColor & """ align=""left"" valign=""top"" nowrap><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """ color=""" & strForumFontColor & """>" & strForumTitle & "</font></td>" & vbNewLine & _
+		"          <td bgcolor=""" & strForumCellColor & """ align=""right"" valign=""top"" nowrap><font face=""" & strDefaultFontFace & """ size=""" & strFooterFontSize & """ color=""" & strForumFontColor & """>&copy; " & strCopyright & "</font></td>" & vbNewLine & _
 		"          <td bgcolor=""" & strForumCellColor & """ width=""10"" nowrap><a href=""#top""" & dWStatus("Go To Top Of Page...") & " tabindex=""-1"">" & getCurrentIcon(strIconGoUp,"Go To Top Of Page","align=""right""") & "</a></td>" & vbNewLine & _
 		"        </tr>" & vbNewLine & _
 		"      </table>" & vbNewLine & _
@@ -90,10 +78,6 @@ Response.Write	"</acronym></a></font></td>" & vbNewline
 Response.Write	"  </tr>" & vbNewLine & _
 		"</table>" & vbNewLine & _
 		"</font>" & vbNewLine & _
-		"<script src=""http://www.google-analytics.com/urchin.js"" type=""text/javascript""></script>" & vbNewLine & _
-		"<script type=""text/javascript"">" & vbNewLine & _
-		"_uacct = ""UA-1670907-1"";" & vbNewLine & _
-		"urchinTracker();</script>" & vbNewLine & _
 		"</body>" & vbNewLine & _
 		"</html>" & vbNewLine
 

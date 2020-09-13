@@ -43,7 +43,6 @@
 <!--#INCLUDE FILE="inc_header.asp" -->
 <!--#INCLUDE FILE="inc_func_member.asp" -->
 <!--#INCLUDE FILE="inc_func_posting.asp"-->
-<!--#INCLUDE FILE="inc_func_common.asp"-->
 <!--#include file="inc_profile.asp"-->
 <%
 Dim strURLError
@@ -212,20 +211,20 @@ if strProhibitNewMembers <> "1" then
 
 		if strAutoLogon <> 1 then
 			if trim(Request.Form("Name")) = "" then
-				Err_Msg = Err_Msg & "<li>Вы обязяны выбрать Логин(Ник)</li>"
+				Err_Msg = Err_Msg & "<li>You must choose a UserName</li>"
 			end if
 		end if
 
 		'## Forum_SQL
 		strSql = "SELECT M_NAME FROM " & strMemberTablePrefix & "MEMBERS "
 		strSql = strSql & " WHERE M_NAME = '" & ChkString(Trim(Request.Form("Name")), "SQLString") &"'"
+
 		set rs = my_Conn.Execute (strSql)
 
 		if rs.BOF and rs.EOF then
 			'## Do Nothing
 		else
-			Err_Msg = Err_Msg & "<li>Имя пользователя <b>" & TRIM ( Request.Form("Name")) & _
-								 "</b> уже занято, пожалуйста выберите другое</li>"
+			Err_Msg = Err_Msg & "<li>Имя пользователя уже занято, пожалуйста выберите другое</li>"
 		end if
 
 		rs.close
@@ -255,11 +254,17 @@ if strProhibitNewMembers <> "1" then
 			chkNameBadWords(trim(Request.Form("Name")))
 		end if
 		if not IsValidString(trim(Request.Form("Name"))) then
-			Err_Msg = Err_Msg & "<li>Символы " & strInvalidChars & " нельзя использовать в логине</li>"
+			Err_Msg = Err_Msg & "<li>Эти символы нельзя использовать в bvtyb gjkmpjdfntkz  !#$%^&*()=+{}[]|\;:/?>,<' </li>"
 		end if
 		'## NT authentication no additional password needed
 		if strAuthType = "db" then
-			Err_Msg = Err_Msg & commonValidateString ( "Password", "Пароль" )
+			if not IsValidString(trim(Request.Form("Password"))) then
+				Err_Msg = Err_Msg & "<li>Эти символы нельзя использовать в gfhjkt  !#$%^&*()=+{}[]|\;:/?>,<' </li>"
+			end if
+
+			if trim(Request.Form("Password")) = "" then
+				Err_Msg = Err_Msg &  "<li>Вы обязаны пользоваться паролем</li>"
+			end if
 
 			if Len(Request.Form("Password")) > 25 then
 				Err_Msg = Err_Msg & "<li>Длина пароля не может превышать 25 символов</li>"
@@ -271,19 +276,19 @@ if strProhibitNewMembers <> "1" then
 		end if
 
 		If strAutoLogon <> 1 then
-		    Dim emailErr
-		    emailErr = commonValidateString ( "Email", "E-mail адрес" )
-			Err_Msg = Err_Msg & emailErr
-			
-			if ( emailErr = "" ) and ( EmailField(Request.Form("Email")) = 0 ) then
-				Err_Msg = Err_Msg & "<li><b>" & Request.Form("Email") & "</b> некорректный адрес электронной почты</li>"
+			if Request.Form("Email") = "" then
+				Err_Msg = Err_Msg & "<li>Вы обязаны ввести адрес электронной почты</li>"
+			end if
+
+			if Request.Form("Email") <> Request.Form("Email3") then
+				Err_Msg = Err_Msg & "<li>Адреса электронной почты не совпадают.</li>"
+			end if
+
+			if EmailField(Request.Form("Email")) = 0 then
+				Err_Msg = Err_Msg & "<li>Вы обязаны ввести адрес электронной почты</li>"
 			end if
 		end if
-		
-		Err_Msg = Err_Msg & commonValidateString ( "FirstName", "Имя" )
-		Err_Msg = Err_Msg & commonValidateString ( "LastName", "Фамилия" )
-		Err_Msg = Err_Msg & commonValidateString ( "State", "Группа" )
-		
+
 		if strMSN = "1" and trim(Request.Form("MSN")) <> "" then
 			if EmailField(Request.Form("MSN")) = 0 then
 				Err_Msg = Err_Msg & "<li>You Must enter a valid MSN Messenger Username</li>"
@@ -293,9 +298,8 @@ if strProhibitNewMembers <> "1" then
 		if strAuthType = "nt" and ChkAccountReg = "true" then
 			Err_Msg = Err_Msg & "<li>NT User Account already registered.</li>"
 		end if
-        Dim emailTakenMsg
-        emailTakenMsg = "<li>Этот адрес электронной почты уже зарегистрирован, введите другой</li>"
-		if ( strUniqueEmail = "1" ) and ( trim ( Request.Form("Email") ) <> "" ) then
+
+		if strUniqueEmail = "1" then
 			'## Forum_SQL
 			strSql = "SELECT M_EMAIL FROM " & strMemberTablePrefix & "MEMBERS "
 			strSql = strSql & " WHERE M_EMAIL = '" & Trim(chkString(Request.Form("Email"),"SQLString")) &"'"
@@ -303,35 +307,39 @@ if strProhibitNewMembers <> "1" then
 			set rs = my_Conn.Execute(TopSQL(strSql,1))
 
 			if rs.BOF and rs.EOF then
-				if strEmail = "1" and strEmailVal = "1" then
-					'## Forum_SQL
-					strSql = "SELECT M_EMAIL FROM " & strMemberTablePrefix & "MEMBERS_PENDING "
-					strSql = strSql & " WHERE M_EMAIL = '" & Trim(chkString(Request.Form("Email"),"SQLString")) &"'"
-					
-					set rs = nothing
-					set rs = my_Conn.Execute(TopSQL(strSql,1))
-
-					if rs.BOF and rs.EOF then
-						'## Forum_SQL
-						strSql = "SELECT M_NEWEMAIL FROM " & strMemberTablePrefix & "MEMBERS "
-						strSql = strSql & " WHERE M_NEWEMAIL = '" & Trim(ChkString(Request.Form("Email"),"SQLString")) &"'"
-
-						set rs = nothing
-						set rs = my_Conn.Execute(TopSQL(strSql,1))
-
-						if rs.BOF and rs.EOF then
-							'## Do Nothing
-						else
-							Err_Msg = Err_Msg & emailTakenMsg
-						end if
-					else
-						Err_Msg = Err_Msg & emailTakenMsg
-					end if
-			end if
+				'## Do Nothing
 			else
-				Err_Msg = Err_Msg & emailTakenMsg
+				Err_Msg = Err_Msg & "<li>Этот адрес электронной почты уже зарегистрирован, введите другой</li>"
 			end if
 			set rs = nothing
+
+			if strEmail = "1" and strEmailVal = "1" then
+				'## Forum_SQL
+				strSql = "SELECT M_EMAIL FROM " & strMemberTablePrefix & "MEMBERS_PENDING "
+				strSql = strSql & " WHERE M_EMAIL = '" & Trim(chkString(Request.Form("Email"),"SQLString")) &"'"
+
+				set rs = my_Conn.Execute(TopSQL(strSql,1))
+
+				if rs.BOF and rs.EOF then
+					'## Do Nothing
+				else
+					Err_Msg = Err_Msg & "<li>Этот адрес электронной почты уже зарегистрирован, введите другой</li>"
+				end if
+				set rs = nothing
+
+				'## Forum_SQL
+				strSql = "SELECT M_NEWEMAIL FROM " & strMemberTablePrefix & "MEMBERS "
+				strSql = strSql & " WHERE M_NEWEMAIL = '" & Trim(ChkString(Request.Form("Email"),"SQLString")) &"'"
+
+				set rs = my_Conn.Execute(TopSQL(strSql,1))
+
+				if rs.BOF and rs.EOF then
+					'## Do Nothing
+				else
+					Err_Msg = Err_Msg & "<li>Этот адрес электронной почты уже зарегистрирован, введите другой</li>"
+				end if
+				set rs = nothing
+			end if
 		end if
 		if not IsValidURL(trim(Request.Form("Homepage"))) then
 			Err_Msg = Err_Msg & "<li>Homepage URL: Invalid URL" & strURLError & "</li>"
@@ -511,20 +519,16 @@ if strProhibitNewMembers <> "1" then
 				strsql = strsql & ", ''"
 				strSql = strSql & ", ''"
 			end if
-'			if strAge = "1" then
-'				strSql = strsql & ", '" & ChkString(Request.Form("Age"),"SQLString") & "'"
-'			else
-'				strSql = strsql & ", ''"
-'			end if
-
-			strSql = strsql & ", '" & cLng(Request.Form("showAvatars")) & "'"
-
+			if strAge = "1" then
+				strSql = strsql & ", '" & ChkString(Request.Form("Age"),"SQLString") & "'"
+			else
+				strSql = strsql & ", ''"
+			end if
 			if strAgeDOB = "1" then
 				strSql = strsql & ", '" & ChkString(Request.Form("AgeDOB"),"SQLString") & "'"
 			else
 				strSql = strsql & ", ''"
 			end if
-
 			if strMarStatus = "1" then
 				strSql = strSql & ", '" & ChkString(Request.Form("MarStatus"),"SQLString") & "'"
 			else
@@ -731,6 +735,37 @@ Function IsValidURL(sValidate)
 	IsValidURL = Not bTemp
 End Function
 
+Function IsValidString(sValidate)
+	Dim sInvalidChars
+	Dim bTemp
+	Dim i
+	' Disallowed characters
+	sInvalidChars = "!#$%^&*()=+{}[]|\;:/?>,<'"
+	for i = 1 To Len(sInvalidChars)
+		if InStr(sValidate, Mid(sInvalidChars, i, 1)) > 0 then bTemp = True
+		if bTemp then Exit For
+	next
+	for i = 1 to Len(sValidate)
+		if Asc(Mid(sValidate, i, 1)) = 160 then bTemp = True
+		if bTemp then Exit For
+	next
+
+	' extra checks
+	' no two consecutive dots or spaces
+	if not bTemp then
+		bTemp = InStr(sValidate, "..") > 0
+	end if
+	if not bTemp then
+		bTemp = InStr(sValidate, "  ") > 0
+	end if
+	if not bTemp then
+		bTemp = (len(sValidate) <> len(Trim(sValidate)))
+	end if 'Addition for leading and trailing spaces
+
+	' if any of the above are true, invalid string
+	IsValidString = Not bTemp
+End Function
+
 function chkNameFilter(pString)
 	if trim(Application(strCookieURL & "STRFILTERUSERNAMES")) = "" then
 		txtUserNames = ""
@@ -829,19 +864,5 @@ function chkNameBadWords(pString)
 			exit function
 		end if
 	next
-end function
-
-function commonValidateString ( pString, fieldName )
-	commonValidateString = ""
-	pString = trim ( Request.Form(pString) )
-	if not IsValidString(pString) then
-		commonValidateString = commonValidateString & _
-			"<li>Поле <b>" & fieldName & "</b> не может включать в себя символы " & strInvalidChars & "</li>"
-	end if
-
-	if pString = "" then
-		commonValidateString = commonValidateString & _
-			"<li>Поле <b>" & fieldName & "</b> должно быть обязятельно заполнено</li>"
-	end if
 end function
 %>

@@ -435,7 +435,7 @@ function resizeTextarea()
 	if (document.PostTopic.SelectSize.value == 3)
 	{
 		document.PostTopic.Message.cols = 90;
-		document.PostTopic.Message.rows = 16;
+		document.PostTopic.Message.rows = 12;
 	}
 	if (document.PostTopic.SelectSize.value == 4)
 	{

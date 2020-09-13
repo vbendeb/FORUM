@@ -66,8 +66,6 @@ end if
 
 strArchiveTablePrefix = strTablePrefix & "A_"
 strScriptName = request.servervariables("script_name")
-dim onLoadRequired
-onLoadRequired = Instr(strScriptName,"post.asp")
 
 if Application(strCookieURL & "down") then 
 	if not Instr(strScriptName,"admin_") > 0 then
@@ -84,13 +82,15 @@ else
 end if
 
 If strDBType = "" then 
-	Response.Write	"<html>" & vbNewLine & "<head>" & vbNewLine
-    Response.Write "<meta http-equiv=""Content-Type"" content=""text/html; charset=windows-1251"">" & vbNewline
-    Response.Write	"<title>" & strForumTitle & "</title>" & vbNewline
+	Response.Write	"<html>" & vbNewLine & _
+			"<head>" & vbNewline & _
+			"<title>" & strForumTitle & "</title>" & vbNewline
+
 
 '## START - REMOVAL, MODIFICATION OR CIRCUMVENTING THIS CODE WILL VIOLATE THE SNITZ FORUMS 2000 LICENSE AGREEMENT
 Response.Write	"<meta name=""copyright"" content=""This Forum code is Copyright (C) 2000-02 Michael Anderson, Pierre Gorissen, Huw Reddick and Richard Kinser, Non-Forum Related code is Copyright (C) " & strCopyright & """>" & vbNewline 
 '## END   - REMOVAL, MODIFICATION OR CIRCUMVENTING THIS CODE WILL VIOLATE THE SNITZ FORUMS 2000 LICENSE AGREEMENT
+Response.Write "<meta http-equiv=""Content-Type""; content=""text/html""; charset=""windows-1251"">" & vbNewline
 	Response.Write	"</head>" & vbNewLine & _
 			"<body" & strTmpPageBGImageURL & " bgColor=""" & strPageBGColor & """ text=""" & strDefaultFontColor & """ link=""" & strLinkColor & """ aLink=""" & strActiveLinkColor & """ vLink=""" & strVisitedLinkColor & """>" & vbNewLine & _
 			"<table border=""0"" cellspacing=""0"" cellpadding=""5"" width=""50%"" height=""40%"" align=""center"">" & vbNewLine & _
@@ -105,10 +105,6 @@ Response.Write	"<meta name=""copyright"" content=""This Forum code is Copyright 
 			"<a href=""default.asp"" target=""_top"">Click here to retry.</a></font></td>" & vbNewLine & _
 			"  </tr>" & vbNewLine & _
 			"</table>" & vbNewLine & _
-			"<script src=""http://www.google-analytics.com/urchin.js"" type=""text/javascript""></script>" & vbNewLine & _
-			"<script type=""text/javascript"">" & vbNewLine & _
-			"_uacct = ""UA-1670907-1"";" & vbNewLine & _
-			"urchinTracker();</script>" & vbNewLine & _
 			"</body>" & vbNewLine & _
 			"</html>" & vbNewLine
 	Response.End
@@ -230,9 +226,9 @@ if mLev = 4 and strEmailVal = "1" and strRestrictReg = "1" and strEmail = "1" th
 	set rs = nothing
 end if
 
-	Response.Write	"<html>" & vbNewLine & "<head>" & vbNewLine
-    Response.Write "<meta http-equiv=""Content-Type"" content=""text/html; charset=windows-1251"">" & vbNewline
-    Response.Write	"<title>" & GetNewTitle(strScriptName) & "</title>" & vbNewline
+Response.Write	"<html>" & vbNewline & vbNewline & _
+		"<head>" & vbNewline & _
+		"<title>" & GetNewTitle(strScriptName) & "</title>" & vbNewline
 
 
 '## START - REMOVAL, MODIFICATION OR CIRCUMVENTING THIS CODE WILL VIOLATE THE SNITZ FORUMS 2000 LICENSE AGREEMENT
@@ -243,17 +239,8 @@ Response.Write "<meta http-equiv=""Content-Type""; content=""text/html""; charse
 
 
 Response.Write	"<script language=""JavaScript"" type=""text/javascript"">" & vbNewLine & _
-		"<!-- hide from JavaScript-challenged browsers" & vbNewLine
-if onLoadRequired > 0 then
-response.write "function onPostLoad() {" & vbcrlf &_
-"	myTextArea = document.getElementById('Message');" & vbcrlf &_
-"	myTextArea.focus();" & vbcrlf &_
-"	myRange = myTextArea.createTextRange();" & vbcrlf &_
-"	myRange.collapse(false);" & vbcrlf &_
-"	myRange.select();" & vbcrlf &_
-"}" & vbcrlf
-end if
-response.write	"function openWindow(url) {" & vbNewLine & _
+		"<!-- hide from JavaScript-challenged browsers" & vbNewLine & _
+		"function openWindow(url) {" & vbNewLine & _
 		"	popupWin = window.open(url,'new_page','width=400,height=400')" & vbNewLine & _
 		"}" & vbNewLine & _
 		"function openWindow2(url) {" & vbNewLine & _
@@ -288,16 +275,11 @@ response.write	"function openWindow(url) {" & vbNewLine & _
 		".spnMessageText a:active  {color:" & strForumActiveLinkColor & ";text-decoration:" & strForumActiveTextDecoration & "}" & vbNewLine & _
 		".spnSearchHighlight {background-color:" & strSearchHiLiteColor & "}" & vbNewLine & _
 		"input.radio {background:" & strPopUpTableColor & ";color:#000000}" & vbNewLine & _
-		quoteStyleStr & altQuoteStyleStr & tdStyleStr & _
 		"-->" & vbNewLine & _
 		"</style>" & vbNewLine & _
 		"</head>" & vbNewLine & _
 		vbNewLine & _
-		"<body" & strTmpPageBGImageURL & " bgColor=""" & strPageBGColor & """ text=""" & strDefaultFontColor & """ link=""" & strLinkColor & """ aLink=""" & strActiveLinkColor & """ vLink=""" & strVisitedLinkColor & """"
-if onLoadRequired > 0 then		
-response.write " onLoad=""onPostLoad()"""
-end if
-response.write	">" & vbcrlf & _
+		"<body" & strTmpPageBGImageURL & " bgColor=""" & strPageBGColor & """ text=""" & strDefaultFontColor & """ link=""" & strLinkColor & """ aLink=""" & strActiveLinkColor & """ vLink=""" & strVisitedLinkColor & """>" & vbNewLine & _
 		"<a name=""top""></a><font face=""" & strDefaultFontFace & """>" & vbNewLine & _
 		vbNewLine & _
 		"<table align=""center"" border=""0"" cellPadding=""0"" cellSpacing=""0"" width=""100%"">" & vbNewLine & _
