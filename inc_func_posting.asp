@@ -75,17 +75,23 @@ function GetKey(action)
 		strRecipients = Request.Form("Email")
 		strFrom = strSender
 		strFromName = strForumTitle
-		strsubject = strForumTitle & "- Your E-mail Address Has Been Changed "
-		strMessage = "Hello " & Request.Form("name") & vbNewLine & vbNewLine
+		strsubject = strForumTitle & "- изменение Вашего адреса э-почты"
+		strMessage = "Здравствуйте, " & Request.Form("name") & vbNewLine & vbNewLine
+		strMessage = strMessage & strForumTitle & " посылает Вам это сообщение, потому что " & vbNewLine
+		
 		if Request.QueryString("mode") <> "EditIt" then
-			strMessage = strMessage & "You received this message from " & strForumTitle & " because someone has changed your e-mail address on the forums at " & strForumURL & vbNewLine & vbNewLine
+			strMessage = strMessage & " кто-то поменял Ваш"
 		else
-			strMessage = strMessage & "You received this message from " & strForumTitle & " because you have changed your e-mail address on the forums at " & strForumURL & vbNewLine & vbNewLine
+			strMessage = strMessage & " Вы поменяли свой"
 		end if
-		strMessage = strMessage & "To complete your e-mail change, please click on the link below:" & vbNewLine & vbNewLine
+		strMessage = strMessage & " адрес электронной почты на " & strForumURL & vbNewLine & vbNewLine
+		strMessage = strMessage & "Если Вы согласны с этим изменением - для подтверждения " & vbNewLine
+		strMessage = strMessage & "пожалуйста нажмите на ссылку в следующей строке:" & vbNewLine & vbNewLine
 		strMessage = strMessage & strForumURL & "pop_profile.asp?verkey=" & strKey & vbNewLine & vbNewLine
-		strMessage = strMessage & "Thank You!" & vbNewLine & vbNewLine
-		strMessage = strMessage & "Forum Admin"
+		strMessage = strMessage & "Если Вы не собирались поменять свой адрес - не нажимайте на ссылку," & vbNewLine
+		strMessage = strMessage & "а переправьте это письмь по адресу webmaster@moct.org" & vbNewLine & vbNewLine
+		strMessage = strMessage & "Всего наилучшего," & vbNewLine
+		strMessage = strMessage & "Вебмастер"
 %>
 		<!--#INCLUDE FILE="inc_mail.asp" -->
 <%
