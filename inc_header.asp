@@ -84,15 +84,13 @@ else
 end if
 
 If strDBType = "" then 
-	Response.Write	"<html>" & vbNewLine & _
-			"<head>" & vbNewline & _
-			"<title>" & strForumTitle & "</title>" & vbNewline
-
+	Response.Write	"<html>" & vbNewLine & "<head>" & vbNewLine
+    Response.Write "<meta http-equiv=""Content-Type"" content=""text/html; charset=windows-1251"">" & vbNewline
+    Response.Write	"<title>" & strForumTitle & "</title>" & vbNewline
 
 '## START - REMOVAL, MODIFICATION OR CIRCUMVENTING THIS CODE WILL VIOLATE THE SNITZ FORUMS 2000 LICENSE AGREEMENT
 Response.Write	"<meta name=""copyright"" content=""This Forum code is Copyright (C) 2000-02 Michael Anderson, Pierre Gorissen, Huw Reddick and Richard Kinser, Non-Forum Related code is Copyright (C) " & strCopyright & """>" & vbNewline 
 '## END   - REMOVAL, MODIFICATION OR CIRCUMVENTING THIS CODE WILL VIOLATE THE SNITZ FORUMS 2000 LICENSE AGREEMENT
-Response.Write "<meta http-equiv=""Content-Type""; content=""text/html""; charset=""windows-1251"">" & vbNewline
 	Response.Write	"</head>" & vbNewLine & _
 			"<body" & strTmpPageBGImageURL & " bgColor=""" & strPageBGColor & """ text=""" & strDefaultFontColor & """ link=""" & strLinkColor & """ aLink=""" & strActiveLinkColor & """ vLink=""" & strVisitedLinkColor & """>" & vbNewLine & _
 			"<table border=""0"" cellspacing=""0"" cellpadding=""5"" width=""50%"" height=""40%"" align=""center"">" & vbNewLine & _
@@ -228,9 +226,9 @@ if mLev = 4 and strEmailVal = "1" and strRestrictReg = "1" and strEmail = "1" th
 	set rs = nothing
 end if
 
-Response.Write	"<html>" & vbNewline & vbNewline & _
-		"<head>" & vbNewline & _
-		"<title>" & GetNewTitle(strScriptName) & "</title>" & vbNewline
+	Response.Write	"<html>" & vbNewLine & "<head>" & vbNewLine
+    Response.Write "<meta http-equiv=""Content-Type"" content=""text/html; charset=windows-1251"">" & vbNewline
+    Response.Write	"<title>" & GetNewTitle(strScriptName) & "</title>" & vbNewline
 
 
 '## START - REMOVAL, MODIFICATION OR CIRCUMVENTING THIS CODE WILL VIOLATE THE SNITZ FORUMS 2000 LICENSE AGREEMENT
