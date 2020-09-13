@@ -105,6 +105,10 @@ Response.Write	"<meta name=""copyright"" content=""This Forum code is Copyright 
 			"<a href=""default.asp"" target=""_top"">Click here to retry.</a></font></td>" & vbNewLine & _
 			"  </tr>" & vbNewLine & _
 			"</table>" & vbNewLine & _
+			"<script src=""http://www.google-analytics.com/urchin.js"" type=""text/javascript""></script>" & vbNewLine & _
+			"<script type=""text/javascript"">" & vbNewLine & _
+			"_uacct = ""UA-1670907-1"";" & vbNewLine & _
+			"urchinTracker();</script>" & vbNewLine & _
 			"</body>" & vbNewLine & _
 			"</html>" & vbNewLine
 	Response.End

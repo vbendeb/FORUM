@@ -43,6 +43,10 @@ Response.Write	"    <p><font face=""" & strDefaultFontFace & """ size=""" & strD
 		"    </td>" & vbNewLine & _
 		"  </tr>" & vbNewLine & _
 		"</table>" & vbNewLine & _
+		"<script src=""http://www.google-analytics.com/urchin.js"" type=""text/javascript""></script>" & vbNewLine & _
+		"<script type=""text/javascript"">" & vbNewLine & _
+		"_uacct = ""UA-1670907-1"";" & vbNewLine & _
+		"urchinTracker();</script>" & vbNewLine & _
 		"</body>" & vbNewLine & _
 		"</html>" & vbNewLine
 my_Conn.Close

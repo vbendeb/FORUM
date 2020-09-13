@@ -90,6 +90,10 @@ Response.Write	"</acronym></a></font></td>" & vbNewline
 Response.Write	"  </tr>" & vbNewLine & _
 		"</table>" & vbNewLine & _
 		"</font>" & vbNewLine & _
+		"<script src=""http://www.google-analytics.com/urchin.js"" type=""text/javascript""></script>" & vbNewLine & _
+		"<script type=""text/javascript"">" & vbNewLine & _
+		"_uacct = ""UA-1670907-1"";" & vbNewLine & _
+		"urchinTracker();</script>" & vbNewLine & _
 		"</body>" & vbNewLine & _
 		"</html>" & vbNewLine
 
