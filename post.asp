@@ -267,13 +267,13 @@ select case strSelectSize
 		intRows = 12
 	case "3"
 		intCols = 90
-		intRows = 12
+		intRows = 16
 	case "4"
 		intCols = 130
 		intRows = 15
 	case else
-		intCols = 70
-		intRows = 12
+		intCols = 90
+		intRows = 16
 end select
 
 Response.Write	"    <script language=""JavaScript"" type=""text/javascript"" src=""inc_code.js""></script>" & vbNewLine & _
@@ -439,54 +439,7 @@ select case strRqMethod
 		btn = "Post"
 end select
 
-Response.Write	"      <table border=""0"" width=""100%"" align=""center"">" & vbNewLine & _
-		"        <tr>" & vbNewLine & _
-		"          <td width=""33%"" align=""left""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """>" & vbNewLine & _
-		"          " & getCurrentIcon(strIconFolderOpen,"","align=""absmiddle""") & "&nbsp;<a href=""default.asp"" tabindex=""-1"">MOCT Forums</a><br />" & vbNewLine
-if strRqMethod = "EditCategory" then
-	Response.Write	"          " & getCurrentIcon(strIconBar,"","align=""absmiddle""") & getCurrentIcon(strIconFolderOpen,"","align=""absmiddle""") & "&nbsp;" & ChkString(TxtSub,"display") & "<br />" & vbNewLine
-elseif strRqMethod = "EditForum" or strRqMethod = "EditURL" then
-	Response.Write	"          " & getCurrentIcon(strIconBar,"","align=""absmiddle""") & getCurrentIcon(strIconFolderOpen,"","align=""absmiddle""") & "&nbsp;<a href=""default.asp?CAT_ID=" & strRqCatID & """ tabindex=""-1"">" & ChkString(strCatName,"display") & "</a><br />" & vbNewLine
-	Response.Write	"          " & getCurrentIcon(strIconBlank,"","align=""absmiddle""") & getCurrentIcon(strIconBar,"","align=""absmiddle""") & getCurrentIcon(strIconFolderOpen,"","align=""absmiddle""") & "&nbsp;" & ChkString(TxtSub,"display") & "<br />" & vbNewLine
-else
-	if strRqMethod = "Edit" or strRqMethod = "EditTopic" or _
-	strRqMethod = "Reply" or strRqMethod = "ReplyQuote" or _
-	strRqMethod = "Topic" or strRqMethod = "TopicQuote" then 
-		Response.Write	"          " & getCurrentIcon(strIconBar,"","align=""absmiddle""")
-		if blnCStatus <> 0 then
-			Response.Write	getCurrentIcon(strIconFolderOpen,"","align=""absmiddle""")
-		else
-			Response.Write	getCurrentIcon(strIconFolderClosed,"","align=""absmiddle""")
-		end if
-		Response.Write	"&nbsp;<a href=""default.asp?CAT_ID=" & strRqCatId & """ tabindex=""-1"">" & ChkString(Cat_Name,"display") & "</a><br />" & vbNewLine
-		Response.Write	"          " & getCurrentIcon(strIconBlank,"","align=""absmiddle""") & getCurrentIcon(strIconBar,"","align=""absmiddle""")
-		if blnFStatus <> 0 and blnCStatus <> 0 then
-			Response.Write	getCurrentIcon(strIconFolderOpen,"","align=""absmiddle""")
-		else
-			if strRqMethod <> "Topic" then
-				Response.Write	getCurrentIcon(strIconFolderClosed,"","align=""absmiddle""")
-			else
-				Response.Write	getCurrentIcon(strIconFolderClosedTopic,"","align=""absmiddle""")
-			end if
-		end if
-		Response.Write	"&nbsp;<a href=""forum.asp?FORUM_ID=" & strRqForumId & """ tabindex=""-1"">" & ChkString(Forum_Subject,"display") & "</a><br />" & vbNewLine
-	end if 
- end if 
-
-if strRqMethod = "Edit" or strRqMethod = "EditTopic" or _
-strRqMethod = "Reply" or strRqMethod = "ReplyQuote" or _
-strRqMethod = "TopicQuote" then 
-	Response.Write	"          " & getCurrentIcon(strIconBlank,"","align=""absmiddle""") & getCurrentIcon(strIconBlank,"","align=""absmiddle""") & getCurrentIcon(strIconBar,"","align=""absmiddle""")
-	if blnTStatus <> 0 and blnFStatus <> 0 and blnCStatus <> 0 then
-		Response.Write	getCurrentIcon(strIconFolderOpenTopic,"","align=""absmiddle""")
-	else
-		Response.Write	getCurrentIcon(strIconFolderClosedTopic,"","align=""absmiddle""")
-	end if
-	Response.Write	"&nbsp;<a href=""topic.asp?TOPIC_ID=" & strRqTopicID & """ tabindex=""-1"">" & ChkString(Topic_Title,"title") & "</a>" & vbNewLine
-end if 
-Response.Write	"          </font></td>" & vbNewLine & _
-		"        </tr>" & vbNewLine & _
-		"      </table>" & vbNewLine & _
+Response.Write	vbNewLine & _
 		"      " & strParagraphFormat1 & "" & Msg & "</font></p>" & vbNewLine & _
 		"      <table border=""0"" cellspacing=""0"" cellpadding=""0"" align=""center"">" & vbNewLine & _
 		"        <tr>" & vbNewLine & _
@@ -524,10 +477,10 @@ if strRqMethod = "Edit" or strRqMethod = "EditTopic" or strRqMethod = "Forum" or
 	if strSelectSize = "1" then Response.Write(" selected")
 	Response.Write	">640  x 480</option>" & vbNewLine & _
 			"                	<option value=""2"""
-	if strSelectSize = "2" or strSelectSize = "" then Response.Write(" selected")
+	if strSelectSize = "2" then Response.Write(" selected")
 	Response.Write	">800  x 600</option>" & vbNewLine & _
 			"                	<option value=""3"""
-	if strSelectSize = "3" then Response.Write(" selected")
+	if strSelectSize = "3" or strSelectSize = "" then Response.Write(" selected")
 	Response.Write	">1024 x 768</option>" & vbNewLine & _
 			"                	<option value=""4"""
 	if strSelectSize = "4" then Response.Write(" selected")
@@ -774,8 +727,7 @@ strRqMethod = "Topic" then
 	Response.Write	"              <tr>" & vbNewLine & _
 			"                <td bgColor=""" & strPopUpTableColor & """ noWrap vAlign=""top"" align=""right""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """><b>Тема Дискуссии:</b></font></td>" & vbNewLine & _
 			"                <td bgColor=""" & strPopUpTableColor & """><input maxLength=""50"" name=""Subject"" value=""" & Trim(ChkString(TxtSub,"edit")) & """ size=""40""></td>" & vbNewLine & _
-			"              </tr>" & vbNewLine & _
-			"              <script language=""JavaScript"" type=""text/javascript"">document.PostTopic.Subject.focus();</script>" & vbNewLine
+			"              </tr>" & vbNewLine
 end if
 
 if strRqMethod = "URL" or _
@@ -824,10 +776,6 @@ strRqMethod = "EditTopic" or strRqMethod = "Topic" or strRqMethod = "TopicQuote"
 			"                <td bgColor=""" & strPopUpTableColor & """><textarea cols=""" & intCols & """ name=""Message"" rows=""" & intRows & """ wrap=""VIRTUAL"" onselect=""storeCaret(this);"" onclick=""storeCaret(this);"" onkeyup=""storeCaret(this);"" onchange=""storeCaret(this);"">" & Trim(CleanCode(TxtMsg)) & "</textarea><br /></td>" & vbNewLine & _
 			"              </tr>" & vbNewLine
 end if
-select case strRqMethod
-	case "Reply", "ReplyQuote", "TopicQuote"
-		Response.Write	"              <script language=""JavaScript"" type=""text/javascript"">document.PostTopic.Message.focus();</script>" & vbNewLine
-end select
 
 '#################################################################################
 '## Forum Moderators - listbox Code

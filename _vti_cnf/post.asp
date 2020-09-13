@@ -1,10 +1,10 @@
 vti_encoding:SR|utf8-nl
-vti_timelastmodified:TR|12 Jan 2006 05:39:17 -0000
+vti_timelastmodified:TR|15 Jan 2006 05:21:43 -0000
 vti_extenderversion:SR|5.0.2.6790
-vti_lineageid:SR|{E482491C-B288-4793-8746-6DBDB0EC1725}
+vti_lineageid:SR|{842E4674-4275-4AB5-9025-262897373436}
 vti_backlinkinfo:VX|
-vti_cacheddtm:TX|12 Jan 2006 05:39:18 -0000
-vti_filesize:IR|73321
+vti_cacheddtm:TX|15 Jan 2006 05:21:44 -0000
+vti_filesize:IR|69501
 vti_cachedneedsrewrite:BR|false
 vti_cachedhasbots:BR|false
 vti_cachedhastheme:BR|false

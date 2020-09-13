@@ -66,6 +66,8 @@ end if
 
 strArchiveTablePrefix = strTablePrefix & "A_"
 strScriptName = request.servervariables("script_name")
+dim onLoadRequired
+onLoadRequired = Instr(strScriptName,"post.asp")
 
 if Application(strCookieURL & "down") then 
 	if not Instr(strScriptName,"admin_") > 0 then
@@ -239,8 +241,17 @@ Response.Write "<meta http-equiv=""Content-Type""; content=""text/html""; charse
 
 
 Response.Write	"<script language=""JavaScript"" type=""text/javascript"">" & vbNewLine & _
-		"<!-- hide from JavaScript-challenged browsers" & vbNewLine & _
-		"function openWindow(url) {" & vbNewLine & _
+		"<!-- hide from JavaScript-challenged browsers" & vbNewLine
+if onLoadRequired > 0 then
+response.write "function onPostLoad() {" & vbcrlf &_
+"	myTextArea = document.getElementById('Message');" & vbcrlf &_
+"	myTextArea.focus();" & vbcrlf &_
+"	myRange = myTextArea.createTextRange();" & vbcrlf &_
+"	myRange.collapse(false);" & vbcrlf &_
+"	myRange.select();" & vbcrlf &_
+"}" & vbcrlf
+end if
+response.write	"function openWindow(url) {" & vbNewLine & _
 		"	popupWin = window.open(url,'new_page','width=400,height=400')" & vbNewLine & _
 		"}" & vbNewLine & _
 		"function openWindow2(url) {" & vbNewLine & _
@@ -280,7 +291,11 @@ Response.Write	"<script language=""JavaScript"" type=""text/javascript"">" & vbN
 		"</style>" & vbNewLine & _
 		"</head>" & vbNewLine & _
 		vbNewLine & _
-		"<body" & strTmpPageBGImageURL & " bgColor=""" & strPageBGColor & """ text=""" & strDefaultFontColor & """ link=""" & strLinkColor & """ aLink=""" & strActiveLinkColor & """ vLink=""" & strVisitedLinkColor & """>" & vbNewLine & _
+		"<body" & strTmpPageBGImageURL & " bgColor=""" & strPageBGColor & """ text=""" & strDefaultFontColor & """ link=""" & strLinkColor & """ aLink=""" & strActiveLinkColor & """ vLink=""" & strVisitedLinkColor & """"
+if onLoadRequired > 0 then		
+response.write " onLoad=""onPostLoad()"""
+end if
+response.write	">" & vbcrlf & _
 		"<a name=""top""></a><font face=""" & strDefaultFontFace & """>" & vbNewLine & _
 		vbNewLine & _
 		"<table align=""center"" border=""0"" cellPadding=""0"" cellSpacing=""0"" width=""100%"">" & vbNewLine & _
