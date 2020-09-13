@@ -107,6 +107,16 @@ end if
 '## Page-code start
 '#################################################################################
 
+'''''''''''''''''''''''''''''''''''''''''
+	strSql = "SELECT M_STATUS "
+	strSql = strSql & " FROM " & strMemberTablePrefix & "MEMBERS "
+	strSql = strSql & " WHERE MEMBER_ID =" & MemberID
+
+	Set rsCheck = my_Conn.Execute(strSql)
+	if ( rsCheck ("M_STATUS") = 0 ) then
+		Go_Result "Публикация сообщений на Форуме Вам временно запрещена<br>"
+	end if
+'''''''''''''''''''''''''''''''''''''''''
 if request("ARCHIVE") = "true" then
 	strActivePrefix = strTablePrefix & "A_"
 	ArchiveView = "true"

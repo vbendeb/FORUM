@@ -966,7 +966,7 @@ function chkUser(fName, fPassword, fAuthor)
 	if strAuthType="db" then
 		strSql = strSql & " AND M_PASSWORD = '" & ChkString(fPassword, "SQLString") &"'"
 	End If
-	strSql = strSql & " AND M_STATUS = " & 1
+'	strSql = strSql & " AND M_STATUS = " & 1
 	Set rsCheck = my_Conn.Execute(strSql)
 	if rsCheck.BOF or rsCheck.EOF or not(ChkQuoteOk(fName)) or not(ChkQuoteOk(fPassword)) then
 		MemberID = -1
