@@ -1,4 +1,4 @@
-<%@CODEPAGE=1251 %>
+ï»¿<%@CODEPAGE=1251 %>
 <%
 '#################################################################################
 '## Copyright (C) 2000-02 Michael Anderson, Pierre Gorissen,
@@ -486,17 +486,17 @@ sub DropDownPaging(fnum)
 end sub
 
 function compileEmail ( mname, mkey )
-	compileEmail = 	"Çäðàâñòâóéòå " & mname & vbNewline & vbNewline
-	compileEmail = compileEmail & "Âû ïîëó÷èëè ýòî ñîîáùåíèå îò " & strForumTitle & " ÷òîáû ïîäòâåðäèòü Âàøó ðåãèñòðàöèþ íà ôîðóìå " & strForumURL & "." & vbNewline & vbNewline
+	compileEmail = 	"Ð—Ð´Ñ€Ð°Ð²ÑÑ‚Ð²ÑƒÐ¹Ñ‚Ðµ " & mname & vbNewline & vbNewline
+	compileEmail = compileEmail & "Ð’Ñ‹ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ð»Ð¸ ÑÑ‚Ð¾ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ Ð¾Ñ‚ " & strForumTitle & " Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð´Ð¸Ñ‚ÑŒ Ð’Ð°ÑˆÑƒ Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸ÑŽ Ð½Ð° Ñ„Ð¾Ñ€ÑƒÐ¼Ðµ " & strForumURL & "." & vbNewline & vbNewline
 	
 	if strAuthType="db" then
-		compileEmail = compileEmail & "Íàæìèòå íà ññûëêó â ñëåäóþùåé ñòðîêå, ÷òîáû çàâåðøèòü ðåãèñòðàöèþ." & vbNewline & vbNewLine
+		compileEmail = compileEmail & "ÐÐ°Ð¶Ð¼Ð¸Ñ‚Ðµ Ð½Ð° ÑÑÑ‹Ð»ÐºÑƒ Ð² ÑÐ»ÐµÐ´ÑƒÑŽÑ‰ÐµÐ¹ ÑÑ‚Ñ€Ð¾ÐºÐµ, Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð·Ð°Ð²ÐµÑ€ÑˆÐ¸Ñ‚ÑŒ Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸ÑŽ." & vbNewline & vbNewLine
 		compileEmail = compileEmail & strForumURL & "register.asp?actkey=" & mkey & vbNewline & vbNewline
 	end if
 	
-	compileEmail = compileEmail & "Âû ìîæåòå èçìåíèòü âàøó èíôîðìàöèþ íà ôîðóìå íàæàâ íà ññûëêó  ""Ïðîôèëü"" ââåðõó ñòðàíèöû ôîðóìà." & vbNewline & vbNewline
-	compileEmail = compileEmail & "Â ñëó÷àå ïðîáëåì ñ ðåãèñòðàöèåé èëè èñïîëüçîâàíèåì ôîðóìà íàïèøèòå ïî àäðåñó webmaster@moct.org" & vbNewline & vbNewline
-	compileEmail = compileEmail & "Äîáðî ïîæàëîâàòü íà íàø Ôîðóì!"
+	compileEmail = compileEmail & "Ð’Ñ‹ Ð¼Ð¾Ð¶ÐµÑ‚Ðµ Ð¸Ð·Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ Ð²Ð°ÑˆÑƒ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸ÑŽ Ð½Ð° Ñ„Ð¾Ñ€ÑƒÐ¼Ðµ Ð½Ð°Ð¶Ð°Ð² Ð½Ð° ÑÑÑ‹Ð»ÐºÑƒ  ""ÐŸÑ€Ð¾Ñ„Ð¸Ð»ÑŒ"" Ð²Ð²ÐµÑ€Ñ…Ñƒ ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†Ñ‹ Ñ„Ð¾Ñ€ÑƒÐ¼Ð°." & vbNewline & vbNewline
+	compileEmail = compileEmail & "Ð’ ÑÐ»ÑƒÑ‡Ð°Ðµ Ð¿Ñ€Ð¾Ð±Ð»ÐµÐ¼ Ñ Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸ÐµÐ¹ Ð¸Ð»Ð¸ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½Ð¸ÐµÐ¼ Ñ„Ð¾Ñ€ÑƒÐ¼Ð° Ð½Ð°Ð¿Ð¸ÑˆÐ¸Ñ‚Ðµ Ð¿Ð¾ Ð°Ð´Ñ€ÐµÑÑƒ webmaster@moct.org" & vbNewline & vbNewline
+	compileEmail = compileEmail & "Ð”Ð¾Ð±Ñ€Ð¾ Ð¿Ð¾Ð¶Ð°Ð»Ð¾Ð²Ð°Ñ‚ÑŒ Ð½Ð° Ð½Ð°Ñˆ Ð¤Ð¾Ñ€ÑƒÐ¼!"
 
 end function
 
@@ -504,7 +504,7 @@ sub EmailMembers(who)
 
 	strFrom = strSender
 	strFromName = strForumTitle
-	strSubject = "Ðåãèñòðàöèÿ íà " & strForumTitle
+	strSubject = "Ð ÐµÐ³Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸Ñ Ð½Ð° " & strForumTitle
 	
 	if who = "all" then
 		'## Forum_SQL - Get all pending members

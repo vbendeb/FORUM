@@ -1,4 +1,4 @@
-<%
+ï»¿<%
 '#################################################################################
 '## Copyright (C) 2000-02 Michael Anderson, Pierre Gorissen,
 '##                       Huw Reddick and Richard Kinser
@@ -75,23 +75,23 @@ function GetKey(action)
 		strRecipients = Request.Form("Email")
 		strFrom = strSender
 		strFromName = strForumTitle
-		strsubject = strForumTitle & "- èçìåíåíèå Âàøåãî àäðåñà ý-ïî÷òû"
-		strMessage = "Çäðàâñòâóéòå, " & Request.Form("name") & vbNewLine & vbNewLine
-		strMessage = strMessage & strForumTitle & " ïîñûëàåò Âàì ýòî ñîîáùåíèå, ïîòîìó ÷òî " & vbNewLine
+		strsubject = strForumTitle & "- Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½Ð¸Ðµ Ð’Ð°ÑˆÐµÐ³Ð¾ Ð°Ð´Ñ€ÐµÑÐ° Ñ-Ð¿Ð¾Ñ‡Ñ‚Ñ‹"
+		strMessage = "Ð—Ð´Ñ€Ð°Ð²ÑÑ‚Ð²ÑƒÐ¹Ñ‚Ðµ, " & Request.Form("name") & vbNewLine & vbNewLine
+		strMessage = strMessage & strForumTitle & " Ð¿Ð¾ÑÑ‹Ð»Ð°ÐµÑ‚ Ð’Ð°Ð¼ ÑÑ‚Ð¾ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ, Ð¿Ð¾Ñ‚Ð¾Ð¼Ñƒ Ñ‡Ñ‚Ð¾ " & vbNewLine
 		
 		if Request.QueryString("mode") <> "EditIt" then
-			strMessage = strMessage & " êòî-òî ïîìåíÿë Âàø"
+			strMessage = strMessage & " ÐºÑ‚Ð¾-Ñ‚Ð¾ Ð¿Ð¾Ð¼ÐµÐ½ÑÐ» Ð’Ð°Ñˆ"
 		else
-			strMessage = strMessage & " Âû ïîìåíÿëè ñâîé"
+			strMessage = strMessage & " Ð’Ñ‹ Ð¿Ð¾Ð¼ÐµÐ½ÑÐ»Ð¸ ÑÐ²Ð¾Ð¹"
 		end if
-		strMessage = strMessage & " àäðåñ ýëåêòðîííîé ïî÷òû íà " & strForumURL & vbNewLine & vbNewLine
-		strMessage = strMessage & "Åñëè Âû ñîãëàñíû ñ ýòèì èçìåíåíèåì - äëÿ ïîäòâåðæäåíèÿ " & vbNewLine
-		strMessage = strMessage & "ïîæàëóéñòà íàæìèòå íà ññûëêó â ñëåäóþùåé ñòðîêå:" & vbNewLine & vbNewLine
+		strMessage = strMessage & " Ð°Ð´Ñ€ÐµÑ ÑÐ»ÐµÐºÑ‚Ñ€Ð¾Ð½Ð½Ð¾Ð¹ Ð¿Ð¾Ñ‡Ñ‚Ñ‹ Ð½Ð° " & strForumURL & vbNewLine & vbNewLine
+		strMessage = strMessage & "Ð•ÑÐ»Ð¸ Ð’Ñ‹ ÑÐ¾Ð³Ð»Ð°ÑÐ½Ñ‹ Ñ ÑÑ‚Ð¸Ð¼ Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½Ð¸ÐµÐ¼ - Ð´Ð»Ñ Ð¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´ÐµÐ½Ð¸Ñ " & vbNewLine
+		strMessage = strMessage & "Ð¿Ð¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð° Ð½Ð°Ð¶Ð¼Ð¸Ñ‚Ðµ Ð½Ð° ÑÑÑ‹Ð»ÐºÑƒ Ð² ÑÐ»ÐµÐ´ÑƒÑŽÑ‰ÐµÐ¹ ÑÑ‚Ñ€Ð¾ÐºÐµ:" & vbNewLine & vbNewLine
 		strMessage = strMessage & strForumURL & "pop_profile.asp?verkey=" & strKey & vbNewLine & vbNewLine
-		strMessage = strMessage & "Åñëè Âû íå ñîáèðàëèñü ïîìåíÿòü ñâîé àäðåñ - íå íàæèìàéòå íà ññûëêó," & vbNewLine
-		strMessage = strMessage & "à ïåðåïðàâüòå ýòî ïèñüìü ïî àäðåñó webmaster@moct.org" & vbNewLine & vbNewLine
-		strMessage = strMessage & "Âñåãî íàèëó÷øåãî," & vbNewLine
-		strMessage = strMessage & "Âåáìàñòåð"
+		strMessage = strMessage & "Ð•ÑÐ»Ð¸ Ð’Ñ‹ Ð½Ðµ ÑÐ¾Ð±Ð¸Ñ€Ð°Ð»Ð¸ÑÑŒ Ð¿Ð¾Ð¼ÐµÐ½ÑÑ‚ÑŒ ÑÐ²Ð¾Ð¹ Ð°Ð´Ñ€ÐµÑ - Ð½Ðµ Ð½Ð°Ð¶Ð¸Ð¼Ð°Ð¹Ñ‚Ðµ Ð½Ð° ÑÑÑ‹Ð»ÐºÑƒ," & vbNewLine
+		strMessage = strMessage & "Ð° Ð¿ÐµÑ€ÐµÐ¿Ñ€Ð°Ð²ÑŒÑ‚Ðµ ÑÑ‚Ð¾ Ð¿Ð¸ÑÑŒÐ¼ÑŒ Ð¿Ð¾ Ð°Ð´Ñ€ÐµÑÑƒ webmaster@moct.org" & vbNewLine & vbNewLine
+		strMessage = strMessage & "Ð’ÑÐµÐ³Ð¾ Ð½Ð°Ð¸Ð»ÑƒÑ‡ÑˆÐµÐ³Ð¾," & vbNewLine
+		strMessage = strMessage & "Ð’ÐµÐ±Ð¼Ð°ÑÑ‚ÐµÑ€"
 %>
 		<!--#INCLUDE FILE="inc_mail.asp" -->
 <%
