@@ -1441,6 +1441,8 @@ function dropSig ( message, sig )
 	if sig <> "" then
 		sig = replace ( sig, "[", "\[" )
 		sig = replace ( sig, "]", "\]" )
+		sig = replace ( sig, ")", "\)" )
+		sig = replace ( sig, "(", "\(" )
 		
 		' get rid of the signature - not needed in quotation
 		regEx.Pattern = sig & "$"
