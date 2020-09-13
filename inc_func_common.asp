@@ -1645,6 +1645,34 @@ Sub WriteFooter() %>
 Sub WriteFooterShort() %>
 <!--#INCLUDE FILE="inc_footer_short.asp"-->
 <% end sub
+
+Function IsValidString(sValidate)
+	Dim bTemp
+	Dim i 
+	for i = 1 To Len(strInvalidChars)
+		if InStr(sValidate, Mid(strInvalidChars, i, 1)) > 0 then bTemp = True
+		if bTemp then Exit For
+	next
+	for i = 1 to Len(sValidate)
+		if Asc(Mid(sValidate, i, 1)) = 160 then bTemp = True
+		if bTemp then Exit For
+	next
+
+	' extra checks
+	' no two consecutive dots or spaces
+	if not bTemp then
+		bTemp = InStr(sValidate, "..") > 0
+	end if
+	if not bTemp then
+		bTemp = InStr(sValidate, "  ") > 0
+	end if
+	if not bTemp then
+		bTemp = (len(sValidate) <> len(Trim(sValidate)))
+	end if 'Addition for leading and trailing spaces
+
+	' if any of the above are true, invalid string
+	IsValidString = Not bTemp
+End Function
 %>
 
 
