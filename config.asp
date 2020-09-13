@@ -58,6 +58,7 @@ strDBType = "access"
 'strConnString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Server.MapPath("/USERNAME/db/snitz_forums_2000.mdb") '## MS Access 2000 on Brinkster
 
 strConnString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\inetpub\128\forum_db\moct_forum1251.mdb" '## MS Access 2000
+strStudentsConnString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\inetpub\128\forum_db\moct_students.mdb" '## MS Access 2000
 
 'strConnString = "DRIVER={Microsoft Access Driver (*.mdb)}; DBQ=" & Server.MapPath("snitz_forums_2000.mdb") '## MS Access 97 using virtual path
 'strConnString = "DRIVER={Microsoft Access Driver (*.mdb)}; DBQ=" & Server.MapPath("/USERNAME/db/snitz_forums_2000.mdb") '## MS Access 97 on Brinkster

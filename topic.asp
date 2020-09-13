@@ -159,6 +159,27 @@ end if
 rsTopic.close
 set rsTopic = nothing
 
+
+' do we want this user to see avatars?
+showAvatars = 1
+if strAuthType="nt" then
+  thisUser = Session(strCookieURL & "username")
+else 
+  thisUser = ChkString(strDBNTUserName, "display")
+end if
+
+strSql = "select M_AGE FROM " & strMemberTablePrefix & "MEMBERS where M_NAME='" & thisUser & "'"
+
+set ma = my_Conn.Execute(TopSQL(strSql,1))
+
+if not ma.EOF and ma ("M_AGE")= "0" then
+	showAvatars = 0
+end if
+
+ma.close
+set ma = nothing
+
+
 if recTopicCount = "" then
 	if ArchiveView <> "true" then
 		Response.Redirect("topic.asp?ARCHIVE=true&" & Request.QueryString)
@@ -1158,6 +1179,10 @@ end sub
 'Обрабатываем как url (http://www...), так и PhotoID(obsolete, храним URL)
 function GetPhotoLinkStr(AuthorID)
 	str = ""
+	if ( showAvatars <> 1 ) then
+		GetPhotoLinkStr = str
+		exit function
+	end if
 	set rs = Server.CreateObject("ADODB.Recordset")
 	strSql = "SELECT MEMBER_ID,M_PHOTO_URL FROM FORUM_MEMBERS WHERE MEMBER_ID=" & AuthorID & ";"
 	rs.open strSql, my_Conn, adOpenForwardOnly, adLockReadOnly, adCmdText

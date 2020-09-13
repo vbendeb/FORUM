@@ -1227,9 +1227,11 @@ select case Request.QueryString("mode")
 				strsql = strsql & ",	M_LINK1 = '" & ChkString(Trim(regLink1),"SQLString") & "'"
 				strSql = strSql & ",	M_LINK2 = '" & ChkString(Trim(regLink2),"SQLString") & "'"
 			end if
-			if strAge = "1" then
-				strSql = strsql & ",	M_AGE = '" & ChkString(Request.Form("Age"),"SQLString") & "'"
-			end if
+'			if strAge = "1" then
+'				strSql = strsql & ",	M_AGE = '" & ChkString(Request.Form("Age"),"SQLString") & "'"
+'			end if
+			strSql = strsql & ", M_AGE ='" & cLng(Request.Form("showAvatars")) & "'"
+
 			if strAgeDOB = "1" then
 				strSql = strsql & ",	M_DOB = '" & ChkString(Request.Form("AgeDOB"),"SQLString") & "'"
 			end if
@@ -1678,8 +1680,6 @@ End Function
 function GetPhotoUrlByID(PhotoID)
 	str = PhotoID
 	if IsNumeric (PhotoID) then
-'		strStudentsConnString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=c:\moct\forum_db\moct_students.mdb"		 '## MS Access 2000
-		strStudentsConnString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\inetpub\128\forum_db\moct_students.mdb"		 '## MS Access 2000
 		set StudentConn = Server.CreateObject("ADODB.Connection")
 		StudentConn.Open strStudentsConnString
 		set rsStd = Server.CreateObject("ADODB.Recordset")
@@ -1698,8 +1698,6 @@ function GetPhotoIDByURL(url)
 	str = ""
 	url = replace (url,"http://www.moct.org/pictures/","")
 	url = replace (url,"-big.jpg","")
-'	strStudentsConnString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=c:\moct\forum_db\moct_students.mdb"		 '## MS Access 2000
-	strStudentsConnString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\inetpub\128\forum_db\moct_students.mdb"		 '## MS Access 2000
 	set StudentConn = Server.CreateObject("ADODB.Connection")
 	StudentConn.Open strStudentsConnString
 	set rsStd = Server.CreateObject("ADODB.Recordset")

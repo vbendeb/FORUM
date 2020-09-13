@@ -519,16 +519,20 @@ if strProhibitNewMembers <> "1" then
 				strsql = strsql & ", ''"
 				strSql = strSql & ", ''"
 			end if
-			if strAge = "1" then
-				strSql = strsql & ", '" & ChkString(Request.Form("Age"),"SQLString") & "'"
-			else
-				strSql = strsql & ", ''"
-			end if
+'			if strAge = "1" then
+'				strSql = strsql & ", '" & ChkString(Request.Form("Age"),"SQLString") & "'"
+'			else
+'				strSql = strsql & ", ''"
+'			end if
+
+			strSql = strsql & ", '" & cLng(Request.Form("showAvatars")) & "'"
+
 			if strAgeDOB = "1" then
 				strSql = strsql & ", '" & ChkString(Request.Form("AgeDOB"),"SQLString") & "'"
 			else
 				strSql = strsql & ", ''"
 			end if
+
 			if strMarStatus = "1" then
 				strSql = strSql & ", '" & ChkString(Request.Form("MarStatus"),"SQLString") & "'"
 			else
