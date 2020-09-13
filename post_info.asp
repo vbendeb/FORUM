@@ -1715,7 +1715,7 @@ sub Go_Result(str_err_Msg, boolOk)
 			        if Moderation = "Yes" then
 			                Response.Write("New Reply Posted!  It will appear once approved by a moderator")
 			        else
-			                Response.Write("New Reply Posted!")
+			                Response.Write("Ваше сообщение опубликовано")
 			                DoPCount
 					if ForumCountMPosts <> 0 then
 				                DoUCount Request.Form("UserName")
@@ -1727,7 +1727,7 @@ sub Go_Result(str_err_Msg, boolOk)
 			        if Moderation = "Yes" then
 			                Response.Write("New Topic Posted!  It will appear once approved by a moderator")
 			        else
-			                Response.Write("New Topic Posted!")
+			                Response.Write("Новый топик опубликован на форуме")
 			                DoTCount
 			                DoPCount
 					if ForumCountMPosts <> 0 then
@@ -1756,13 +1756,13 @@ sub Go_Result(str_err_Msg, boolOk)
 			case "Forum"
 				Response.Write("The new forum is ready for users to begin posting!")
 			case "EditForum", "EditCategory"
-				Response.Write("Thank you for your contribution!")
+				Response.Write("Спасибо за участие в Форуме!")
 			case "URL"
 				Response.Write("The new URL is in place!")
 			case "EditURL"
 				Response.Write("Cheers! Have a nice day!")
 			case "Topic", "TopicQuote", "EditTopic", "Reply", "ReplyQuote", "Edit" 
-				Response.Write("Thank you for your contribution!")
+				Response.Write("Спасибо за участие в Форуме!")
 			case else
 				Response.Write("Have a nice day!")
 		end select

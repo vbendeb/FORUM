@@ -43,6 +43,11 @@
 '##            Post Formatting               ##
 '##############################################
 
+quoteStyleStr =	".quote {color: #444444; background-color: " & strForumFirstCellColor & _
+		  "; border-style: inset; border-width: 2px; }" & vbNewLine
+altQuoteStyleStr = ".quoteAlt { color: #444444; background-color: " & strAltForumCellColor & _
+		  "; border-style: inset; border-width: 2px; }" & vbNewLine
+tdStyleStr = ".quoteTd { font-size: 70%; }" & vbNewLine
 
 function chkQuoteOk(fString)
 	chkQuoteOk = not(InStr(1, fString, "'", 0) > 0)
@@ -114,12 +119,114 @@ function ChkMail(ByVal strToFormat)
 	end if
 end function
 
+'
+' this function allows to include HTML comments into
+' generated pages. The comments are envloped into opening
+' and closing lines. Opening and closing lines include
+' the 'comment' parameter, and data is printed between
+' the lines
+'
+function debugComment ( comment, data )
+	response.write vbcrlf & "<!-- " & comment & vbcrlf
+	response.write data
+	response.write vbcrlf & comment & "-->" & vbcrlf
+end function
+
+'
+' this function is used to replace [quote] and [/quote] statements
+' with the appropriate HTML code to display the quoted contents
+' appropriately
+'
+function openQuotes (fstring)
+  dim quoteBase, replacement, quoteHead, regx
+
+  Set regx = New RegExp
+  dim matches
+  
+  regx.global = true
+  regx.multiline = true
+  
+''''''''''''''''''''''''''''''''''''''''''''''''''''
+' make sure we replace only 'closed' quotes - those having both opening and closing
+' brackets ([quote="xxx"] and [/quote])
+'
+' attempts to replace quotes indiscriminantly without regard to open/close match
+' mess up forum pages
+'
+  regx.pattern = "\[(quote=""[^""]+""|/quote)\]"
+  dim match, txt, stack(40), index, str
+  index = 0
+
+  set matches = regx.execute ( fstring )
+  For Each Match in Matches
+	str = match.value
+	if InStr ( str, "[quote=" ) then
+		stack ( index ) = Match.FirstIndex + 0
+		index = index + 1
+	else
+' we're here, this means the match is [/quote]
+		if index > 0 then
+			index = index - 1
+' index is more than 0, this means there was a proper [quote="xxx"] before,
+' let's convert both of them for future substitution with HTML code
+'
+			fstring = left ( fstring, stack ( index )) & _
+				replace ( fString, "[quote=", "[qu=te=", stack ( index ) + 1, 1 )
+			fstring = left ( fstring, Match.FirstIndex ) & _
+				replace ( fstring, "[/quote", "[/qu=te", Match.FirstIndex + 1, 1 )
+		end if
+	end if
+   Next
+'
+' now - substitute the eligible opening/closing brackets with HTML code
+'
+  quoteBase = "\[qu=te=""([^""]+)""\]"
+  quoteHead = "<u><i><b>$1</b> написал(а):</i></u></td></tr><tr><td class=""quoteTd"">"
+  regx.Pattern = quoteBase
+  replacement = strNewQuoteOpen & quoteHead
+  fstring = regx.replace(fstring, replacement)
+  
+  fstring = replace ( fstring, "[/qu=te]", strNewQuoteClose)
+
+  openQuotes = fstring
+
+end function
+
+'
+' this function is used to convert legacy forum messages (with HTML quotation
+' formatting saved in the body of the message) into the new style, when only
+' the [quote] and [/quote] statements are saved in the message
+' 
+function fixOldQuotation (fstring)
+  Dim regEx
+  Set regEx = New RegExp
+  dim quoteBase
+  dim replacement
+  
+  quoteBase = "quote:" & strRuler & "<i>Originally posted by ([^<]+)</i>(<br>){0,}"
+  replacement = "[quote=""$1""]"
+  regEx.Pattern = strQuoteOpen & quoteBase
+
+  regex.global = true
+  fstring = regEx.replace(fstring, replacement )
+  
+  regEx.Pattern = strQuoteOpen1 & quoteBase
+  fstring = regEx.replace(fstring, replacement)
+  fstring = replace(fstring, "<br />[quote=", "[quote=")
+  fstring = replace(fstring, _
+  	strRuler & "</blockquote id=""quote""></font id=""quote"">", _
+  	"[/quote]")
+
+  fixOldQuotation = fstring
+
+end function
 
 function FormatStr(fString)
 	on Error resume next
 	fString = Replace(fString, CHR(13), "")
-	'fString = Replace(fString, CHR(10) & CHR(10), "<br /><br />")
-	fString = Replace(fString, CHR(10), "<br />")
+	fString = replace(fString, "]" & chr(10), "]")
+	fString = Replace(fString, CHR(10), "<br>")
+	fString = replace(fString, "<br />", "<br>")
 	if strBadWordFilter = 1 or strBadWordFilter = "1" then
 		fString = ChkBadWords(fString)
 	end if
@@ -145,7 +252,8 @@ function FormatStr(fString)
 	if strAllowForumCode = "1" then
 		fString = extratags(fString)
 	end if
-	FormatStr = fString
+	fString = fixOldQuotation ( fString )
+	formatStr = openQuotes ( fString )
 	on Error goto 0
 end function
 
@@ -425,9 +533,6 @@ function chkString(pString,fField_Type) '## Types - name, password, title, messa
 		Case "hidden"
 			fString = HTMLEncode(fString)
 	End Select
-	if fField_Type <> "signature" and fField_Type <> "title" then
-		fString = doCode(fString, "[quote]", "[/quote]", "<blockquote id=""quote""><font size=""" & strFooterFontSize & """ face=""" & strDefaultFontFace & """ id=""quote"">quote:<hr height=""1"" noshade id=""quote"">", "<hr height=""1"" noshade id=""quote""></blockquote id=""quote""></font id=""quote"">")
-	end if
 	if strAllowForumCode = "1" and fField_Type <> "signature" then
 		fString = doCode(fString, "[b]", "[/b]", "<b>", "</b>")
 		fString = doCode(fString, "[s]", "[/s]", "<s>", "</s>")

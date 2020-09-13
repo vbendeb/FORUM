@@ -334,11 +334,11 @@ strRqMethod = "ReplyQuote" then
 	strAuthor = rs("R_AUTHOR")
 
 	if strRqMethod = "Edit" then
-		TxtMsg = rs("R_MESSAGE")
+		TxtMsg = fixOldQuotation (rs("R_MESSAGE"))
 	else
 		if strRqMethod = "ReplyQuote" then
-			TxtMsg = "[quote][i]Originally posted by " & chkString(rs("M_NAME"),"display") & "[/i]" & vbNewline
-			TxtMsg = TxtMsg & "[br]" & rs("R_MESSAGE") & vbNewline
+			TxtMsg = "[quote=""" & chkString(rs("M_NAME"),"display") & """]" & vbNewline
+			TxtMsg = TxtMsg & fixOldQuotation ( rs("R_MESSAGE") ) & vbNewline
 			TxtMsg = TxtMsg & "[/quote]"
 		end if
 	end if
@@ -362,8 +362,8 @@ if strRqMethod = "EditTopic" or strRqMethod = "TopicQuote" then
 		TxtMsg = rs("T_MESSAGE")
 	else
 		if strRqMethod = "TopicQuote" then
-			TxtMsg = "[quote][i]Originally posted by " & chkString(rs("M_NAME"),"display") & "[/i]" & vbNewline
-			TxtMsg = TxtMsg & "[br]" & rs("T_MESSAGE") & vbNewline
+			TxtMsg = "[quote=""" & chkString(rs("M_NAME"),"display") & """]" & vbNewline
+			TxtMsg = TxtMsg & fixOldQuotation ( rs("T_MESSAGE") ) & vbNewline
 			TxtMsg = TxtMsg & "[/quote]"
 		end if
 	end if
@@ -430,13 +430,13 @@ select case strRqMethod
 	case "Category"
 		btn = "Post New Category"
 	case "Edit", "EditCategory", "EditForum", "EditTopic", "EditURL"
-		btn = "Post Changes"
+		btn = "Опубликовать изменения"
 	case "Forum"
 		btn = "Post New Forum"
 	case "Reply", "ReplyQuote", "TopicQuote"
-		btn = "Post New Reply"
+		btn = "Опубликовать ответ"
 	case "Topic"
-		btn = "Post New Topic"
+		btn = "Опубликовать новый топик"
 	case "URL"
 		btn = "Post New URL"
 	case else
@@ -1336,10 +1336,10 @@ if strAllowForumCode = "1" or strAllowHTML = "1" then
 	strRqMethod = "EditTopic" or _
 	strRqMethod = "Topic" or _
 	strRqMethod = "TopicQuote" then 
-		Response.Write	"&nbsp;<input name=""Preview"" type=""button"" value="" Preview "" onclick=""OpenPreview()"">"
+		Response.Write	"&nbsp;<input name=""Preview"" type=""button"" value=""Предварительный просмотр"" onclick=""OpenPreview()"">"
 	end if 
 end if
-Response.Write	"&nbsp;<input name=""Reset"" type=""reset"" value=""Reset Fields"" tabindex=""-1""></td>" & vbNewline & _
+Response.Write	"&nbsp;<input name=""Reset"" type=""reset"" value=""Стереть всё"" tabindex=""-1""></td>" & vbNewline & _
 		"              </tr>" & vbNewline & _
 		"              </form>" & vbNewLine & _
 		"            </table>" & vbNewline & _

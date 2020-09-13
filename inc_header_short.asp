@@ -79,6 +79,7 @@ Response.Write	"<style><!--" & vbNewline & _
 		".spnMessageText a:hover   {color:" & strForumHoverFontColor & ";text-decoration:" & strForumHoverTextDecoration & "}" & vbNewLine & _
 		".spnMessageText a:active  {color:" & strForumActiveLinkColor & ";text-decoration:" & strForumActiveTextDecoration & "}" & vbNewLine & _
 		"input.radio {background:" & strPopUpTableColor & ";color:#000000}" & vbNewLine & _
+		quoteStyleStr & altQuoteStyleStr & tdStyleStr & _
 		"--></style>" & vbNewline & _
 		"</head>" & vbNewline & _
 		vbNewline & _

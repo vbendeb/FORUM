@@ -275,6 +275,7 @@ Response.Write	"<script language=""JavaScript"" type=""text/javascript"">" & vbN
 		".spnMessageText a:active  {color:" & strForumActiveLinkColor & ";text-decoration:" & strForumActiveTextDecoration & "}" & vbNewLine & _
 		".spnSearchHighlight {background-color:" & strSearchHiLiteColor & "}" & vbNewLine & _
 		"input.radio {background:" & strPopUpTableColor & ";color:#000000}" & vbNewLine & _
+		quoteStyleStr & altQuoteStyleStr & tdStyleStr & _
 		"-->" & vbNewLine & _
 		"</style>" & vbNewLine & _
 		"</head>" & vbNewLine & _

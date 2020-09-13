@@ -687,11 +687,15 @@ else
 					"                    </tr>" & vbNewLine & _
 					"                    <tr>" & vbNewLine & _
 					"                      <td valign=""top"" height=""100%""><font face=""" & strDefaultFontFace & """ size=""" & strDefaultFontSize & """ color=""" & strForumFontColor & """><span class=""spnMessageText"" id=""msg"">"
+			Reply_Content =	formatStr(Reply_Content)
 			if Request.QueryString("SearchTerms") <> "" then
-				Response.Write	SearchHiLite(formatStr(Reply_Content))
-			else
-				Response.Write	formatStr(Reply_Content)
+				Reply_Content =	SearchHiLite(Reply_Content)
 			end if
+			if intI = 1 then
+				Reply_Content = replace ( Reply_Content, "=""quote""", "=""quoteAlt""" )
+				Reply_Content = replace ( Reply_Content, "=""quoteFirst""", "=""quoteAltFirst""" )
+			end if
+			Response.Write	Reply_Content
 			Response.Write	"</span id=""msg""></font></td>" & vbNewLine & _
 					"                    </tr>" & vbNewLine
 			if CanShowSignature = 1 and Reply_Sig = 1 and Reply_MemberSig <> "" then
